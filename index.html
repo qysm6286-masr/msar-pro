@@ -74,11 +74,15 @@ margin-top:10px;
 <script>
 function login(){
 
-var email = document.getElementById("email").value;
-var code = document.getElementById("code").value;
+var email = document.getElementById("email").value.trim();
+var code = document.getElementById("code").value.trim();
 
-// مثال كود مؤقت
-if(email !== "" && code == "1234"){
+if(email === "" || code === ""){
+document.getElementById("msg").innerHTML = "يرجى تعبئة جميع الحقول";
+return;
+}
+
+if(code === "1234"){
 window.location.href = "home.html";
 }else{
 document.getElementById("msg").innerHTML = "الكود غير صحيح";
@@ -86,6 +90,8 @@ document.getElementById("msg").innerHTML = "الكود غير صحيح";
 
 }
 </script>
+}
+
 
 </body>
 </html>
