@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>مسار - المديلات</title>
+
+<style>
+body{
+background:#0f172a;
+color:#fff;
+font-family:Arial;
+margin:0;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+.section{
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+button{
+padding:15px;
+border:none;
+border-radius:10px;
+background:#1e293b;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#38bdf8;
+}
+
+.sub{
+margin-top:10px;
+display:none;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+}
+
+.small{
+font-size:14px;
+background:#334155;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>📱 شركات الهواتف - مسار</h1>
+
+<!-- سامسونج -->
+<div class="section">
+<button onclick="toggle('samsung')">سامسونج</button>
+
+<div id="samsung" class="sub">
+<button class="small">A</button>
+<button class="small">M</button>
+<button class="small">S</button>
+</div>
+</div>
+
+<!-- ريدمي -->
+<div class="section">
+<button onclick="toggle('redmi')">ريدمي</button>
+
+<div id="redmi" class="sub">
+<button class="small">Note</button>
+<button class="small">Redmi</button>
+<button class="small">Pro</button>
+</div>
+</div>
+
+<!-- انفنكس -->
+<div class="section">
+<button onclick="toggle('infinix')">إنفنكس</button>
+
+<div id="infinix" class="sub">
+<button class="small">Hot</button>
+<button class="small">Note</button>
+<button class="small">Smart</button>
+</div>
+</div>
+
+<!-- شركات مستقبلية -->
+<div class="section">
+<button>+ إضافة شركات لاحقاً</button>
+</div>
+
+<script>
+function toggle(id){
+var el = document.getElementById(id);
+
+if(el.style.display === "grid"){
+el.style.display = "none";
+}else{
+el.style.display = "grid";
+}
+}
+</script>
+
+</body>
+</html>
