@@ -2,13 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>مسار - المديلات</title>
+<title>مسار - Phone Models</title>
 
 <style>
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#0f172a,#1e293b);
+background:linear-gradient(135deg,#0b1220,#111c33);
 color:#fff;
 padding:20px;
 }
@@ -20,67 +20,64 @@ margin-bottom:25px;
 }
 
 .header h1{
-font-size:28px;
+font-size:36px;
 margin:0;
 color:#38bdf8;
 }
 
 .header p{
-margin-top:5px;
+margin-top:8px;
 color:#94a3b8;
 font-size:14px;
 }
 
-/* الأقسام */
-.section{
-margin-bottom:20px;
+/* شبكة الشركات */
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+max-width:600px;
+margin:auto;
 }
 
-/* أزرار الشركات */
-.company-btn{
-width:100%;
-padding:18px;
-margin-bottom:10px;
-border:none;
-border-radius:12px;
+/* بطاقات الشركات */
+.card{
 background:#1e293b;
-color:#fff;
-font-size:18px;
+padding:20px;
+border-radius:14px;
+text-align:center;
 cursor:pointer;
 transition:0.3s;
-text-align:right;
+font-size:14px;
 }
 
-.company-btn:hover{
+.card:hover{
 background:#38bdf8;
+transform:scale(1.05);
 }
 
-/* فئات المديلات */
+/* الفئات */
 .sub{
 display:none;
 grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-bottom:15px;
+gap:8px;
+margin-top:10px;
+grid-column:span 3;
 }
 
 .small{
-padding:12px;
-border:none;
-border-radius:10px;
 background:#334155;
+border:none;
+padding:10px;
+border-radius:10px;
 color:#fff;
-font-size:16px;
+font-size:13px;
 cursor:pointer;
 transition:0.3s;
 }
 
 .small:hover{
 background:#38bdf8;
-}
-
-/* شكل فتح */
-.show{
-display:grid;
 }
 </style>
 
@@ -89,56 +86,72 @@ display:grid;
 <body>
 
 <div class="header">
-<h1>📱 مديلات الهاتف</h1>
-<p>كل الشركات في مكان واحد داخل مكتبة مسار</p>
+<h1>📱 Model Library</h1>
+<p>مكتبة مسار - جميع مديلات الهواتف في مكان واحد</p>
 </div>
 
-<!-- سامسونج -->
-<div class="section">
-<button class="company-btn" onclick="toggle('samsung')">سامسونج</button>
+<div class="grid">
+
+<!-- Samsung -->
+<div class="card" onclick="toggle('samsung')">Samsung</div>
+
+<!-- Redmi -->
+<div class="card" onclick="toggle('redmi')">Redmi</div>
+
+<!-- Infinix -->
+<div class="card" onclick="toggle('infinix')">Infinix</div>
+
+<!-- Tecno -->
+<div class="card">Tecno</div>
+
+<!-- Huawei -->
+<div class="card">Huawei</div>
+
+<!-- Realme -->
+<div class="card">Realme</div>
+
+<!-- Vivo -->
+<div class="card">Vivo</div>
+
+<!-- Oppo -->
+<div class="card">Oppo</div>
+
+<!-- Nokia -->
+<div class="card">Nokia</div>
+
+<!-- iPhone -->
+<div class="card">iPhone</div>
+
+<!-- Folders -->
+
 <div id="samsung" class="sub">
-<button class="small">A</button>
-<button class="small">M</button>
-<button class="small">S</button>
-</div>
+<button class="small">Galaxy A</button>
+<button class="small">Galaxy M</button>
+<button class="small">Galaxy S</button>
 </div>
 
-<!-- ريدمي -->
-<div class="section">
-<button class="company-btn" onclick="toggle('redmi')">ريدمي</button>
 <div id="redmi" class="sub">
 <button class="small">Note</button>
 <button class="small">Redmi</button>
 <button class="small">Pro</button>
 </div>
-</div>
 
-<!-- انفنكس -->
-<div class="section">
-<button class="company-btn" onclick="toggle('infinix')">إنفنكس</button>
 <div id="infinix" class="sub">
 <button class="small">Hot</button>
 <button class="small">Note</button>
 <button class="small">Smart</button>
 </div>
-</div>
 
-<!-- شركات أخرى -->
-<div class="section">
-<button class="company-btn">نوكيا</button>
-<button class="company-btn">هواوي</button>
-<button class="company-btn">أوبو</button>
-<button class="company-btn">فيفو</button>
 </div>
 
 <script>
 function toggle(id){
 var el = document.getElementById(id);
 
-if(el.classList.contains("show")){
-el.classList.remove("show");
+if(el.style.display === "grid"){
+el.style.display = "none";
 }else{
-el.classList.add("show");
+el.style.display = "grid";
 }
 }
 </script>
