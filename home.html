@@ -6,53 +6,81 @@
 
 <style>
 body{
-background:#0f172a;
-color:#fff;
-font-family:Arial;
 margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:#fff;
 padding:20px;
 }
 
-h1{
+/* العنوان */
+.header{
 text-align:center;
+margin-bottom:25px;
+}
+
+.header h1{
+font-size:28px;
+margin:0;
+color:#38bdf8;
+}
+
+.header p{
+margin-top:5px;
+color:#94a3b8;
+font-size:14px;
+}
+
+/* الأقسام */
+.section{
 margin-bottom:20px;
 }
 
-.section{
-margin-bottom:30px;
+/* أزرار الشركات */
+.company-btn{
+width:100%;
+padding:18px;
+margin-bottom:10px;
+border:none;
+border-radius:12px;
+background:#1e293b;
+color:#fff;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+text-align:right;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
+.company-btn:hover{
+background:#38bdf8;
+}
+
+/* فئات المديلات */
+.sub{
+display:none;
+grid-template-columns:repeat(3,1fr);
 gap:10px;
+margin-bottom:15px;
 }
 
-button{
-padding:15px;
+.small{
+padding:12px;
 border:none;
 border-radius:10px;
-background:#1e293b;
+background:#334155;
 color:#fff;
 font-size:16px;
 cursor:pointer;
 transition:0.3s;
 }
 
-button:hover{
+.small:hover{
 background:#38bdf8;
 }
 
-.sub{
-margin-top:10px;
-display:none;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-}
-
-.small{
-font-size:14px;
-background:#334155;
+/* شكل فتح */
+.show{
+display:grid;
 }
 </style>
 
@@ -60,12 +88,14 @@ background:#334155;
 
 <body>
 
-<h1>📱 شركات الهواتف - مسار</h1>
+<div class="header">
+<h1>📱 مديلات الهاتف</h1>
+<p>كل الشركات في مكان واحد داخل مكتبة مسار</p>
+</div>
 
 <!-- سامسونج -->
 <div class="section">
-<button onclick="toggle('samsung')">سامسونج</button>
-
+<button class="company-btn" onclick="toggle('samsung')">سامسونج</button>
 <div id="samsung" class="sub">
 <button class="small">A</button>
 <button class="small">M</button>
@@ -75,8 +105,7 @@ background:#334155;
 
 <!-- ريدمي -->
 <div class="section">
-<button onclick="toggle('redmi')">ريدمي</button>
-
+<button class="company-btn" onclick="toggle('redmi')">ريدمي</button>
 <div id="redmi" class="sub">
 <button class="small">Note</button>
 <button class="small">Redmi</button>
@@ -86,8 +115,7 @@ background:#334155;
 
 <!-- انفنكس -->
 <div class="section">
-<button onclick="toggle('infinix')">إنفنكس</button>
-
+<button class="company-btn" onclick="toggle('infinix')">إنفنكس</button>
 <div id="infinix" class="sub">
 <button class="small">Hot</button>
 <button class="small">Note</button>
@@ -95,19 +123,22 @@ background:#334155;
 </div>
 </div>
 
-<!-- شركات مستقبلية -->
+<!-- شركات أخرى -->
 <div class="section">
-<button>+ إضافة شركات لاحقاً</button>
+<button class="company-btn">نوكيا</button>
+<button class="company-btn">هواوي</button>
+<button class="company-btn">أوبو</button>
+<button class="company-btn">فيفو</button>
 </div>
 
 <script>
 function toggle(id){
 var el = document.getElementById(id);
 
-if(el.style.display === "grid"){
-el.style.display = "none";
+if(el.classList.contains("show")){
+el.classList.remove("show");
 }else{
-el.style.display = "grid";
+el.classList.add("show");
 }
 }
 </script>
