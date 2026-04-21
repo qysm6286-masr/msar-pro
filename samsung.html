@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Samsung - Masar</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0b1220,#111c33);
+color:#fff;
+padding:20px;
+}
+
+/* Header */
+.header{
+text-align:center;
+margin-bottom:25px;
+}
+
+.header h1{
+font-size:32px;
+color:#38bdf8;
+margin:0;
+}
+
+.header p{
+color:#94a3b8;
+font-size:14px;
+margin-top:8px;
+}
+
+/* Grid */
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+max-width:800px;
+margin:auto;
+}
+
+/* Card */
+.card{
+background:#1e293b;
+padding:18px;
+border-radius:14px;
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+background:#38bdf8;
+transform:scale(1.05);
+}
+
+/* Title */
+.title{
+font-size:18px;
+margin-bottom:10px;
+}
+
+/* Parts */
+.parts{
+display:flex;
+flex-direction:column;
+gap:8px;
+margin-top:10px;
+}
+
+/* Buttons */
+.part-btn{
+background:#334155;
+border:none;
+padding:10px;
+border-radius:10px;
+color:#fff;
+cursor:pointer;
+transition:0.3s;
+}
+
+.part-btn:hover{
+background:#38bdf8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>Samsung Models</h1>
+<p>Select model and section</p>
+</div>
+
+<div class="grid">
+
+<!-- Galaxy A -->
+<div class="card">
+<div class="title">Galaxy A</div>
+<div class="parts">
+<button class="part-btn">Section 1</button>
+<button class="part-btn">Section 2</button>
+<button class="part-btn">Section 3</button>
+</div>
+</div>
+
+<!-- Galaxy M -->
+<div class="card">
+<div class="title">Galaxy M</div>
+<div class="parts">
+<button class="part-btn">Section 1</button>
+<button class="part-btn">Section 2</button>
+<button class="part-btn">Section 3</button>
+</div>
+</div>
+
+<!-- Galaxy S -->
+<div class="card">
+<div class="title">Galaxy S</div>
+<div class="parts">
+<button class="part-btn">Section 1</button>
+<button class="part-btn">Section 2</button>
+<button class="part-btn">Section 3</button>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
