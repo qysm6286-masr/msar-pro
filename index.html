@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>تسجيل الدخول - مسار</title>
+<title>مسار - تسجيل الدخول</title>
 
 <style>
 body{
@@ -17,6 +17,46 @@ margin:0;
 }
 
 .box{
+background:#1e293b;
+padding:30px;
+border-radius:12px;
+width:320px;
+text-align:center;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#38bdf8;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0ea5e9;
+}
+
+#msg{
+color:red;
+margin-top:10px;
+}
+</style>
+
+</head>
+
+<body>
+
 <div class="box">
 
 <h1>📚 مسار</h1>
@@ -43,27 +83,6 @@ margin:0;
 
 </div>
 
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="box">
-
-<h2>تسجيل الدخول</h2>
-
-<input type="email" id="email" placeholder="أدخل الإيميل">
-
-<input type="text" id="code" placeholder="أدخل كود الاشتراك">
-
-<button onclick="login()">دخول</button>
-
-<p id="msg"></p>
-
-</div>
-
 <script>
 function login(){
 
@@ -83,8 +102,7 @@ document.getElementById("msg").innerHTML = "الكود غير صحيح";
 
 }
 </script>
-}
-
 
 </body>
 </html>
+
