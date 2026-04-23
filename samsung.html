@@ -1,86 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Samsung - Masar</title>
+<title>Samsung Models</title>
 
 <style>
-body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#0b1220,#111c33);
-color:#fff;
-padding:20px;
+body {
+    font-family: Arial;
+    direction: rtl;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header */
-.header{
-text-align:center;
-margin-bottom:25px;
+/* الشريط العلوي */
+.top-icons {
+    display: flex;
+    justify-content: space-around;
+    background: #111;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
 }
 
-.header h1{
-font-size:32px;
-color:#38bdf8;
-margin:0;
+.icon {
+    text-align: center;
+    flex: 1;
 }
 
-.header p{
-color:#94a3b8;
-font-size:14px;
-margin-top:8px;
+/* قسم A */
+.section {
+    padding: 15px;
 }
 
-/* Grid */
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-max-width:800px;
-margin:auto;
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #333;
 }
 
-/* Card */
-.card{
-background:#1e293b;
-padding:18px;
-border-radius:14px;
-text-align:center;
-transition:0.3s;
+/* الأزرار */
+.btn {
+    display: block;
+    background: white;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ddd;
+    transition: 0.2s;
 }
 
-.card:hover{
-background:#38bdf8;
-transform:scale(1.05);
-}
-
-/* Title */
-.title{
-font-size:18px;
-margin-bottom:10px;
-}
-
-/* Parts */
-.parts{
-display:flex;
-flex-direction:column;
-gap:8px;
-margin-top:10px;
-}
-
-/* Buttons */
-.part-btn{
-background:#334155;
-border:none;
-padding:10px;
-border-radius:10px;
-color:#fff;
-cursor:pointer;
-transition:0.3s;
-}
-
-.part-btn:hover{
-background:#38bdf8;
+.btn:hover {
+    background: #eee;
 }
 </style>
 
@@ -88,27 +62,65 @@ background:#38bdf8;
 
 <body>
 
-<div class="header">
-<h1>Samsung Models</h1>
-<p>Select model and section</p>
+<!-- 🔝 الأيقونات -->
+<div class="top-icons">
+    <div class="icon">🅰️ A</div>
+    <div class="icon">🇲 M</div>
+    <div class="icon">🇸 S</div>
 </div>
 
-<div class="grid">
+<!-- 📱 قسم A -->
+<div class="section">
 
-<!-- samsung A -->
-<div class="card">
-<div class="title">samsung A</div>
+    <div class="section-title">فئة A</div>
 
+    <!-- A0x -->
+    <a class="btn" href="#">A01</a>
+    <a class="btn" href="#">A02</a>
+    <a class="btn" href="#">A02s</a>
+    <a class="btn" href="#">A03</a>
+    <a class="btn" href="#">A03s</a>
+    <a class="btn" href="#">A04</a>
+    <a class="btn" href="#">A04s</a>
+    <a class="btn" href="#">A05</a>
+    <a class="btn" href="#">A05s</a>
+    <a class="btn" href="#">A06</a>
 
-<!-- samsung M -->
-<div class="card">
-<div class="title">samsung M</div>
+    <hr>
 
-<!-- samsung S -->
-<div class="card">
-<div class="title">samsug S</div>
+    <!-- A1x - A4x -->
+    <a class="btn" href="#">A10e</a>
+    <a class="btn" href="#">A31</a>
+    <a class="btn" href="#">A32</a>
+    <a class="btn" href="#">A33</a>
+    <a class="btn" href="#">A34</a>
+    <a class="btn" href="#">A35</a>
+    <a class="btn" href="#">A40</a>
+    <a class="btn" href="#">A41</a>
+    <a class="btn" href="#">A42</a>
 
+    <hr>
 
+    <!-- A5x - A7x -->
+    <a class="btn" href="#">A50</a>
+    <a class="btn" href="#">A50s</a>
+    <a class="btn" href="#">A51</a>
+    <a class="btn" href="#">A52</a>
+    <a class="btn" href="#">A52s</a>
+    <a class="btn" href="#">A53</a>
+    <a class="btn" href="#">A54</a>
+    <a class="btn" href="#">A56</a>
+    <a class="btn" href="#">A70</a>
+    <a class="btn" href="#">A71</a>
+    <a class="btn" href="#">A72</a>
+    <a class="btn" href="#">A73</a>
+
+    <hr>
+
+    <!-- A90 -->
+    <a class="btn" href="#">A90</a>
+
+</div>
 
 </body>
 </html>
