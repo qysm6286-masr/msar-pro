@@ -1,28 +1,186 @@
-<a href="#" class="model-btn">Samsung A32 (A326)</a>
-        <a href="#" class="model-btn">Samsung A33 (A336)</a>
-        <a href="#" class="model-btn">Samsung A34 (A346)</a>
-        <a href="#" class="model-btn">Samsung A35 (A356)</a>
-        <a href="#" class="model-btn">Samsung A40 (A405)</a>
-        <a href="#" class="model-btn">Samsung A41 (A415)</a>
-        <a href="#" class="model-btn">Samsung A42 (A426)</a>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسارات أجهزة سامسونج - مشروع مسار</title>
+    <style>
+        :root {
+            --active-color: #27ae60; /* الأخضر */
+            --inactive-color: #e74c3c; /* الأحمر */
+            --bg-color: #f0f2f5;
+        }
 
-        <a href="#" class="model-btn">Samsung A50 (A505)</a>
-        <a href="#" class="model-btn">Samsung A50s (A507)</a>
-        <a href="#" class="model-btn">Samsung A51 (A515)</a>
-        <a href="#" class="model-btn">Samsung A52 (A525)</a>
-        <a href="#" class="model-btn">Samsung A52 (A526)</a>
-        <a href="#" class="model-btn">Samsung A52s (A528)</a>
-        <a href="#" class="model-btn">Samsung A53 (A536)</a>
-        <a href="#" class="model-btn">Samsung A54 (A546)</a>
-        <a href="#" class="model-btn">Samsung A56 (A566)</a>
-        <a href="#" class="model-btn">Samsung A70 (A705)</a>
-        <a href="#" class="model-btn">Samsung A71 (A715)</a>
-        <a href="#" class="model-btn">Samsung A71 (A716)</a>
-        <a href="#" class="model-btn">Samsung A72 (A725)</a>
-        <a href="#" class="model-btn">Samsung A73 (A736)</a>
-        <a href="#" class="model-btn">Samsung A90 (A908)</a>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 10px;
+            color: #333;
+        }
 
+        .main-title {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        /* حاوية الأعمدة الثلاثة */
+        .categories-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* ثلاث أعمدة متساوية */
+            gap: 10px;
+            align-items: start;
+        }
+
+        /* تنسيق العمود */
+        .category-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* الأيقونات العلوية */
+        .icon-header {
+            width: 100%;
+            padding: 10px 5px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .icon-header.green { background-color: var(--active-color); }
+        .icon-header.red { background-color: var(--inactive-color); }
+
+        .icon-header span {
+            display: block;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        /* قائمة الأزرار */
+        .buttons-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .model-btn {
+            background-color: #fff;
+            color: #333;
+            text-decoration: none;
+            padding: 12px 5px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+            border: 1px solid #ddd;
+            transition: 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: block;
+            word-wrap: break-word;
+        }
+
+        .model-btn:hover {
+            background-color: #e8f5e9;
+            border-color: var(--active-color);
+        }
+
+        .coming-soon {
+            background-color: #eee;
+            color: #999;
+            border: 1px dashed #bbb;
+            cursor: not-allowed;
+        }
+
+        /* تنسيق خاص للجوال لضمان وضوح الأعمدة */
+        @media (max-width: 400px) {
+            .model-btn { font-size: 11px; padding: 10px 2px; }
+            .icon-header { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="main-title">مسارات أجهزة سامسونج</h1>
+
+    <div class="categories-container">
+        
+        <div class="category-column">
+            <div class="icon-header green">
+                اللون الأخضر
+                <span>SAMSUNG A</span>
+            </div>
+            <div class="buttons-list">
+                <a href="#" class="model-btn">A01 (A015)</a>
+                <a href="#" class="model-btn">A02 (A022)</a>
+                <a href="#" class="model-btn">A02s (A025)</a>
+                <a href="#" class="model-btn">A03 (A032)</a>
+                <a href="#" class="model-btn">A03 (A035)</a>
+                <a href="#" class="model-btn">A03s (A037)</a>
+                <a href="#" class="model-btn">A04 (A042)</a>
+                <a href="#" class="model-btn">A04 (A045)</a>
+                <a href="#" class="model-btn">A04s (A047)</a>
+                <a href="#" class="model-btn">A05 (A055)</a>
+                <a href="#" class="model-btn">A05s (A057)</a>
+                <a href="#" class="model-btn">A06 (A065)</a>
+                <a href="#" class="model-btn">A10e (A102)</a><a href="#" class="model-btn">A31 (A315)</a>
+                <a href="#" class="model-btn">A32 (A325)</a>
+                <a href="#" class="model-btn">A32 (A326)</a>
+                <a href="#" class="model-btn">A33 (A336)</a>
+                <a href="#" class="model-btn">A34 (A346)</a>
+                <a href="#" class="model-btn">A35 (A356)</a>
+                <a href="#" class="model-btn">A40 (A405)</a>
+                <a href="#" class="model-btn">A41 (A415)</a>
+                <a href="#" class="model-btn">A42 (A426)</a>
+                <a href="#" class="model-btn">A50 (A505)</a>
+                <a href="#" class="model-btn">A50s (A507)</a>
+                <a href="#" class="model-btn">A51 (A515)</a>
+                <a href="#" class="model-btn">A52 (A525)</a>
+                <a href="#" class="model-btn">A52 (A526)</a>
+                <a href="#" class="model-btn">A52s (A528)</a>
+                <a href="#" class="model-btn">A53 (A536)</a>
+                <a href="#" class="model-btn">A54 (A546)</a>
+                <a href="#" class="model-btn">A56 (A566)</a>
+                <a href="#" class="model-btn">A70 (A705)</a>
+                <a href="#" class="model-btn">A71 (A715)</a>
+                <a href="#" class="model-btn">A71 (A716)</a>
+                <a href="#" class="model-btn">A72 (A725)</a>
+                <a href="#" class="model-btn">A73 (A736)</a>
+                <a href="#" class="model-btn">A90 (A908)</a>
+            </div>
         </div>
+
+        <div class="category-column">
+            <div class="icon-header red">
+                اللون الأحمر
+                <span>SAMSUNG M</span>
+            </div>
+            <div class="buttons-list">
+                <a href="#" class="model-btn coming-soon">قريباً..</a>
+                <a href="#" class="model-btn coming-soon">قريباً..</a>
+                </div>
+        </div>
+
+        <div class="category-column">
+            <div class="icon-header red">
+                اللون الأحمر
+                <span>SAMSUNG S</span>
+            </div>
+            <div class="buttons-list">
+                <a href="#" class="model-btn coming-soon">قريباً..</a>
+                <a href="#" class="model-btn coming-soon">قريباً..</a>
+            </div>
+        </div>
+
+    </div>
 
 </body>
 </html>
