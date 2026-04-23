@@ -2,13 +2,73 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تجربة مسار</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع مسار - العارض الاحترافي</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: black; }
+        /* إلغاء أي هوامش وجعل الخلفية سوداء */
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #000; font-family: Arial, sans-serif; }
+        
+        /* تنسيق الشريط العلوي */
+        .nav-bar { 
+            height: 50px; 
+            background: #1a1a1a; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 15px; 
+            border-bottom: 2px solid #27ae60; 
+            position: relative; 
+            z-index: 1000; 
+        }
+
+        /* تنسيق زر العودة */
+        .back-btn { 
+            background: #e74c3c; 
+            color: white; 
+            border: none; 
+            padding: 6px 15px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 14px;
+        }
+
+        /* حاوية المخطط - تأخذ باقي مساحة الشاشة */
+        .container { 
+            height: calc(100vh - 52px); 
+            width: 100%; 
+        }
+
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
-    <iframe src="https://drive.google.com/file/d/1btc-nMhinnXesCHGYuXUqhw2l2mOAGEN/preview"></iframe>
+
+    <div class="nav-bar">
+        <span style="color: #27ae60; font-weight: bold;">مشروع مسار | المخطط التقني</span>
+        <a href="samsung.html" class="back-btn">العودة للموديلات</a>
+    </div>
+
+    <div class="container" id="viewer-container">
+        </div>
+
+    <script>
+        // دالة ذكية لجلب الـ ID من الرابط
+        function getFileId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        const fileId = getFileId();
+        const container = document.getElementById('viewer-container');
+
+        if (fileId) {
+            // هذا هو السطر السحري الذي يعرض المخطط داخل الموقع
+            container.innerHTML = <iframe src="https://drive.google.com/file/d/${fileId}/preview"></iframe>;
+        } else {
+            container.innerHTML = <h2 style='color:white; text-align:center; margin-top:50px;'>عذراً، لم يتم العثور على المخطط</h2>;
+        }
+    </script>
 </body>
 </html>
