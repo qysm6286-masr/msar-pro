@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مسارات أجهزة سامسونج - مشروع مسار</title>
     <style>
-        /* أهم جزء لضمان عدم ظهور الروابط بجانب بعضها */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
@@ -23,7 +22,6 @@
             display: inline-block;
         }
 
-        /* حاوية الأعمدة */
         .container {
             display: flex;
             justify-content: space-around;
@@ -39,36 +37,30 @@
             min-width: 100px;
         }
 
-        /* تنسيق الأيقونات العلوية */
+        /* تنسيق الأيقونة العلوية */
         .header-box {
-            padding: 15px 5px;
+            padding: 20px 5px; /* زيادة المساحة لتبرز الحروف */
             border-radius: 12px;
             color: white;
             font-weight: bold;
             margin-bottom: 15px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-size: 24px; /* تكبير حرف الفئة */
         }
 
-        .green { background-color: #27ae60; } /* أخضر للمفعل */
-        .red { background-color: #e74c3c; }   /* أحمر لغير المفعل */
+        .green { background-color: #27ae60; } 
+        .red { background-color: #e74c3c; }   
 
-        .header-box span {
-            display: block;
-            font-size: 20px;
-            margin-top: 5px;
-        }
-
-        /* تنسيق الأزرار (الموديلات) */
         .model-btn {
             background-color: #ffffff;
             color: #333;
-            text-decoration: none; /* يزيل الخط تحت الرابط */
+            text-decoration: none;
             padding: 15px 5px;
             border-radius: 8px;
             border: 1px solid #ccc;
             font-size: 14px;
             font-weight: bold;
-            display: block; /* يضمن أن كل زر يأخذ سطر مستقل */
+            display: block;
             transition: 0.3s;
         }
 
@@ -84,11 +76,10 @@
             cursor: not-allowed;
         }
 
-        /* لتحسين المظهر على الجوال */
         @media (max-width: 600px) {
             .container { gap: 5px; }
             .model-btn { font-size: 11px; padding: 12px 2px; }
-            .header-box { font-size: 12px; }
+            .header-box { font-size: 18px; }
         }
     </style>
 </head>
@@ -100,8 +91,7 @@
         
         <div class="column">
             <div class="header-box green">
-                اللون الأخضر
-                <span>A</span>
+                A
             </div>
             <a href="#" class="model-btn">A01 (A015)</a>
             <a href="#" class="model-btn">A02 (A022)</a>
@@ -124,13 +114,13 @@
             <a href="#" class="model-btn">A35 (A356)</a>
             <a href="#" class="model-btn">A40 (A405)</a>
             <a href="#" class="model-btn">A41 (A415)</a>
-            <a href="#" class="model-btn">A42 (A426)</a><a href="#" class="model-btn">A50 (A505)</a>
+            <a href="#" class="model-btn">A42 (A426)</a>
+            <a href="#" class="model-btn">A50 (A505)</a>
             <a href="#" class="model-btn">A50s (A507)</a>
             <a href="#" class="model-btn">A51 (A515)</a>
             <a href="#" class="model-btn">A52 (A525)</a>
             <a href="#" class="model-btn">A52 (A526)</a>
-            <a href="#" class="model-btn">A52s (A528)</a>
-            <a href="#" class="model-btn">A53 (A536)</a>
+            <a href="#" class="model-btn">A52s (A528)</a><a href="#" class="model-btn">A53 (A536)</a>
             <a href="#" class="model-btn">A54 (A546)</a>
             <a href="#" class="model-btn">A56 (A566)</a>
             <a href="#" class="model-btn">A70 (A705)</a>
@@ -143,8 +133,7 @@
 
         <div class="column">
             <div class="header-box red">
-                اللون الأحمر
-                <span>M</span>
+                M
             </div>
             <a href="#" class="model-btn coming-soon">قريباً</a>
             <a href="#" class="model-btn coming-soon">قريباً</a>
@@ -152,8 +141,7 @@
 
         <div class="column">
             <div class="header-box red">
-                اللون الأحمر
-                <span>S</span>
+                S
             </div>
             <a href="#" class="model-btn coming-soon">قريباً</a>
             <a href="#" class="model-btn coming-soon">قريباً</a>
