@@ -2,66 +2,68 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Samsung</title>
+<title>Samsung A</title>
 
 <style>
 body{
     margin:0;
     font-family: Arial;
     direction: rtl;
-    background:#f4f4f4;
+    background:#f2f4f7;
 }
 
-/* الشريط العلوي */
+/* 🔝 الشريط العلوي */
 .top-bar{
     display:flex;
     justify-content:space-around;
-    background:#111;
+    background:#0f172a;
     color:white;
-    padding:15px 0;
-    font-size:18px;
+    padding:12px 0;
+    font-size:16px;
 }
 
 .tab{
-    text-align:center;
     flex:1;
-}
-
-/* قسم A */
-.section{
-    padding:20px;
-}
-
-.section-title{
-    font-size:22px;
-    font-weight:bold;
-    margin-bottom:15px;
-    color:#222;
-}
-
-/* الأزرار */
-.btn{
-    display:block;
-    background:white;
-    margin:8px auto;
-    padding:10px 15px;
-    width:80%;
-    max-width:280px;
     text-align:center;
-    border-radius:25px;
-    text-decoration:none;
-    color:black;
+}
+
+/* 📂 قسم A */
+.section{
+    padding:15px;
+}
+
+/* عنوان A */
+.title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#111;
+}
+
+/* 🟢 الأزرار الصغيرة */
+.btn{
+    display:inline-block;
+    background:#ffffff;
+    color:#111;
+    padding:6px 10px;
+    margin:4px;
+    border-radius:14px;
     border:1px solid #ddd;
+    font-size:13px;
+    text-decoration:none;
     transition:0.2s;
 }
 
+/* تأثير عند المرور */
 .btn:hover{
-    background:#eaeaea;
+    background:#dbeafe;
+    border-color:#60a5fa;
 }
 
-/* زر غير مفعل (M و S) */
-.disabled{
-    opacity:0.5;
+/* حاوية الأزرار */
+.grid{
+    display:flex;
+    flex-wrap:wrap;
 }
 </style>
 
@@ -69,55 +71,59 @@ body{
 
 <body>
 
-<!-- 🔝 الأيقونات -->
+<!-- 🔝 Tabs -->
 <div class="top-bar">
-    <div class="tab">🅰️ Samsung A</div>
-    <div class="tab disabled">🇲 Samsung M</div>
-    <div class="tab disabled">🇸 Samsung S</div>
+    <div class="tab">🅰️ A</div>
+    <div class="tab">🇲 M</div>
+    <div class="tab">🇸 S</div>
 </div>
 
-<!-- 📱 A فقط -->
+<!-- 📱 A section -->
 <div class="section">
 
-    <div class="section-title">فئة Samsung A</div>
+    <div class="title">Samsung A</div>
 
-    <a class="btn" href="#">A01</a>
-    <a class="btn" href="#">A02</a>
-    <a class="btn" href="#">A02s</a>
-    <a class="btn" href="#">A03</a>
-    <a class="btn" href="#">A03s</a>
-    <a class="btn" href="#">A04</a>
-    <a class="btn" href="#">A04s</a>
-    <a class="btn" href="#">A05</a>
-    <a class="btn" href="#">A05s</a>
-    <a class="btn" href="#">A06</a>
+    <div class="grid">
 
-    <a class="btn" href="#">A10e</a>
-    <a class="btn" href="#">A31</a>
-    <a class="btn" href="#">A32</a>
-    <a class="btn" href="#">A33</a>
-    <a class="btn" href="#">A34</a>
-    <a class="btn" href="#">A35</a>
-    <a class="btn" href="#">A40</a>
-    <a class="btn" href="#">A41</a>
-    <a class="btn" href="#">A42</a>
+        <a class="btn" href="#">A01</a>
+        <a class="btn" href="#">A02</a>
+        <a class="btn" href="#">A02s</a>
+        <a class="btn" href="#">A03</a>
+        <a class="btn" href="#">A03s</a>
+        <a class="btn" href="#">A04</a>
+        <a class="btn" href="#">A04s</a>
+        <a class="btn" href="#">A05</a>
+        <a class="btn" href="#">A05s</a>
+        <a class="btn" href="#">A06</a>
 
-    <a class="btn" href="#">A50</a>
-    <a class="btn" href="#">A50s</a>
-    <a class="btn" href="#">A51</a>
-    <a class="btn" href="#">A52</a>
-    <a class="btn" href="#">A52s</a>
-    <a class="btn" href="#">A53</a>
-    <a class="btn" href="#">A54</a>
-    <a class="btn" href="#">A56</a>
-    <a class="btn" href="#">A70</a>
-    <a class="btn" href="#">A71</a>
-    <a class="btn" href="#">A72</a>
-    <a class="btn" href="#">A73</a>
+        <a class="btn" href="#">A10e</a>
+        <a class="btn" href="#">A31</a>
+        <a class="btn" href="#">A32</a>
+        <a class="btn" href="#">A33</a>
+        <a class="btn" href="#">A34</a>
+        <a class="btn" href="#">A35</a>
+        <a class="btn" href="#">A40</a>
+        <a class="btn" href="#">A41</a>
+        <a class="btn" href="#">A42</a>
 
-    <a class="btn" href="#">A90</a>
+        <a class="btn" href="#">A50</a>
+        <a class="btn" href="#">A50s</a>
+        <a class="btn" href="#">A51</a>
+        <a class="btn" href="#">A52</a>
+        <a class="btn" href="#">A52s</a>
+        <a class="btn" href="#">A53</a>
+        <a class="btn" href="#">A54</a>
+        <a class="btn" href="#">A56</a>
+        <a class="btn" href="#">A70</a>
+        <a class="btn" href="#">A71</a>
+        <a class="btn" href="#">A72</a>
+        <a class="btn" href="#">A73</a>
 
+        <a class="btn" href="#">A90</a>
+
+    </div>
 </div>
 
 </body>
 </html>
+
