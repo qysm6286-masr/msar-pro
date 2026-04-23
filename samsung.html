@@ -1,145 +1,133 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Samsung A</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتاب مسار - سامسونج الفئة A</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family: Arial;
-    direction: rtl;
-    background:#eef2f6;
-}
+        /* تنسيق الأيقونات العلوية */
+        .category-header {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
-/* 🔝 Tabs */
-.tabs{
-    display:flex;
-    background:#0f172a;
-    color:white;
-    text-align:center;
-}
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #bdc3c7; /* لون غير مفعل */
+        }
 
-.tab{
-    flex:1;
-    padding:14px;
-    font-weight:bold;
-}
+        .category-item.active {
+            color: #2c3e50;
+            font-weight: bold;
+        }
 
-.tab.active{
-    background:#1d4ed8;
-}
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+            border: 2px solid #ddd;
+        }
 
-/* 📦 المحتوى */
-.container{
-    padding:15px;
-}
+        .active .icon-circle {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
 
-/* عنوان */
-.title{
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:10px;
-    color:#111;
-}
+        /* تنسيق قائمة الأزرار */
+        .models-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
 
-/* 🧩 الأزرار */
-.grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-}
+        .model-btn {
+            background-color: #ffffff;
+            color: #333;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+            display: block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
 
-/* زر صغير واحترافي */
-.btn{
-    padding:6px 10px;
-    font-size:12px;
-    border-radius:12px;
-    background:white;
-    border:1px solid #ddd;
-    text-decoration:none;
-    color:#111;
-    transition:0.2s;
-}
+        .model-btn:hover {
+            background-color: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
 
-.btn:hover{
-    background:#dbeafe;
-    border-color:#3b82f6;
-}
-
-/* أقسام فرعية */
-.group-title{
-    margin:12px 0 6px;
-    font-size:14px;
-    color:#475569;
-}
-</style>
-
+        .section-title {
+            color: #7f8c8d;
+            margin: 20px 0 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- 🔝 Tabs -->
-<div class="tabs">
-    <div class="tab active">Samsung A</div>
-    <div class="tab">Samsung M</div>
-    <div class="tab">Samsung S</div>
-</div>
+    <h2>مشروع مسار - مخططات سامسونج</h2>
 
-<!-- 📱 المحتوى -->
-<div class="container">
-
-    <div class="title">أجهزة Samsung A</div>
-
-    <div class="group-title">A0x</div>
-    <div class="grid">
-        <a class="btn">A01</a>
-        <a class="btn">A02</a>
-        <a class="btn">A02s</a>
-        <a class="btn">A03</a>
-        <a class="btn">A03s</a>
-        <a class="btn">A04</a>
-        <a class="btn">A04s</a>
-        <a class="btn">A05</a>
-        <a class="btn">A05s</a>
-        <a class="btn">A06</a>
+    <div class="category-header">
+        <div class="category-item active">
+            <div class="icon-circle">A</div>
+            <span>فئة A</span>
+        </div>
+        <div class="category-item">
+            <div class="icon-circle">M</div>
+            <span>فئة M</span>
+        </div>
+        <div class="category-item">
+            <div class="icon-circle">S</div>
+            <span>فئة S</span>
+        </div>
     </div>
 
-    <div class="group-title">A1x - A4x</div>
-    <div class="grid">
-        <a class="btn">A10e</a>
-        <a class="btn">A31</a>
-        <a class="btn">A32</a>
-        <a class="btn">A33</a>
-        <a class="btn">A34</a>
-        <a class="btn">A35</a>
-        <a class="btn">A40</a>
-        <a class="btn">A41</a>
-        <a class="btn">A42</a>
-    </div>
+    <div class="models-container">
+        <div class="section-title">موديلات الفئة A (المتاحة حالياً)</div>
 
-    <div class="group-title">A5x - A7x</div>
-    <div class="grid">
-        <a class="btn">A50</a>
-        <a class="btn">A50s</a>
-        <a class="btn">A51</a>
-        <a class="btn">A52</a>
-        <a class="btn">A52s</a>
-        <a class="btn">A53</a>
-        <a class="btn">A54</a>
-        <a class="btn">A56</a>
-        <a class="btn">A70</a>
-        <a class="btn">A71</a>
-        <a class="btn">A72</a>
-        <a class="btn">A73</a>
-    </div>
-
-    <div class="group-title">الفئة العليا</div>
-    <div class="grid">
-        <a class="btn">A90</a>
-    </div>
-
-</div>
-
-</body>
-</html>
+        <a href="#" class="model-btn">Samsung A01 (A015)</a>
+        <a href="#" class="model-btn">Samsung A02 (A022)</a>
+        <a href="#" class="model-btn">Samsung A02s (A025)</a>
+        <a href="#" class="model-btn">Samsung A03 (A032)</a>
+        <a href="#" class="model-btn">Samsung A03 (A035)</a>
+        <a href="#" class="model-btn">Samsung A03s (A037)</a>
+        <a href="#" class="model-btn">Samsung A04 (A042)</a>
+        <a href="#" class="model-btn">Samsung A04 (A045)</a>
+        <a href="#" class="model-btn">Samsung A04s (A047)</a>
+        <a href="#" class="model-btn">Samsung A05 (A055)</a>
+        <a href="#" class="model-btn">Samsung A05s (A057)</a>
+        <a href="#" class="model-btn">Samsung A06 (A065)</a>
+        <a href="#" class="model-btn">Samsung A10e (A102)</a>
+        <a href="#" class="model-btn">Samsung A31 (A315)</a>
+        <a href="#" class="model-btn">Samsung A32 (A325)</a>
