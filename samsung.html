@@ -2,59 +2,66 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Samsung Models</title>
+<title>Samsung</title>
 
 <style>
-body {
+body{
+    margin:0;
     font-family: Arial;
     direction: rtl;
-    background: #f5f5f5;
-    margin: 0;
-    padding: 0;
+    background:#f4f4f4;
 }
 
 /* الشريط العلوي */
-.top-icons {
-    display: flex;
-    justify-content: space-around;
-    background: #111;
-    color: white;
-    padding: 15px;
-    font-size: 18px;
+.top-bar{
+    display:flex;
+    justify-content:space-around;
+    background:#111;
+    color:white;
+    padding:15px 0;
+    font-size:18px;
 }
 
-.icon {
-    text-align: center;
-    flex: 1;
+.tab{
+    text-align:center;
+    flex:1;
 }
 
 /* قسم A */
-.section {
-    padding: 15px;
+.section{
+    padding:20px;
 }
 
-.section-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 15px 0;
-    color: #333;
+.section-title{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+    color:#222;
 }
 
 /* الأزرار */
-.btn {
-    display: block;
-    background: white;
-    margin: 8px 0;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid #ddd;
-    transition: 0.2s;
+.btn{
+    display:block;
+    background:white;
+    margin:8px auto;
+    padding:10px 15px;
+    width:80%;
+    max-width:280px;
+    text-align:center;
+    border-radius:25px;
+    text-decoration:none;
+    color:black;
+    border:1px solid #ddd;
+    transition:0.2s;
 }
 
-.btn:hover {
-    background: #eee;
+.btn:hover{
+    background:#eaeaea;
+}
+
+/* زر غير مفعل (M و S) */
+.disabled{
+    opacity:0.5;
 }
 </style>
 
@@ -63,18 +70,17 @@ body {
 <body>
 
 <!-- 🔝 الأيقونات -->
-<div class="top-icons">
-    <div class="icon">🅰️ A</div>
-    <div class="icon">🇲 M</div>
-    <div class="icon">🇸 S</div>
+<div class="top-bar">
+    <div class="tab">🅰️ Samsung A</div>
+    <div class="tab disabled">🇲 Samsung M</div>
+    <div class="tab disabled">🇸 Samsung S</div>
 </div>
 
-<!-- 📱 قسم A -->
+<!-- 📱 A فقط -->
 <div class="section">
 
-    <div class="section-title">فئة A</div>
+    <div class="section-title">فئة Samsung A</div>
 
-    <!-- A0x -->
     <a class="btn" href="#">A01</a>
     <a class="btn" href="#">A02</a>
     <a class="btn" href="#">A02s</a>
@@ -86,9 +92,6 @@ body {
     <a class="btn" href="#">A05s</a>
     <a class="btn" href="#">A06</a>
 
-    <hr>
-
-    <!-- A1x - A4x -->
     <a class="btn" href="#">A10e</a>
     <a class="btn" href="#">A31</a>
     <a class="btn" href="#">A32</a>
@@ -99,9 +102,6 @@ body {
     <a class="btn" href="#">A41</a>
     <a class="btn" href="#">A42</a>
 
-    <hr>
-
-    <!-- A5x - A7x -->
     <a class="btn" href="#">A50</a>
     <a class="btn" href="#">A50s</a>
     <a class="btn" href="#">A51</a>
@@ -115,9 +115,6 @@ body {
     <a class="btn" href="#">A72</a>
     <a class="btn" href="#">A73</a>
 
-    <hr>
-
-    <!-- A90 -->
     <a class="btn" href="#">A90</a>
 
 </div>
