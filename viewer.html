@@ -2,35 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشروع مسار - عرض المخطط</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>مشروع مسار - عرض المخطط الاحترافي</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <style>
-        body { margin: 0; padding: 0; background-color: #000; text-align: center; }
-        .nav-bar { 
-            position: fixed; top: 0; width: 100%; height: 50px; 
-            background: #1a1a1a; display: flex; justify-content: space-between; 
-            align-items: center; padding: 0 15px; border-bottom: 2px solid #27ae60; z-index: 1000; 
-        }
+        body, html { margin: 0; padding: 0; background-color: #111; font-family: Arial; }
+        .nav-bar { position: fixed; top: 0; width: 100%; height: 50px; background: #000; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; border-bottom: 3px solid #27ae60; z-index: 1000; }
         .back-btn { background: #e74c3c; color: white; padding: 5px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .image-container { margin-top: 60px; display: block; width: 100%; }
+        .image-container { margin-top: 60px; padding: 10px; text-align: center; }
         
-        /* هذا الجزء هو الذي سيحل مشكلة التشويه والتقسيم */
-        img { 
-            width: 100%; /* تجعل الصورة تأخذ عرض الشاشة بالكامل */
-            height: auto; /* تحافظ على الأبعاد لكي لا تظهر مقصوصة أو مشوهة */
-            display: block; /* تضع الصور تحت بعضها البعض */
-            margin-bottom: 10px; /* مسافة بسيطة بين كل مخطط والآخر */
-        }
+        /* تنسيق الأيقونات (الصور المصغرة) */
+        .thumb-link { display: inline-block; margin: 10px; border: 2px solid #333; transition: transform 0.2s; }
+        .thumb-link:hover { border-color: #27ae60; transform: scale(1.05); }
+        .thumb-img { width: 150px; height: auto; border-radius: 5px; }
     </style>
 </head>
 <body>
+
     <div class="nav-bar">
-        <span style="color: #27ae60; font-weight: bold;">مشروع مسار - A01</span>
+        <span style="color: #27ae60; font-weight: bold;">مشروع مسار | مخطط A01</span>
         <a href="samsung.html" class="back-btn">خروج</a>
     </div>
 
-    <div class="image-container" id="gallery"></div>
+    <div class="image-container" id="gallery">
+        </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
         const ids = params.get('ids');
@@ -38,9 +35,30 @@
             const links = ids.split(',');
             const gallery = document.getElementById('gallery');
             links.forEach(link => {
+                const cleanLink = link.trim();
+                
+                // إنشاء رابط يفتح الصورة داخل مشغل Fancybox (الزوم)
+                const a = document.createElement('a');
+                a.className = 'thumb-link';
+                a.href = cleanLink; // هذا الرابط هو ما سيُفتح بالزوم
+                a.setAttribute('data-fancybox', 'gallery-A01'); // يجعل الصور ضمن ألبوم واحد
+                
+                // إنشاء صورة مصغرة (Thumbnail) داخل الصفحة
                 const img = document.createElement('img');
-                img.src = link.trim();
-                gallery.appendChild(img);
+                img.src = cleanLink;
+                img.className = 'thumb-img';
+                
+                a.appendChild(img);
+                gallery.appendChild(a);
+            });
+
+            // تفعيل برمجية الزوم على الألبوم
+            Fancybox.bind("[data-fancybox='gallery-A01']", {
+                // إعدادات الزوم
+                Infinity: true,
+                Zoom: true,
+                Thumbs: false,
+                initialSize: "fit"
             });
         }
     </script>
