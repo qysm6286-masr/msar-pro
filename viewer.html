@@ -4,86 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مشروع مسار - عرض المخطط</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <style>
-        body, html { margin: 0; padding: 0; background-color: #0b0b0b; font-family: Arial, sans-serif; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #000; }
         .nav-bar { 
-            position: fixed; top: 0; width: 100%; height: 55px; 
+            position: fixed; top: 0; width: 100%; height: 50px; 
             background: #111; display: flex; justify-content: space-between; 
-            align-items: center; padding: 0 15px; border-bottom: 3px solid #27ae60; z-index: 1000; 
+            align-items: center; padding: 0 15px; border-bottom: 2px solid #27ae60; z-index: 1000; 
             box-sizing: border-box;
         }
-        .back-btn { background: #e74c3c; color: white; padding: 6px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .gallery-container { margin-top: 70px; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        
-        /* تنسيق الصور في القائمة */
-        .thumb-wrapper { width: 95%; max-width: 700px; position: relative; }
-        .gallery-container img { 
-            width: 100%; border: 2px solid #333; border-radius: 10px; 
-            cursor: zoom-in; transition: 0.3s; 
-        }
-        .gallery-container img:hover { border-color: #27ae60; box-shadow: 0 0 15px #27ae6055; }
-        .caption { color: #aaa; font-size: 14px; margin-top: 5px; display: block; }
-        .zoom-hint { color: #27ae60; background: #27ae601a; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-weight: bold; }
+        .back-btn { background: #e74c3c; color: white; padding: 5px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .pdf-container { width: 100%; height: 100vh; padding-top: 50px; box-sizing: border-box; }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
-
     <div class="nav-bar">
-        <span id="modelTitle" style="color: #27ae60; font-weight: bold; font-size: 18px;">مشروع مسار</span>
+        <span style="color: #27ae60; font-weight: bold;">مشروع مسار | A01</span>
         <a href="samsung.html" class="back-btn">خروج</a>
     </div>
 
-    <div class="gallery-container" id="gallery">
-        <div class="zoom-hint">💡 اضغط على الصورة لتكبير المسارات بوضوح عالٍ</div>
-        </div>
+    <div class="pdf-container">
+        <iframe id="pdfFrame" src=""></iframe>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
-        const ids = params.get('ids');
-        const modelName = params.get('model');
-        
-        if(modelName) document.getElementById('modelTitle').innerText = "مسار | " + modelName;
-
-        if (ids) {
-            const links = ids.split(',');
-            const gallery = document.getElementById('gallery');
-            
-            links.forEach((link, index) => {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'thumb-wrapper';
-
-                const img = document.createElement('img');
-                img.src = link.trim();
-                img.setAttribute('data-fancybox', 'gallery'); // يجعل الصور كألبوم واحد في الزوم
-                img.setAttribute('data-caption', `مخطط ${modelName || ''} - جزء ${index + 1}`);
-
-                const caption = document.createElement('span');
-                caption.className = 'caption';
-                caption.innerText = الجزء ${index + 1};
-
-                wrapper.appendChild(img);
-                wrapper.appendChild(caption);
-                gallery.appendChild(wrapper);
-            });
-
-            // إعدادات محرك الزوم
-            Fancybox.bind("[data-fancybox='gallery']", {
-                Toolbar: {
-                    display: {
-                        left: ["infobar"],
-                        middle: ["zoomIn", "zoomOut", "rotateCCW", "rotateCW"],
-                        right: ["slideshow", "fullScreen", "close"],
-                    },
-                },
-                Image: {
-                    zoom: true, // تفعيل التكبير
-                    fit: "contain",
-                },
-                wheel: "zoom", // التكبير بعجلة الماوس
-            });
+        const fileId = params.get('fileId');
+        if (fileId) {
+            // هذا الرابط يفتح معاينة جوجل درايف الرسمية مع الزوم
+            document.getElementById('pdfFrame').src = https://docs.google.com/viewer?srcid=${fileId}&embedded=true;
         }
     </script>
 </body>
 </html>
+
