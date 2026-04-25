@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مشروع مسار - عرض المخطط</title>
     <style>
+        /* لجعل النافذة تأخذ كامل الشاشة خلف الشريط العلوي */
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #000; }
         .nav-bar { 
             position: fixed; top: 0; width: 100%; height: 50px; 
@@ -13,28 +14,29 @@
             box-sizing: border-box;
         }
         .back-btn { background: #e74c3c; color: white; padding: 5px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .pdf-container { width: 100%; height: 100vh; padding-top: 50px; box-sizing: border-box; }
+        .pdf-viewer { width: 100%; height: 100vh; padding-top: 50px; box-sizing: border-box; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
     <div class="nav-bar">
-        <span style="color: #27ae60; font-weight: bold;">مشروع مسار | A01</span>
+        <span style="color: #27ae60; font-weight: bold;">مشروع مسار | عرض المخطط</span>
         <a href="samsung.html" class="back-btn">خروج</a>
     </div>
 
-    <div class="pdf-container">
-        <iframe id="pdfFrame" src=""></iframe>
+    <div class="pdf-viewer">
+        <iframe id="googleFrame" src=""></iframe>
     </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const fileId = params.get('fileId');
         if (fileId) {
-            // هذا الرابط يفتح معاينة جوجل درايف الرسمية مع الزوم
-            document.getElementById('pdfFrame').src = https://docs.google.com/viewer?srcid=${fileId}&embedded=true;
+            // الرابط الذي يعرض ملف الـ PDF مع أدوات الزوم الرسمية من جوجل
+            document.getElementById('googleFrame').src = https://docs.google.com/viewer?srcid=${fileId}&embedded=true;
+        } else {
+            alert("خطأ: لم يتم العثور على معرف الملف");
         }
     </script>
 </body>
 </html>
-
