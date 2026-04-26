@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسارات أجهزة انفنكس - مشروع مسار</title>
+    <style>
+        /* التنسيق الموحد الذي اعتمدناه لـ "مسار" */
+        body { background-color: #f0f2f5; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .header-title { background: white; padding: 10px 30px; border-radius: 10px; display: inline-block; border-bottom: 3px solid #27ae60; margin-bottom: 30px; font-weight: bold; color: #1a1a1a; font-size: 22px; }
+        
+        /* زر العودة للمديلات */
+        .back-home { position: absolute; top: 20px; right: 20px; background: #34495e; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s; z-index: 100; }
+        .back-home:hover { background: #2c3e50; }
+
+        /* تقسيم الشاشة لثلاثة أعمدة للفئات */
+        .main-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; align-items: start; }
+        
+        /* رؤوس الفئات باللون الأخضر كما طلبت */
+        .category-header { color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 20px; margin-bottom: 15px; background: #27ae60; }
+
+        /* قائمة الموديلات */
+        .models-list { display: flex; flex-direction: column; gap: 10px; background: #e9ecef; padding: 10px; border-radius: 10px; }
+        
+        /* تصميم الأزرار البيضاء البيضاوية */
+        .model-item { background: white; color: #333; padding: 12px; border-radius: 8px; text-decoration: none; border: 1px solid #ddd; font-weight: bold; font-size: 15px; transition: 0.3s; display: block; }
+        .model-item:hover { background: #f9f9f9; border-color: #27ae60; color: #27ae60; transform: translateY(-2px); }
+        
+        /* تحسين العرض على الهواتف */
+        @media (max-width: 600px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .header-title { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="home.html" class="back-home">العودة للمديلات</a>
+
+    <h1 class="header-title">مسارات أجهزة Infinix</h1>
+
+    <div class="main-grid">
+        
+        <div class="category-column">
+            <div class="category-header">Series HOT</div>
+            <div class="models-list">
+                <a href="#" class="model-item">Hot 9</a>
+                <a href="#" class="model-item">Hot 10</a>
+                <a href="#" class="model-item">Hot 10 Play</a>
+                <a href="#" class="model-item">Hot 11</a>
+                <a href="#" class="model-item">Hot 12</a>
+            </div>
+        </div>
+
+        <div class="category-column">
+            <div class="category-header">Series NOTE</div>
+            <div class="models-list">
+                <a href="#" class="model-item">Note 10</a>
+                <a href="#" class="model-item">Note 11</a>
+                <a href="#" class="model-item">Note 12</a>
+                <a href="#" class="model-item">Note 30</a>
+            </div>
+        </div>
+
+        <div class="category-column">
+            <div class="category-header">Series SMART</div>
+            <div class="models-list">
+                <a href="#" class="model-item">Smart 5</a>
+                <a href="#" class="model-item">Smart 6</a>
+                <a href="#" class="model-item">Smart 7</a>
+                <a href="#" class="model-item">Smart 8</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
