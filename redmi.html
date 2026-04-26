@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسارات أجهزة ريدمي - مشروع مسار</title>
+    <style>
+        body { background-color: #f0f2f5; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .header-title { background: white; padding: 10px 30px; border-radius: 10px; display: inline-block; border-bottom: 3px solid #27ae60; margin-bottom: 30px; font-weight: bold; color: #1a1a1a; }
+        
+        /* تصميم زر العودة للرئيسية */
+        .back-home { position: absolute; top: 20px; right: 20px; background: #e74c3c; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; font-size: 14px; }
+
+        .main-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 1200px; margin: auto; }
+        
+        /* تصميم رؤوس الفئات بنفس ألوان سامسونج */
+        .category-header { color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 20px; margin-bottom: 10px; }
+        .redmi-head { background: #c0392b; } /* أحمر */
+        .poco-head { background: #d35400; }  /* برتقالي غامق */
+        .mi-head { background: #27ae60; }    /* أخضر */
+
+        .models-list { display: flex; flex-direction: column; gap: 10px; }
+        
+        .model-item { background: white; color: #333; padding: 12px; border-radius: 8px; text-decoration: none; border: 1px solid #ddd; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .model-item:hover { background: #f9f9f9; border-color: #27ae60; color: #27ae60; }
+        
+        .coming-soon { background: #e0e0e0; color: #888; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-home">العودة للرئيسية</a>
+
+    <div class="header-title">مسارات أجهزة ريدمي</div>
+
+    <div class="main-grid">
+        
+        <div class="category-column">
+            <div class="category-header redmi-head">REDMI</div>
+            <div class="models-list">
+                <a href="viewer-note10.html" class="model-item">Redmi Note 10</a>
+                <a href="viewer-note11.html" class="model-item">Redmi Note 11</a>
+                <div class="model-item coming-soon">قريباً</div>
+            </div>
+        </div>
+
+        <div class="category-column">
+            <div class="category-header poco-head">POCO</div>
+            <div class="models-list">
+                <a href="viewer-x3.html" class="model-item">Poco X3 Pro</a>
+                <a href="viewer-m3.html" class="model-item">Poco M3</a>
+                <div class="model-item coming-soon">قريباً</div>
+            </div>
+        </div>
+
+        <div class="category-column">
+            <div class="category-header mi-head">MI</div>
+            <div class="models-list">
+                <a href="viewer-mi11.html" class="model-item">Mi 11 Lite</a>
+                <div class="model-item coming-soon">قريباً</div>
+                <div class="model-item coming-soon">قريباً</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
