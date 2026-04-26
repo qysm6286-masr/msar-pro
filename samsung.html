@@ -5,82 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مسارات أجهزة سامسونج - مشروع مسار</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 15px;
-            text-align: center;
-        }
+        /* التنسيق الجديد الأنيق والموحد */
+        body { background-color: #f0f2f5; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .header-title { background: white; padding: 10px 30px; border-radius: 10px; display: inline-block; border-bottom: 3px solid #27ae60; margin-bottom: 30px; font-weight: bold; color: #1a1a1a; }
+        .back-home { position: absolute; top: 20px; right: 20px; background: #34495e; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s; z-index: 10; }
+        .back-home:hover { background: #2c3e50; }
 
-        .main-title {
-            color: #2c3e50;
-            margin-bottom: 25px;
-            font-size: 24px;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
+        /* الشبكة الرئيسية لتقسيم الفئات */
+        .main-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 1200px; margin: auto; align-items: start; }
+        
+        /* تنسيق رؤوس الفئات الدائرية */
+        .category-header { color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 20px; margin-bottom: 10px; text-transform: uppercase; }
+        .red-head { background: #c0392b; }
+        .green-head { background: #27ae60; }
 
-        .container {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            gap: 10px;
-        }
+        /* قائمة الأزرار البيضاء البيضاوية */
+        .models-list { display: flex; flex-direction: column; gap: 10px; }
+        .model-item { background: white; color: #333; padding: 12px; border-radius: 8px; text-decoration: none; border: 1px solid #ddd; font-weight: bold; font-size: 14px; transition: 0.3s; display: block; }
+        .model-item:hover { background: #f9f9f9; border-color: #27ae60; color: #27ae60; }
+        .coming-soon { background: #e0e0e0; color: #888; border: 1px dashed #bbb; cursor: default; }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="back-home">العودة للمديلات</a>
+    <div class="header-title">مسارات أجهزة سامسونج</div>
+    <div class="main-grid">
+        `
 
-        .column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            min-width: 100px;
-        }
+### النصيحة الذهبية الآن:
+عندما تصل لقسم الفئة A (الأخضر)، ابحث عن الكود القديم الخاص بك الذي يحتوي على كل الموديلات الطويلة (حتى تلك التي لم تظهر في الصورة)، وتأكد من إضافة الـ class="model-item" لكل زر منها لكي يأخذ الشكل الجديد.
 
-        /* تنسيق الأيقونة العلوية */
-        .header-box {
-            padding: 20px 5px; /* زيادة المساحة لتبرز الحروف */
-            border-radius: 12px;
-            color: white;
-            font-weight: bold;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            font-size: 24px; /* تكبير حرف الفئة */
-        }
+مثال لما يجب أن تفعله في قسم الفئة A:
 
-        .green { background-color: #27ae60; } 
-        .red { background-color: #e74c3c; }   
-
-        .model-btn {
-            background-color: #ffffff;
-            color: #333;
-            text-decoration: none;
-            padding: 15px 5px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            font-weight: bold;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .model-btn:hover {
-            background-color: #d1ffd1;
-            border-color: #27ae60;
-        }
-
-        .coming-soon {
-            background-color: #ddd;
-            color: #777;
-            border-style: dashed;
-            cursor: not-allowed;
-        }
-
-        @media (max-width: 600px) {
-            .container { gap: 5px; }
-            .model-btn { font-size: 11px; padding: 12px 2px; }
-            .header-box { font-size: 18px; }
-        }
+```html
+<div class="category-column">
+    <div class="category-header green-head">A</div>
+    <div class="models-list">
+        <a href="viewer-a01.html" class="model-item">A01 (A015)</a>
+        <a href="viewer-a02.html" class="model-item">A02 (A022)</a>
+        <a href="#" class="model-item">A50 (A505)</a> <a href="#" class="model-item">A70 (A705)</a> </div>
+</div>
+    
+        
     </style>
 </head>
 <body>
