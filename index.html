@@ -1,108 +1,139 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>مسار - تسجيل الدخول</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسار - تسجيل الدخول الآمن</title>
+    <style>
+        /* التنسيق الجديد المتناسق مع الهوية البصرية */
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-<style>
-body{
-background:#0f172a;
-color:#fff;
-font-family:Arial;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-margin:0;
-}
+        .box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-top: 5px solid #27ae60;
+        }
 
-.box{
-background:#1e293b;
-padding:30px;
-border-radius:12px;
-width:320px;
-text-align:center;
-}
+        /* تنسيق الشعار البيضاوي */
+        .logo-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* يجعله بيضاوياً أو دائرياً */
+            object-fit: cover;
+            border: 3px solid #27ae60;
+            margin-bottom: 15px;
+            padding: 5px;
+            background: white;
+        }
 
-input{
-width:90%;
-padding:10px;
-margin:10px 0;
-border:none;
-border-radius:8px;
-font-size:16px;
-}
+        h2 { color: #2c3e50; margin-bottom: 25px; font-size: 22px; }
 
-button{
-width:100%;
-padding:10px;
-background:#38bdf8;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
-}
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #f9f9f9;
+            text-align: center;
+        }
 
-button:hover{
-background:#0ea5e9;
-}
+        input:focus {
+            outline: none;
+            border-color: #27ae60;
+            background: #fff;
+        }
 
-#msg{
-color:red;
-margin-top:10px;
-}
-</style>
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
 
+        button:hover { background: #219150; transform: translateY(-2px); }
+
+        #msg { color: #e74c3c; margin-top: 15px; font-weight: bold; font-size: 14px; }
+
+        .footer-text { margin-top: 25px; font-size: 13px; color: #7f8c8d; }
+    </style>
 </head>
-
 <body>
 
 <div class="box">
+    <div class="logo-container">
+        <img src="logo.png" alt="شعار مسار">
+    </div>
 
-<h1>📚 مسار</h1>
+    <h2>تسجيل الدخول - مسار برو</h2>
 
-<p style="color:#94a3b8; margin-top:-10px;">
-مرحبا بكم في مكتبة مسار
-</p>
+    <input type="email" id="email" placeholder="أدخل الإيميل المسجل">
+    <input type="text" id="code" placeholder="أدخل كود الاشتراك الخاص بك">
 
-<hr style="border:1px solid #334155; margin:15px 0;">
+    <button onclick="login()">دخول للمكتبة</button>
 
-<h2>تسجيل الدخول</h2>
+    <p id="msg"></p>
 
-<input type="email" id="email" placeholder="أدخل الإيميل">
-
-<input type="text" id="code" placeholder="أدخل كود الاشتراك">
-
-<button onclick="login()">دخول</button>
-
-<p id="msg"></p>
-
-<p style="margin-top:15px; font-size:12px; color:#64748b;">
-مسار برو
-</p>
-
+    <p class="footer-text">جميع الحقوق محفوظة لمشروع مسار © 2026</p>
 </div>
 
 <script>
-function login(){
+// قائمة المشتركين (الإيميل + الكود الخاص به)
+// يمكنك إضافة المشتركين الجدد هنا دائماً
+const subscribers = [
+    { email: "user1@gmail.com", code: "MASAR-7788-XP" },
+    { email: "ali@gmail.com", code: "MASAR-1122-AL" },
+    { email: "test@test.com", code: "9900" }
+];
 
-var email = document.getElementById("email").value.trim();
-var code = document.getElementById("code").value.trim();
+function login() {
+    const emailInput = document.getElementById("email").value.trim().toLowerCase();
+    const codeInput = document.getElementById("code").value.trim();
+    const msgElement = document.getElementById("msg");
 
-if(email === "" || code === ""){
-document.getElementById("msg").innerHTML = "يرجى تعبئة جميع الحقول";
-return;
-}
+    if (emailInput === "" || codeInput === "") {
+        msgElement.innerHTML = "⚠️ يرجى تعبئة جميع الحقول";
+        return;
+    }
 
-if(code === "1234"){
-window.location.href = "home.html";
-}else{
-document.getElementById("msg").innerHTML = "الكود غير صحيح";
-}
+    // التحقق من وجود الإيميل ومطابقته للكود الصحيح
+    const user = subscribers.find(s => s.email === emailInput && s.code === codeInput);
 
+    if (user) {
+        msgElement.style.color = "#27ae60";
+        msgElement.innerHTML = "✅ جاري الدخول...";
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 1000);
+    } else {
+        msgElement.style.color = "#e74c3c";
+        msgElement.innerHTML = "❌ الإيميل أو كود الاشتراك غير صحيح";
+    }
 }
 </script>
 
 </body>
 </html>
+
 
