@@ -11,18 +11,18 @@
             display: flex; justify-content: space-between; align-items: center; 
             border-bottom: 2px solid #27ae60; position: relative; z-index: 1000;
         }
-        .back-btn, #fs-btn { 
+        .back-btn { 
             background: #27ae60; color: white; border: none; padding: 10px 20px; 
             border-radius: 5px; cursor: pointer; text-decoration: none; 
             font-weight: bold; font-size: 14px;
         }
-        #fs-btn { background: #e67e22; } /* اللون البرتقالي للزر */
+        .back-btn:hover { background: #2ecc71; }
 
-        .container { height: calc(100vh - 65px); width: 100%; position: relative; background: #000; }
+        .container { height: calc(100vh - 55px); width: 100%; position: relative; background: #000; }
         
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* حجب السهم المزعج */
+        /* حجب سهم الفتح الخارجي المزعج في الزوايا */
         .hide-arrow { position: absolute; top: 0; left: 0; width: 70px; height: 70px; background: #1a1a1a; z-index: 999; }
         .hide-arrow-right { position: absolute; top: 0; right: 0; width: 70px; height: 70px; background: #1a1a1a; z-index: 999; }
     </style>
@@ -31,42 +31,24 @@
 
     <div class="nav-bar">
         <span>مشروع مسار | المخطط التقني</span>
-        <div style="display: flex; gap: 10px;">
-            <button id="fs-btn">📺 وضع ملء الشاشة</button>
-            <a href="samsung.html" class="back-btn">العودة</a>
-        </div>
+        <a href="samsung.html" class="back-btn">العودة للموديلات</a>
     </div>
 
-    <div class="container" id="main-container">
+    <div class="container">
         <div class="hide-arrow"></div>
         <div class="hide-arrow-right"></div>
+        
         <iframe src="https://drive.google.com/file/d/18ybb3Rxe-SxPWrwJF1aO0aR4HjVTlh6B/preview"></iframe>
     </div>
 
     <script>
-        // الطريقة الأكيدة لتفعيل ملء الشاشة عند الضغط
-        const fsBtn = document.getElementById('fs-btn');
-        const container = document.documentElement; // تكبير الصفحة بالكامل
-
-        fsBtn.addEventListener('click', () => {
-            if (!document.fullscreenElement) {
-                container.requestFullscreen().catch(err => {
-                    console.log("خطأ في التفعيل");
-                });
-                fsBtn.innerText = "🔙 خروج من الملء";
-            } else {
-                document.exitFullscreen();
-                fsBtn.innerText = "📺 وضع ملء الشاشة";
-            }
-        });
-
-        // منع الاختصارات
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && (e.key === 's'  e.key === 'p'  e.key === 'u')) {
+        // منع اختصارات لوحة المفاتيح للحماية
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 's'  e.key === 'p'  e.key === 'u' || (e.shiftKey && e.key === 'I'))) {
                 e.preventDefault();
+                return false;
             }
         });
     </script>
 </body>
 </html>
-
