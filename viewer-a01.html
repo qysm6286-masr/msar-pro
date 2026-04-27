@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مشروع مسار - العرض الاحترافي</title>
-    <script src="https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js"></script>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #000; font-family: Arial, sans-serif; }
         .nav-bar { 
@@ -12,36 +11,32 @@
             display: flex; justify-content: space-between; align-items: center; 
             border-bottom: 2px solid #27ae60; position: relative; z-index: 1000;
         }
-        .back-btn { background: #27ae60; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .back-btn:hover { background: #2ecc71; }
+        .back-btn { background: #27ae60; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; text-decoration: none; font-weight: bold; }
         
         .container { 
             height: calc(100vh - 55px); width: 100%; 
-            position: relative; overflow: hidden;
             display: flex; justify-content: center; align-items: center;
+            overflow: auto; /* للسماح بالزوم الطبيعي للمتصفح */
         }
 
-        /* الطبقة الشفافة لمنع التحميل والنسخ */
-        .protection-layer {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 500;
-            background: rgba(255, 255, 255, 0); /* شفافة تماماً */
-            cursor: grab;
-        }
-
-        #zoom-wrapper {
+        /* حاوية المخطط */
+        .viewer-wrapper {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+        }
+
+        /* الطبقة الشفافة للحماية - وضعناها بحيث لا تعيق التحميل */
+        .guard {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0);
         }
 
         iframe { 
-            width: 90vw; height: 80vh; border: none; 
-            pointer-events: all; /* السماح للمتصفح بعرض المحتوى */
+            width: 100%; height: 100%; border: none; 
+            pointer-events: auto;
         }
     </style>
 </head>
@@ -51,27 +46,19 @@
     </div>
 
     <div class="container">
-        <div class="protection-layer"></div>
-        
-        <div id="zoom-wrapper">
+        <div class="viewer-wrapper">
+            <div class="guard"></div>
+            
             <iframe src="https://drive.google.com/file/d/18ybb3Rxe-SxPWrwJF1aO0aR4HjVTlh6B/preview"></iframe>
         </div>
     </div>
 
     <script>
-        // تفعيل الزوم الخارق على حاوية الـ iframe
-        var element = document.getElementById('zoom-wrapper');
-        panzoom(element, {
-            maxZoom: 5,
-            minZoom: 0.5,
-            initialZoom: 1,
-            bounds: true
-        });
-
-        // منع اختصارات لوحة المفاتيح للحفظ والطباعة
+        // منع اختصارات لوحة المفاتيح (حفظ، طباعة، عرض المصدر)
         document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 's'  e.key === 'p'  e.key === 'u')) {
+            if (e.ctrlKey && (e.key === 's'  e.key === 'p'  e.key === 'u' || e.key === 'i')) {
                 e.preventDefault();
+                return false;
             }
         });
     </script>
