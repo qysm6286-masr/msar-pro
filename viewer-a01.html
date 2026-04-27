@@ -16,27 +16,10 @@
         .container { 
             height: calc(100vh - 55px); width: 100%; 
             display: flex; justify-content: center; align-items: center;
-            overflow: auto; /* للسماح بالزوم الطبيعي للمتصفح */
-        }
-
-        /* حاوية المخطط */
-        .viewer-wrapper {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        /* الطبقة الشفافة للحماية - وضعناها بحيث لا تعيق التحميل */
-        .guard {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 999;
-            background: rgba(255, 255, 255, 0);
         }
 
         iframe { 
             width: 100%; height: 100%; border: none; 
-            pointer-events: auto;
         }
     </style>
 </head>
@@ -46,17 +29,14 @@
     </div>
 
     <div class="container">
-        <div class="viewer-wrapper">
-            <div class="guard"></div>
-            
-            <iframe src="https://drive.google.com/file/d/18ybb3Rxe-SxPWrwJF1aO0aR4HjVTlh6B/preview"></iframe>
-        </div>
+        <iframe src="https://drive.google.com/file/d/18ybb3Rxe-SxPWrwJF1aO0aR4HjVTlh6B/preview"></iframe>
     </div>
 
     <script>
         // منع اختصارات لوحة المفاتيح (حفظ، طباعة، عرض المصدر)
         document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 's'  e.key === 'p'  e.key === 'u' || e.key === 'i')) {
+            // تعطيل Ctrl+S (حفظ), Ctrl+P (طباعة), Ctrl+U (عرض الكود), Ctrl+Shift+I (المطورين)
+            if (e.ctrlKey && (e.key === 's'  e.key === 'p'  e.key === 'u' || (e.shiftKey && e.key === 'I'))) {
                 e.preventDefault();
                 return false;
             }
@@ -64,3 +44,4 @@
     </script>
 </body>
 </html>
+
