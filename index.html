@@ -5,77 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مسار - تسجيل الدخول الآمن</title>
     <style>
-        /* التنسيق الجديد المتناسق مع الهوية البصرية */
-        body {
-            background-color: #f0f2f5;
-            color: #333;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .box {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 20px;
-            width: 350px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-top: 5px solid #27ae60;
-        }
-
-        /* تنسيق الشعار البيضاوي */
-        .logo-container img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; /* يجعله بيضاوياً أو دائرياً */
-            object-fit: cover;
-            border: 3px solid #27ae60;
-            margin-bottom: 15px;
-            padding: 5px;
-            background: white;
-        }
-
+        body { background-color: #f0f2f5; color: #333; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: #ffffff; padding: 40px; border-radius: 20px; width: 350px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 5px solid #27ae60; }
+        .logo-container img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #27ae60; margin-bottom: 15px; padding: 5px; background: white; }
         h2 { color: #2c3e50; margin-bottom: 25px; font-size: 22px; }
-
-        input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            background: #f9f9f9;
-            text-align: center;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #27ae60;
-            background: #fff;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 15px;
-        }
-
+        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; background: #f9f9f9; text-align: center; }
+        input:focus { outline: none; border-color: #27ae60; background: #fff; }
+        button { width: 100%; padding: 12px; background: #27ae60; color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; }
         button:hover { background: #219150; transform: translateY(-2px); }
-
         #msg { color: #e74c3c; margin-top: 15px; font-weight: bold; font-size: 14px; }
-
         .footer-text { margin-top: 25px; font-size: 13px; color: #7f8c8d; }
     </style>
 </head>
@@ -83,7 +21,7 @@
 
 <div class="box">
     <div class="logo-container">
-        <img src="logo.png" alt="شعار مسار">
+        <img src="logo.png" alt="شعار مسار" onerror="this.src='https://via.placeholder.com/120?text=LOGO'">
     </div>
 
     <h2>تسجيل الدخول - مسار برو</h2>
@@ -99,10 +37,10 @@
 </div>
 
 <script>
-// قائمة المشتركين (الإيميل + الكود الخاص به)
-// يمكنك إضافة المشتركين الجدد هنا دائماً
+// قائمة المشتركين المعتمدة
+// أضفت إيميلك هنا ليعمل الكود معك فوراً
 const subscribers = [
-    { email: "user1@gmail.com", code: "MASAR-7788-XP" },
+    { email: "krgalealibakar@gmail.com", code: "MASAR-9921-KZ" },
     { email: "ali@gmail.com", code: "MASAR-1122-AL" },
     { email: "test@test.com", code: "9900" }
 ];
@@ -117,7 +55,7 @@ function login() {
         return;
     }
 
-    // التحقق من وجود الإيميل ومطابقته للكود الصحيح
+    // البحث عن المستخدم في القائمة أعلاه
     const user = subscribers.find(s => s.email === emailInput && s.code === codeInput);
 
     if (user) {
@@ -135,5 +73,3 @@ function login() {
 
 </body>
 </html>
-
-
