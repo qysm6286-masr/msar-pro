@@ -1,159 +1,57 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>مسار - Phone Models</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة مسار - جميع الموديلات</title>
+    <style>
+        /* التنسيق العام المتناسق مع باقي المشروع */
+        body { background-color: #f0f2f5; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        
+        .header-box { background: white; padding: 20px; border-radius: 12px; display: inline-block; border-bottom: 4px solid #27ae60; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .main-title { margin: 0; color: #2c3e50; font-size: 26px; }
+        .sub-title { margin: 5px 0 0; color: #7f8c8d; font-size: 16px; }
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#0b1220,#111c33);
-color:#fff;
-padding:20px;
-}
+        /* حاوية الأزرار العريضة */
+        .grid-container { display: grid; grid-template-columns: 1fr; gap: 15px; max-width: 800px; margin: auto; padding: 10px; }
 
-/* العنوان */
-.header{
-text-align:center;
-margin-bottom:25px;
-}
+        /* تصميم الزر العريض الاحترافي */
+        .card { background: white; color: #333; padding: 20px; border-radius: 10px; text-decoration: none; border: 1px solid #ddd; font-weight: bold; font-size: 18px; transition: 0.3s; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        
+        /* تأثير عند تمرير الماوس */
+        .card:hover { background: #fdfdfd; border-color: #27ae60; color: #27ae60; transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
 
-.header h1{
-font-size:36px;
-margin:0;
-color:#38bdf8;
-}
+        /* الألوان الخاصة بالشركات لتمييزها */
+        .samsung:hover { border-color: #034ea2; color: #034ea2; }
+        .redmi:hover { border-color: #ff6700; color: #ff6700; }
+        .infinix:hover { border-color: #4dc247; color: #4dc247; }
+        .huawei:hover { border-color: #cf0a2c; color: #cf0a2c; }
 
-.header p{
-margin-top:8px;
-color:#94a3b8;
-font-size:14px;
-}
-
-/* شبكة الشركات */
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-max-width:600px;
-margin:auto;
-}
-
-/* بطاقات الشركات */
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:14px;
-text-align:center;
-cursor:pointer;
-transition:0.3s;
-font-size:14px;
-}
-
-.card:hover{
-background:#38bdf8;
-transform:scale(1.05);
-}
-
-/* الفئات */
-.sub{
-display:none;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-margin-top:10px;
-grid-column:span 3;
-}
-
-.small{
-background:#334155;
-border:none;
-padding:10px;
-border-radius:10px;
-color:#fff;
-font-size:13px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.small:hover{
-background:#38bdf8;
-}
-</style>
-
+        /* تحسين العرض على شاشات الكمبيوتر (زرين في كل صف) */
+        @media (min-width: 600px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="header">
-<h1>📱 Model Library</h1>
-<p>مكتبة مسار - جميع مديلات الهواتف في مكان واحد</p>
-</div>
+    <div class="header-box">
+        <h1 class="main-title">Model Library 📱</h1>
+        <p class="sub-title">مكتبة مسار - جميع موديلات الهواتف في مكان واحد</p>
+    </div>
 
-<div class="grid">
-
-<!-- Samsung -->
-<div class="card" onclick="window.location.href='samsung.html'">Samsung</div>
-<!-- Redmi -->
-<div class="card" onclick="window.location.href='redmi.html'">redmi</div>
-
-<!-- Infinix -->
-<div class="card" onclick="window.location.href='infinix.html'">infinix</div>
-
-<!-- Tecno -->
-<div class="card"onclick="window.location.href='tecno.html'">tecno</div>
-
-<!-- Huawei -->
-<div class="card"onclick="window.location.href='huawei.html'">huawei</div>
-
-<!-- Realme -->
-<div class="card">Realme</div>
-
-<!-- Vivo -->
-<div class="card">Vivo</div>
-
-<!-- Oppo -->
-<div class="card">Oppo</div>
-
-<!-- Nokia -->
-<div class="card">Nokia</div>
-
-<!-- iPhone -->
-<div class="card">iPhone</div>
-
-<!-- Folders -->
-
-<div id="samsung" class="sub">
-<button class="small">Galaxy A</button>
-<button class="small">Galaxy M</button>
-<button class="small">Galaxy S</button>
-</div>
-
-<div id="redmi" class="sub">
-<button class="small">Note</button>
-<button class="small">Redmi</button>
-<button class="small">Pro</button>
-</div>
-
-<div id="infinix" class="sub">
-<button class="small">Hot</button>
-<button class="small">Note</button>
-<button class="small">Smart</button>
-</div>
-
-</div>
-
-<script>
-function toggle(id){
-var el = document.getElementById(id);
-
-if(el.style.display === "grid"){
-el.style.display = "none";
-}else{
-el.style.display = "grid";
-}
-}
-</script>
+    <div class="grid-container">
+        <div class="card samsung" onclick="window.location.href='samsung.html'">Samsung</div>
+        <div class="card redmi" onclick="window.location.href='redmi.html'">Redmi</div>
+        <div class="card infinix" onclick="window.location.href='infinix.html'">Infinix</div>
+        <div class="card tecno" onclick="window.location.href='tecno.html'">Tecno</div>
+        <div class="card huawei" onclick="window.location.href='huawei.html'">Huawei</div>
+        <div class="card realme" onclick="window.location.href='realme.html'">Realme</div>
+        <div class="card vivo" onclick="window.location.href='vivo.html'">Vivo</div>
+        <div class="card oppo" onclick="window.location.href='oppo.html'">Oppo</div>
+        <div class="card nokia" onclick="window.location.href='nokia.html'">Nokia</div>
+        <div class="card iphone" onclick="window.location.href='iphone.html'">iPhone</div>
+    </div>
 
 </body>
 </html>
