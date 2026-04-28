@@ -44,7 +44,7 @@
     <script>
         // منع اختصارات لوحة المفاتيح للحماية
         document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 's'  e.key === 'p'  e.key === 'u' || (e.shiftKey && e.key === 'I'))) {
+            if (e.ctrlKey && (e.key === 's' ||  e.key === 'p' || e.key === 'u' || (e.shiftKey && e.key === 'I'))) {
                 e.preventDefault();
                 return false;
             }
