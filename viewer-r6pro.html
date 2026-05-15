@@ -10,10 +10,13 @@
             padding: 0;
             background-color: #1a1a1a;
             font-family: Arial, sans-serif;
-            overflow: hidden;
         }
-        /* شريط علوي احترافي */
+        /* الشريط العلوي الثابت */
         .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             background-color: #2c3e50;
             color: white;
             padding: 10px 20px;
@@ -22,6 +25,7 @@
             align-items: center;
             height: 40px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            z-index: 1000;
         }
         .back-btn {
             color: white;
@@ -35,16 +39,22 @@
         .title {
             font-size: 18px;
             font-weight: bold;
+            margin-left: 40px;
         }
-        /* حاوي العرض النظيف */
-        .viewer-container {
-            width: 100%;
-            height: calc(100vh - 60px);
+        /* حاوي الصور المتتالية */
+        .images-container {
+            margin-top: 60px; /* لكي لا تختفي الصور تحت الشريط العلوي */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* مسافة بين كل صورة وأخرى */
+            padding: 20px;
         }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .images-container img {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -55,9 +65,12 @@
         <a href="redmi.html" class="back-btn">رجوع للأجهزة ←</a>
     </div>
 
-    <div class="viewer-container">
-        <iframe src="https://t.me/masar_storage/2?embed=1"></iframe>
+    <div class="images-container">
+        <img src="https://t.me/masar_storage/3?embed=1" alt="https://t.me/masar_storage/9">
+        
+      
     </div>
 
 </body>
 </html>
+
