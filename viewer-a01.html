@@ -6,6 +6,9 @@
 
 <title>مشروع مسار - العرض الاحترافي</title>
 
+<!-- مكتبة الزوم (Lightbox) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
 <style>
 
 body, html{
@@ -58,6 +61,7 @@ body, html{
     border-radius:10px;
     user-select:none;
     -webkit-user-drag:none;
+    cursor: zoom-in;
 }
 
 </style>
@@ -75,31 +79,54 @@ body, html{
 
 <div class="gallery">
 
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392786/4_vv4cqy.webp">
+    <!-- كل صورة أصبحت قابلة للزوم -->
+    <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392786/4_vv4cqy.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392786/4_vv4cqy.webp">
+    </a>
 
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/5_cd5v7o.webp">
+    <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/5_cd5v7o.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/5_cd5v7o.webp">
+    </a>
 
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392801/6_yvwsxu.webp">
+    <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392801/6_yvwsxu.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392801/6_yvwsxu.webp">
+    </a>
 
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392801/7_a7rrvl.webp">
+    <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392801/7_a7rrvl.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392801/7_a7rrvl.webp">
+    </a>
     
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392806/8_ovwb8f.webp">
+     <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392806/8_ovwb8f.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392806/8_ovwb8f.webp">
+    </a>
     
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/9_wdjwhz.webp">
+     <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/9_wdjwhz.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/9_wdjwhz.webp">
+    </a>
     
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/10_e2owd0.webp">
+     <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/10_e2owd0.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/10_e2owd0.webp">
+    </a>
     
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/11_cbp9fl.webp">
+     <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/11_cbp9fl.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392811/11_cbp9fl.webp">
+    </a>
     
-   <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/12_eswvos.webp">
+     <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/12_eswvos.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/12_eswvos.webp">
+    </a>
     
-    <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/13_rwspas.webp">
+     <a href="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/13_rwspas.webp" data-lightbox="gallery">
+        <img src="https://res.cloudinary.com/donyquhz9/image/upload/v1779392800/13_rwspas.webp">
+    </a>
+    
 </div>
 
+<!-- سكربت الزوم -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
 <script>
-
 document.addEventListener('keydown', function(e) {
-
     if (
         e.ctrlKey &&
         (
@@ -111,10 +138,9 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
         return false;
     }
-
 });
-
 </script>
 
 </body>
 </html>
+
