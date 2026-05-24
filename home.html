@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة مسار - جميع الموديلات</title>
-    <style>
-        body { background-color: #f0f2f5; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
-        
-        /* زر تسجيل الخروج في الزاوية */
-        .logout-btn { position: absolute; top: 20px; right: 20px; background: #c0392b; color: white; text-decoration: none; padding: 8px 18px; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s; z-index: 100; border: none; cursor: pointer; }
-        .logout-btn:hover { background: #a93226; transform: scale(1.05); }
-
-        .header-box { background: white; padding: 20px; border-radius: 12px; display: inline-block; border-bottom: 4px solid #27ae60; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .main-title { margin: 0; color: #2c3e50; font-size: 26px; }
-        .sub-title { margin: 5px 0 0; color: #7f8c8d; font-size: 16px; }
-
-        .grid-container { display: grid; grid-template-columns: 1fr; gap: 15px; max-width: 800px; margin: auto; padding: 10px; }
-
-        .card { background: white; color: #333; padding: 20px; border-radius: 10px; text-decoration: none; border: 1px solid #ddd; font-weight: bold; font-size: 18px; transition: 0.3s; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        
-        .card:hover { background: #fdfdfd; border-color: #27ae60; color: #27ae60; transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-
-        @media (min-width: 600px) {
-            .grid-container { grid-template-columns: repeat(2, 1fr); }
-        }
-        
-        /* تحسين مكان الزر في الموبايل */
-        @media (max-width: 600px) {
-            .logout-btn { position: static; display: inline-block; margin-bottom: 20px; width: 90%; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسار PRO — المكتبة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--text:#e2e8f0;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min-height:100vh}
+.topbar{background:#0a1020;border-bottom:2px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-size:20px;font-weight:900;color:#fff}.logo span{color:var(--blue-light)}
+.logout{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer}
+.logout:hover{border-color:var(--blue-light);color:var(--blue-light)}
+.section-title{padding:20px 20px 10px;font-size:12px;color:var(--blue-light);font-weight:700;letter-spacing:2px}
+.brands-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 20px}
+@media(min-width:600px){.brands-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.brands-grid{grid-template-columns:repeat(5,1fr)}}
+.brand-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all 0.2s;text-decoration:none}
+.brand-card:hover{border-color:var(--blue-light);transform:translateY(-2px);box-shadow:0 4px 20px rgba(37,99,235,0.2)}
+.brand-icon{width:48px;height:48px;border-radius:12px;background:#152040;display:flex;align-items:center;justify-content:center;font-size:22px}
+.brand-name{font-size:15px;font-weight:700;color:var(--text)}
+.brand-count{font-size:11px;color:var(--blue-light);background:rgba(37,99,235,0.1);padding:2px 8px;border-radius:10px}
+</style>
 </head>
 <body>
-
-    <a href="index.html" class="logout-btn">تسجيل الخروج</a>
-
-    <div class="header-box">
-        <h1 class="main-title">Model Library 📱</h1>
-        <p class="sub-title">مكتبة مسار - جميع موديلات الهواتف في مكان واحد</p>
-    </div>
-
-    <div class="grid-container">
-        <div class="card" onclick="window.location.href='samsung.html'">Samsung</div>
-        <div class="card" onclick="window.location.href='redmi.html'">Redmi</div>
-        <div class="card" onclick="window.location.href='infinix.html'">Infinix</div>
-        <div class="card" onclick="window.location.href='tecno.html'">Tecno</div>
-        <div class="card" onclick="window.location.href='huawei.html'">Huawei</div>
-        <div class="card" onclick="window.location.href='realme.html'">Realme</div>
-        <div class="card" onclick="window.location.href='vivo.html'">Vivo</div>
-        <div class="card" onclick="window.location.href='oppo.html'">Oppo</div>
-        <div class="card" onclick="window.location.href='nokia.html'">Nokia</div>
-        <div class="card" onclick="window.location.href='iphone.html'">iPhone</div>
-    </div>
-
+<div class="topbar">
+  <div class="logo">مسار <span>PRO</span></div>
+  <button class="logout" onclick="signOut()">خروج ←</button>
+</div>
+<div class="section-title">اختر الماركة</div>
+<div class="brands-grid">
+  <a href="samsung.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Samsung</div><div class="brand-count">38 موديل</div></a>
+  <a href="redmi.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Redmi</div><div class="brand-count">قريباً</div></a>
+  <a href="infinix.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Infinix</div><div class="brand-count">قريباً</div></a>
+  <a href="tecno.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Tecno</div><div class="brand-count">قريباً</div></a>
+  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Huawei</div><div class="brand-count">قريباً</div></a>
+  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Realme</div><div class="brand-count">قريباً</div></a>
+  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Vivo</div><div class="brand-count">قريباً</div></a>
+  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Oppo</div><div class="brand-count">قريباً</div></a>
+  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Nokia</div><div class="brand-count">قريباً</div></a>
+  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">iPhone</div><div class="brand-count">قريباً</div></a>
+</div>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
+window.signOut = async () => { await supabase.auth.signOut(); localStorage.removeItem('msar_auth'); window.location.href='index.html'; };
+(async()=>{
+  const {data:{session}} = await supabase.auth.getSession();
+  if(!session){window.location.href='index.html';return;}
+  const saved = localStorage.getItem('msar_auth');
+  if(!saved){window.location.href='index.html';return;}
+  const auth = JSON.parse(saved);
+  if(auth.email !== session.user.email){window.location.href='index.html';return;}
+  if(auth.expires && new Date(auth.expires)<new Date()){window.location.href='index.html';return;}
+})();
+</script>
 </body>
 </html>
