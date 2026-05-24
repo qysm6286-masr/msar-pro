@@ -1,75 +1,265 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مسار - تسجيل الدخول الآمن</title>
-    <style>
-        body { background-color: #f0f2f5; color: #333; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .box { background: #ffffff; padding: 40px; border-radius: 20px; width: 350px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 5px solid #27ae60; }
-        .logo-container img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #27ae60; margin-bottom: 15px; padding: 5px; background: white; }
-        h2 { color: #2c3e50; margin-bottom: 25px; font-size: 22px; }
-        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; background: #f9f9f9; text-align: center; }
-        input:focus { outline: none; border-color: #27ae60; background: #fff; }
-        button { width: 100%; padding: 12px; background: #27ae60; color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; }
-        button:hover { background: #219150; transform: translateY(-2px); }
-        #msg { color: #e74c3c; margin-top: 15px; font-weight: bold; font-size: 14px; }
-        .footer-text { margin-top: 25px; font-size: 13px; color: #7f8c8d; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسار PRO — تسجيل الدخول</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060d1f;
+  --card: #0d1630;
+  --border: #1a3360;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --text: #e2e8f0;
+  --muted: #64748b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  font-family: 'Tajawal', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.bg-glow {
+  position: fixed;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 0 60px rgba(37,99,235,0.1);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
+  border-radius: 20px 20px 0 0;
+}
+.logo { text-align: center; margin-bottom: 32px; }
+.logo-icon {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 28px;
+  box-shadow: 0 0 30px rgba(37,99,235,0.3);
+}
+.logo h1 { font-size: 26px; font-weight: 900; color: #fff; }
+.logo h1 span { color: var(--blue-light); }
+.logo p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.step { display: none; }
+.step.active { display: block; }
+.step-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.step-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+.input-group { margin-bottom: 16px; }
+.input-group label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
+.input-group input {
+  width: 100%;
+  background: #0a1628;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 14px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  direction: ltr;
+}
+.input-group input:focus { border-color: var(--blue-light); }
+.input-group input::placeholder { color: var(--muted); direction: rtl; }
+.code-input {
+  text-align: center !important;
+  letter-spacing: 3px !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+}
+.main-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 4px 20px rgba(37,99,235,0.3);
+}
+.main-btn:hover { transform: translateY(-1px); }
+.main-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.msg { padding: 12px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; line-height: 1.6; }
+.msg.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; display: block; }
+.msg.success { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7; display: block; }
+.back-link { text-align: center; margin-top: 14px; font-size: 12px; color: var(--muted); cursor: pointer; }
+.back-link:hover { color: var(--blue-light); }
+.email-icon { font-size: 40px; text-align: center; margin-bottom: 12px; }
+.loader {
+  display: inline-block; width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle; margin-left: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
 </head>
 <body>
-
-<div class="box">
-    <div class="logo-container">
-        <img src="logo.png" alt="شعار مسار" onerror="this.src='https://via.placeholder.com/120?text=LOGO'">
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="card">
+  <div class="logo">
+    <div class="logo-icon">⚡</div>
+    <h1>مسار <span>PRO</span></h1>
+    <p>مخططات الدوائر الإلكترونية للهواتف</p>
+  </div>
+  <div class="step active" id="step1">
+    <div class="step-title">تسجيل الدخول</div>
+    <div class="step-sub">أدخل بريدك الإلكتروني وسنرسل لك رابط دخول مباشر</div>
+    <div id="msg1" class="msg"></div>
+    <div class="input-group">
+      <label>البريد الإلكتروني</label>
+      <input type="email" id="email-input" placeholder="example@gmail.com">
     </div>
-
-    <h2>تسجيل الدخول - مسار برو</h2>
-
-    <input type="email" id="email" placeholder="أدخل الإيميل المسجل">
-    <input type="text" id="code" placeholder="أدخل كود الاشتراك الخاص بك">
-
-    <button onclick="login()">دخول للمكتبة</button>
-
-    <p id="msg"></p>
-
-    <p class="footer-text">جميع الحقوق محفوظة لمشروع مسار © 2026</p>
+    <button class="main-btn" onclick="sendMagicLink()" id="send-btn">إرسال رابط الدخول ←</button>
+  </div>
+  <div class="step" id="step2">
+    <div class="email-icon">📬</div>
+    <div class="step-title" style="text-align:center">تحقق من بريدك</div>
+    <div class="step-sub" style="text-align:center">أرسلنا رابط دخول إلى<br><strong id="sent-email" style="color:var(--blue-light)"></strong><br><br>افتح الإيميل واضغط على الرابط للدخول</div>
+    <div id="msg2" class="msg"></div>
+    <div class="back-link" onclick="goBack()">← تغيير البريد الإلكتروني</div>
+  </div>
+  <div class="step" id="step3">
+    <div class="step-title">كود الاشتراك</div>
+    <div class="step-sub">أدخل كود الاشتراك الذي أرسلناه لك بعد الدفع</div>
+    <div id="msg3" class="msg"></div>
+    <div class="input-group">
+      <label>كود الاشتراك</label>
+      <input type="text" id="code-input" class="code-input" placeholder="XXXX-XXXX-XXXX" maxlength="14" oninput="formatCode(this)">
+    </div>
+    <button class="main-btn" onclick="verifyCode()" id="verify-btn">دخول المكتبة ←</button>
+    <div class="back-link" onclick="signOut()">تسجيل الخروج</div>
+  </div>
 </div>
-
-<script>
-// قائمة المشتركين المعتمدة
-// أضفت إيميلك هنا ليعمل الكود معك فوراً
-const subscribers = [
-    { email: "krgalealibakar@gmail.com", code: "MASAR-9921-KZ" },
-    { email: "ali@gmail.com", code: "MASAR-1122-AL" },
-    { email: "test@test.com", code: "9900" }
-];
-
-function login() {
-    const emailInput = document.getElementById("email").value.trim().toLowerCase();
-    const codeInput = document.getElementById("code").value.trim();
-    const msgElement = document.getElementById("msg");
-
-    if (emailInput === "" || codeInput === "") {
-        msgElement.innerHTML = "⚠️ يرجى تعبئة جميع الحقول";
-        return;
-    }
-
-    // البحث عن المستخدم في القائمة أعلاه
-    const user = subscribers.find(s => s.email === emailInput && s.code === codeInput);
-
-    if (user) {
-        msgElement.style.color = "#27ae60";
-        msgElement.innerHTML = "✅ جاري الدخول...";
-        setTimeout(() => {
-            window.location.href = "home.html";
-        }, 1000);
-    } else {
-        msgElement.style.color = "#e74c3c";
-        msgElement.innerHTML = "❌ الإيميل أو كود الاشتراك غير صحيح";
-    }
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const SUPABASE_URL = 'https://dqjtmxdclpipiisfrkjr.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+window.formatCode = (input) => {
+  let val = input.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+  if (val.length > 4) val = val.slice(0,4) + '-' + val.slice(4);
+  if (val.length > 9) val = val.slice(0,9) + '-' + val.slice(9);
+  input.value = val.slice(0, 14);
+};
+window.sendMagicLink = async () => {
+  const email = document.getElementById('email-input').value.trim();
+  const btn = document.getElementById('send-btn');
+  if (!email || !email.includes('@')) {
+    showMsg('msg1', 'أدخل بريداً إلكترونياً صحيحاً', 'error'); return;
+  }
+  btn.disabled = true;
+  btn.innerHTML = 'جاري الإرسال... <span class="loader"></span>';
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: 'https://qysm6286-masr.github.io/msar-pro/index.html' }
+  });
+  if (error) {
+    showMsg('msg1', 'حدث خطأ: ' + error.message, 'error');
+    btn.disabled = false; btn.textContent = 'إرسال رابط الدخول ←';
+  } else {
+    document.getElementById('sent-email').textContent = email;
+    showStep('step2');
+  }
+};
+window.goBack = () => {
+  showStep('step1');
+  document.getElementById('send-btn').disabled = false;
+  document.getElementById('send-btn').textContent = 'إرسال رابط الدخول ←';
+};
+window.verifyCode = async () => {
+  const code = document.getElementById('code-input').value.trim();
+  const btn = document.getElementById('verify-btn');
+  if (code.length < 14) { showMsg('msg3', 'أدخل الكود كاملاً', 'error'); return; }
+  btn.disabled = true;
+  btn.innerHTML = 'جاري التحقق... <span class="loader"></span>';
+  const { data: { user } } = await supabase.auth.getUser();
+  const { data, error } = await supabase.from('codes').select('*').eq('code', code).single();
+  if (error || !data) {
+    showMsg('msg3', '❌ الكود غير صحيح', 'error');
+    btn.disabled = false; btn.textContent = 'دخول المكتبة ←'; return;
+  }
+  if (data.used && data.email !== user.email) {
+    showMsg('msg3', '❌ هذا الكود مستخدم من حساب آخر', 'error');
+    btn.disabled = false; btn.textContent = 'دخول المكتبة ←'; return;
+  }
+  if (data.expires_at && new Date(data.expires_at) < new Date()) {
+    showMsg('msg3', '❌ انتهت صلاحية هذا الكود', 'error');
+    btn.disabled = false; btn.textContent = 'دخول المكتبة ←'; return;
+  }
+  await supabase.from('codes').update({ used: true, email: user.email }).eq('code', code);
+  localStorage.setItem('msar_auth', JSON.stringify({ email: user.email, code, expires: data.expires_at }));
+  window.location.href = 'home.html';
+};
+window.signOut = async () => {
+  await supabase.auth.signOut();
+  localStorage.removeItem('msar_auth');
+  showStep('step1');
+};
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
+function showMsg(id, text, type) {
+  const el = document.getElementById(id);
+  el.textContent = text; el.className = 'msg ' + type;
+}
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) {
+    const saved = localStorage.getItem('msar_auth');
+    if (saved) {
+      const auth = JSON.parse(saved);
+      if (auth.email === session.user.email) {
+        if (!auth.expires || new Date(auth.expires) > new Date()) {
+          window.location.href = 'home.html'; return;
+        }
+      }
+    }
+    showStep('step3');
+  }
+})();
 </script>
-
 </body>
 </html>
