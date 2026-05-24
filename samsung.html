@@ -12,8 +12,22 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 .topbar{background:#0a1020;border-bottom:2px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
 .logo{font-size:18px;font-weight:900;color:#fff}.logo span{color:var(--blue-light)}
 .back-btn{background:var(--card);border:1px solid var(--border);color:var(--blue-light);padding:7px 14px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;text-decoration:none;font-weight:700}
-.back-btn:hover{border-color:var(--blue-light)}
-.section-title{padding:16px 20px 8px;font-size:12px;color:var(--blue-light);font-weight:700;letter-spacing:2px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.section-title{padding:16px 20px 8px;font-size:12px;color:var(--blue-light);font-weight:700;letter-spacing:2px}
+
+/* صفحة الفئات */
+.page{display:none}.page.active{display:block}
+.cats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:0 16px 20px}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all 0.2s}
+.cat-card:hover{border-color:var(--blue-light);transform:translateY(-2px)}
+.cat-card.disabled{opacity:0.4;pointer-events:none}
+.cat-name{font-size:18px;font-weight:900;color:#fff}
+.cat-count{font-size:11px;color:var(--blue-light);background:rgba(37,99,235,0.1);padding:2px 8px;border-radius:10px}
+.cat-soon{font-size:11px;color:var(--muted)}
+
+/* صفحة الموديلات */
+.models-header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border)}
+.models-back{background:var(--card);border:1px solid var(--border);color:var(--blue-light);padding:6px 12px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;font-weight:700}
+.models-title{font-size:15px;font-weight:700;color:#fff}
 .models-list{padding:10px 14px;display:flex;flex-direction:column;gap:8px}
 .model-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:border-color 0.2s}
 .model-item:hover{border-color:var(--blue-light)}
@@ -27,48 +41,75 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 <body>
 <div class="topbar">
   <div class="logo">مسار <span>PRO</span></div>
-  <a href="home.html" class="back-btn">← رجوع</a>
+  <a href="home.html" class="back-btn" id="top-back">← رجوع</a>
 </div>
-<div class="section-title">Samsung — Series A</div>
-<div class="models-list">
-  <a href="viewer-a01.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A01 (A015)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a022.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A02 (A022)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a025.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A02s (A025)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a032.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A03 (A032)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a035.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A03 (A035)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a037.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A03s (A037)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a042.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A04 (A042)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a045.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A04 (A045)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a047.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A04s (A047)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a055.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A05 (A055)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a057.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A05s (A057)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a065.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A06 (A065)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a102.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A10e (A102)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a315.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A31 (A315)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a325.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A32 (A325)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a336.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A33 (A336)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a326.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A32 5G (A326)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a346.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A34 (A346)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a356.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A35 (A356)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a405.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A40 (A405)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a415.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A41 (A415)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a426.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A42 (A426)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a505.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A50 (A505)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a507.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A50s (A507)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a515.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A51 (A515)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a525.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A52 (A525)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a526.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A52 5G (A526)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a528.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A52s (A528)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a536.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A53 5G (A536)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a546.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A54 (A546)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a566.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A56 (A566)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a705.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A70 (A705)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a715.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A71 (A715)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a716.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A71 5G (A716)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a725.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A72 (A725)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a736.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A73 (A736)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-  <a href="viewer-a908.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A90 5G (A908)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+
+<!-- صفحة الفئات -->
+<div class="page active" id="page-cats">
+  <div class="section-title">Samsung — اختر الفئة</div>
+  <div class="cats-grid">
+    <div class="cat-card disabled">
+      <div class="cat-name">S</div>
+      <div class="cat-soon">قريباً</div>
+    </div>
+    <div class="cat-card disabled">
+      <div class="cat-name">M</div>
+      <div class="cat-soon">قريباً</div>
+    </div>
+    <div class="cat-card" onclick="showModels()">
+      <div class="cat-name">A</div>
+      <div class="cat-count">38 موديل</div>
+    </div>
+  </div>
 </div>
+
+<!-- صفحة موديلات Series A -->
+<div class="page" id="page-models">
+  <div class="models-header">
+    <button class="models-back" onclick="showCats()">← رجوع</button>
+    <span class="models-title">Samsung — Series A</span>
+  </div>
+  <div class="models-list">
+    <a href="viewer-a01.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A01 (A015)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a022.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A02 (A022)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a025.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A02s (A025)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a032.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A03 (A032)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a035.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A03 (A035)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a037.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A03s (A037)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a042.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A04 (A042)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a045.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A04 (A045)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a047.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A04s (A047)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a055.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A05 (A055)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a057.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A05s (A057)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a065.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A06 (A065)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a102.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A10e (A102)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a315.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A31 (A315)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a325.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A32 (A325)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a336.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A33 (A336)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a326.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A32 5G (A326)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a346.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A34 (A346)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a356.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A35 (A356)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a405.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A40 (A405)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a415.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A41 (A415)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a426.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A42 (A426)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a505.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A50 (A505)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a507.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A50s (A507)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a515.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A51 (A515)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a525.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A52 (A525)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a526.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A52 5G (A526)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a528.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A52s (A528)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a536.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A53 5G (A536)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a546.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A54 (A546)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a566.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A56 (A566)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a705.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A70 (A705)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a715.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A71 (A715)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a716.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A71 5G (A716)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a725.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A72 (A725)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a736.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A73 (A736)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-a908.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">A90 5G (A908)</div><div class="model-sub">10 دوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+  </div>
+</div>
+
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
@@ -81,6 +122,18 @@ const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_pub
   if(auth.email !== session.user.email){window.location.href='index.html';return;}
   if(auth.expires && new Date(auth.expires)<new Date()){window.location.href='index.html';return;}
 })();
+</script>
+<script>
+function showModels(){
+  document.getElementById('page-cats').classList.remove('active');
+  document.getElementById('page-models').classList.add('active');
+  document.getElementById('top-back').style.display='none';
+}
+function showCats(){
+  document.getElementById('page-models').classList.remove('active');
+  document.getElementById('page-cats').classList.add('active');
+  document.getElementById('top-back').style.display='';
+}
 </script>
 </body>
 </html>
