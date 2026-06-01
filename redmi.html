@@ -1,79 +1,113 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مسارات أجهزة ريدمي - مشروع مسار</title>
-    <style>
-        body { background-color: #f0f2f5; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
-        .header-title { background: white; padding: 10px 30px; border-radius: 10px; display: inline-block; border-bottom: 3px solid #27ae60; margin-bottom: 30px; font-weight: bold; color: #1a1a1a; }
-        
-        /* زر العودة لصفحة للمديلات (home.html) */
-        .back-home { position: absolute; top: 20px; right: 20px; background: #34495e; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .back-home:hover { background: #2c3e50; }
-
-        .main-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 1200px; margin: auto; }
-        
-        .category-header { color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 20px; margin-bottom: 10px; }
-        
-        /* الألوان المطلوبة */
-        .available-head { background: #27ae60; } /* أخضر للأجهزة المتوفرة */
-        .not-available-head { background: #c0392b; } /* أحمر للأجهزة غير المتوفرة */
-
-        .models-list { display: flex; flex-direction: column; gap: 10px; }
-        
-        .model-item { background: white; color: #333; padding: 12px; border-radius: 8px; text-decoration: none; border: 1px solid #ddd; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .model-item:hover { background: #f9f9f9; border-color: #27ae60; color: #27ae60; }
-        
-        .coming-soon { background: #e0e0e0; color: #888; border: 1px dashed #bbb; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسار PRO — Xiaomi / Redmi</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--green:#16a34a;--green-light:#22c55e;--red:#dc2626;--red-light:#f87171;--text:#e2e8f0;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min-height:100vh}
+.topbar{background:#0a1020;border-bottom:2px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-size:16px;font-weight:900;color:#fff}.logo span{color:var(--blue-light)}
+.back-btn{background:var(--card);border:1px solid var(--border);color:var(--blue-light);padding:7px 14px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;text-decoration:none;font-weight:700}
+.page-title{padding:18px 20px 6px;font-size:18px;font-weight:900;color:#fff}
+.page-title span{color:var(--blue-light);font-size:13px;font-weight:400;margin-right:8px}
+.content{padding:12px 14px;display:flex;flex-direction:column;gap:20px}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.cat-header{padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.cat-header.green{border-right:4px solid var(--green-light)}
+.cat-header.red{border-right:4px solid var(--red-light)}
+.cat-dot{width:10px;height:10px;border-radius:50%}
+.dot-green{background:var(--green-light)}
+.dot-red{background:var(--red-light)}
+.cat-name{font-size:15px;font-weight:900;letter-spacing:1px}
+.cat-name.green{color:var(--green-light)}
+.cat-name.red{color:var(--red-light)}
+.cat-badge{margin-right:auto;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700}
+.badge-green{background:rgba(34,197,94,0.15);color:var(--green-light);border:1px solid rgba(34,197,94,0.3)}
+.badge-red{background:rgba(248,113,113,0.15);color:var(--red-light);border:1px solid rgba(248,113,113,0.3)}
+.models-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.model-btn{background:var(--card);padding:13px 14px;text-decoration:none;color:var(--text);font-size:13px;font-weight:700;font-family:'Tajawal',sans-serif;display:flex;align-items:center;gap:8px;transition:background 0.15s}
+.model-btn:hover{background:#111d3a;color:#fff}
+.model-btn .arrow{color:var(--blue-light);font-size:11px;margin-right:auto}
+.model-coming{background:var(--card);padding:13px 14px;color:var(--muted);font-size:12px;font-family:'Tajawal',sans-serif;display:flex;align-items:center;gap:8px}
+.model-coming .soon-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(100,116,139,0.2);border:1px solid rgba(100,116,139,0.3);color:var(--muted)}
+</style>
 </head>
 <body>
+<div class="topbar">
+  <div class="logo">مسار <span>PRO</span></div>
+  <a href="home.html" class="back-btn">← رجوع</a>
+</div>
 
-    <a href="home.html" class="back-home">العودة للمديلات</a>
+<div class="page-title">Xiaomi / Redmi <span>— اختر الجهاز</span></div>
 
-    <div class="header-title">مسارات أجهزة شاومي</div>
+<div class="content">
 
-    <div class="main-grid">
-        
-        <div class="category-column">
-            <div class="category-header available-head">REDMI</div>
-            <div class="models-list">
-                <a href="viewer-redmi-10-4G.html" class="model-item">Redmi (10-4G)</a>
-                <a href="viewer-redmi-10-5G.html" class="model-item">Redmi (10-5G)</a>
-                <a href="viewer-redmi-10-A.html" class="model-item">Redmi (10-A)</a>
-                <a href="viewer-redmi-10-C.html" class="model-item">Redmi (10-C)</a>
-                <a href="viewer-redmi-10-X-5G.html" class="model-item">Redmi (10-X-5G)</a>
-                <a href="viewer-redmi-11-PRIME-5G.html" class="model-item">Redmi (11-PRIME-5G)</a>
-                <a href="viewer-redmi-11-PRIME.html" class="model-item">Redmi (11-PRIME)</a>
-                <a href="viewer-redmi-12.html" class="model-item">Redmi (12)</a>
-                <a href="viewer-redmi-12-5G.html" class="model-item">Redmi (12-5G)</a>
-                <a href="viewer-redmi-13-4G.html" class="model-item">Redmi (13-4G)</a>
-                <a href="viewer-redmi-13C.html" class="model-item">Redmi (13C)</a>
-                <a href="viewer-r6pro.html" class="model-item">Redmi (6-PRO)</a>
-            </div>
-        </div>
-
-        <div class="category-column">
-            <div class="category-header available-head">POCO</div>
-            <div class="models-list">
-                <a href="viewer-x3.html" class="model-item">Poco X3 Pro</a>
-                <a href="viewer-m3.html" class="model-item">Poco M3</a>
-                <a href="#" class="model-item">Poco F3</a>
-            </div>
-        </div>
-
-        <div class="category-column">
-            <div class="category-header not-available-head">MI</div>
-            <div class="models-list">
-                <div class="model-item coming-soon">قريباً</div>
-                <div class="model-item coming-soon">قريباً</div>
-                <div class="model-item coming-soon">قريباً</div>
-            </div>
-        </div>
-
+  <div class="cat-card">
+    <div class="cat-header green">
+      <div class="cat-dot dot-green"></div>
+      <div class="cat-name green">REDMI</div>
+      <div class="cat-badge badge-green">متوفر</div>
     </div>
+    <div class="models-grid">
+      <a href="viewer-redmi-10-4G.html" class="model-btn"><span>📱</span>Redmi 10 4G<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-10-5G.html" class="model-btn"><span>📱</span>Redmi 10 5G<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-10-A.html" class="model-btn"><span>📱</span>Redmi 10A<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-10-C.html" class="model-btn"><span>📱</span>Redmi 10C<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-10-X-5G.html" class="model-btn"><span>📱</span>Redmi 10X 5G<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-11-PRIME-5G.html" class="model-btn"><span>📱</span>Redmi 11 Prime 5G<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-11-PRIME.html" class="model-btn"><span>📱</span>Redmi 11 Prime<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-12.html" class="model-btn"><span>📱</span>Redmi 12<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-12-5G.html" class="model-btn"><span>📱</span>Redmi 12 5G<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-13-4G.html" class="model-btn"><span>📱</span>Redmi 13 4G<span class="arrow">◄</span></a>
+      <a href="viewer-redmi-13C.html" class="model-btn"><span>📱</span>Redmi 13C<span class="arrow">◄</span></a>
+      <a href="viewer-r6pro.html" class="model-btn"><span>📱</span>Redmi 6 Pro<span class="arrow">◄</span></a>
+    </div>
+  </div>
 
+  <div class="cat-card">
+    <div class="cat-header green">
+      <div class="cat-dot dot-green"></div>
+      <div class="cat-name green">POCO</div>
+      <div class="cat-badge badge-green">متوفر</div>
+    </div>
+    <div class="models-grid">
+      <a href="viewer-x3.html" class="model-btn"><span>📱</span>Poco X3 Pro<span class="arrow">◄</span></a>
+      <a href="viewer-m3.html" class="model-btn"><span>📱</span>Poco M3<span class="arrow">◄</span></a>
+      <a href="#" class="model-btn"><span>📱</span>Poco F3<span class="arrow">◄</span></a>
+    </div>
+  </div>
+
+  <div class="cat-card">
+    <div class="cat-header red">
+      <div class="cat-dot dot-red"></div>
+      <div class="cat-name red">MI</div>
+      <div class="cat-badge badge-red">قريباً</div>
+    </div>
+    <div class="models-grid">
+      <div class="model-coming"><span>⏳</span>قريباً<span class="soon-badge">Soon</span></div>
+      <div class="model-coming"><span>⏳</span>قريباً<span class="soon-badge">Soon</span></div>
+      <div class="model-coming"><span>⏳</span>قريباً<span class="soon-badge">Soon</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
+(async()=>{
+  const {data:{session}} = await supabase.auth.getSession();
+  if(!session){window.location.href='index.html';return;}
+  const saved = localStorage.getItem('msar_auth');
+  if(!saved){window.location.href='index.html';return;}
+  const auth = JSON.parse(saved);
+  if(auth.email !== session.user.email){window.location.href='index.html';return;}
+  if(auth.expires && new Date(auth.expires)<new Date()){window.location.href='index.html';return;}
+})();
+</script>
 </body>
 </html>
-
