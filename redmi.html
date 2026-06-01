@@ -6,94 +6,92 @@
 <title>مسار PRO — Xiaomi / Redmi</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--green:#16a34a;--green-light:#22c55e;--red:#dc2626;--red-light:#f87171;--text:#e2e8f0;--muted:#64748b}
+:root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--text:#e2e8f0;--muted:#64748b}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min-height:100vh}
 .topbar{background:#0a1020;border-bottom:2px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.logo{font-size:16px;font-weight:900;color:#fff}.logo span{color:var(--blue-light)}
+.logo{font-size:18px;font-weight:900;color:#fff}.logo span{color:var(--blue-light)}
 .back-btn{background:var(--card);border:1px solid var(--border);color:var(--blue-light);padding:7px 14px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;text-decoration:none;font-weight:700}
-.page-title{padding:18px 20px 6px;font-size:18px;font-weight:900;color:#fff}
-.page-title span{color:var(--blue-light);font-size:13px;font-weight:400;margin-right:8px}
-.content{padding:12px 14px;display:flex;flex-direction:column;gap:20px}
-.cat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.cat-header{padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
-.cat-header.green{border-right:4px solid var(--green-light)}
-.cat-header.red{border-right:4px solid var(--red-light)}
-.cat-dot{width:10px;height:10px;border-radius:50%}
-.dot-green{background:var(--green-light)}
-.dot-red{background:var(--red-light)}
-.cat-name{font-size:15px;font-weight:900;letter-spacing:1px}
-.cat-name.green{color:var(--green-light)}
-.cat-name.red{color:var(--red-light)}
-.cat-badge{margin-right:auto;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:700}
-.badge-green{background:rgba(34,197,94,0.15);color:var(--green-light);border:1px solid rgba(34,197,94,0.3)}
-.badge-red{background:rgba(248,113,113,0.15);color:var(--red-light);border:1px solid rgba(248,113,113,0.3)}
-.models-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.model-btn{background:var(--card);padding:13px 14px;text-decoration:none;color:var(--text);font-size:13px;font-weight:700;font-family:'Tajawal',sans-serif;display:flex;align-items:center;gap:8px;transition:background 0.15s}
-.model-btn:hover{background:#111d3a;color:#fff}
-.model-btn .arrow{color:var(--blue-light);font-size:11px;margin-right:auto}
-.model-coming{background:var(--card);padding:13px 14px;color:var(--muted);font-size:12px;font-family:'Tajawal',sans-serif;display:flex;align-items:center;gap:8px}
-.model-coming .soon-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(100,116,139,0.2);border:1px solid rgba(100,116,139,0.3);color:var(--muted)}
+.section-title{padding:16px 20px 8px;font-size:12px;color:var(--blue-light);font-weight:700;letter-spacing:2px}
+.page{display:none}.page.active{display:block}
+.cats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:0 16px 20px}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all 0.2s}
+.cat-card:hover{border-color:var(--blue-light);transform:translateY(-2px)}
+.cat-card.disabled{opacity:0.4;pointer-events:none}
+.cat-name{font-size:18px;font-weight:900;color:#fff}
+.cat-count{font-size:11px;color:var(--blue-light);background:rgba(37,99,235,0.1);padding:2px 8px;border-radius:10px}
+.cat-soon{font-size:11px;color:var(--muted)}
+.models-header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border)}
+.models-back{background:var(--card);border:1px solid var(--border);color:var(--blue-light);padding:6px 12px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;font-weight:700}
+.models-title{font-size:15px;font-weight:700;color:#fff}
+.models-list{padding:10px 14px;display:flex;flex-direction:column;gap:8px}
+.model-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:border-color 0.2s}
+.model-item:hover{border-color:var(--blue-light)}
+.model-left{display:flex;align-items:center;gap:10px}
+.model-icon{width:34px;height:34px;border-radius:8px;background:#152040;display:flex;align-items:center;justify-content:center;color:var(--blue-light);font-size:16px;flex-shrink:0}
+.model-name{font-size:14px;font-weight:700;color:var(--text)}
+.model-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.open-btn{background:#152040;border:1px solid var(--border);color:var(--blue-light);padding:6px 12px;border-radius:7px;font-size:12px;font-weight:700;white-space:nowrap}
 </style>
 </head>
 <body>
 <div class="topbar">
   <div class="logo">مسار <span>PRO</span></div>
-  <a href="home.html" class="back-btn">← رجوع</a>
+  <a href="home.html" class="back-btn" id="top-back">← رجوع</a>
 </div>
 
-<div class="page-title">Xiaomi / Redmi <span>— اختر الجهاز</span></div>
-
-<div class="content">
-
-  <div class="cat-card">
-    <div class="cat-header green">
-      <div class="cat-dot dot-green"></div>
-      <div class="cat-name green">REDMI</div>
-      <div class="cat-badge badge-green">متوفر</div>
+<!-- صفحة الفئات -->
+<div class="page active" id="page-cats">
+  <div class="section-title">Xiaomi — اختر الفئة</div>
+  <div class="cats-grid">
+    <div class="cat-card" onclick="showModels('redmi')">
+      <div class="cat-name">REDMI</div>
+      <div class="cat-count">12 موديل</div>
     </div>
-    <div class="models-grid">
-      <a href="viewer-redmi-10-4G.html" class="model-btn"><span>📱</span>Redmi 10 4G<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-10-5G.html" class="model-btn"><span>📱</span>Redmi 10 5G<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-10-A.html" class="model-btn"><span>📱</span>Redmi 10A<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-10-C.html" class="model-btn"><span>📱</span>Redmi 10C<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-10-X-5G.html" class="model-btn"><span>📱</span>Redmi 10X 5G<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-11-PRIME-5G.html" class="model-btn"><span>📱</span>Redmi 11 Prime 5G<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-11-PRIME.html" class="model-btn"><span>📱</span>Redmi 11 Prime<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-12.html" class="model-btn"><span>📱</span>Redmi 12<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-12-5G.html" class="model-btn"><span>📱</span>Redmi 12 5G<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-13-4G.html" class="model-btn"><span>📱</span>Redmi 13 4G<span class="arrow">◄</span></a>
-      <a href="viewer-redmi-13C.html" class="model-btn"><span>📱</span>Redmi 13C<span class="arrow">◄</span></a>
-      <a href="viewer-r6pro.html" class="model-btn"><span>📱</span>Redmi 6 Pro<span class="arrow">◄</span></a>
+    <div class="cat-card" onclick="showModels('poco')">
+      <div class="cat-name">POCO</div>
+      <div class="cat-count">3 موديل</div>
+    </div>
+    <div class="cat-card disabled">
+      <div class="cat-name">MI</div>
+      <div class="cat-soon">قريباً</div>
     </div>
   </div>
+</div>
 
-  <div class="cat-card">
-    <div class="cat-header green">
-      <div class="cat-dot dot-green"></div>
-      <div class="cat-name green">POCO</div>
-      <div class="cat-badge badge-green">متوفر</div>
-    </div>
-    <div class="models-grid">
-      <a href="viewer-x3.html" class="model-btn"><span>📱</span>Poco X3 Pro<span class="arrow">◄</span></a>
-      <a href="viewer-m3.html" class="model-btn"><span>📱</span>Poco M3<span class="arrow">◄</span></a>
-      <a href="#" class="model-btn"><span>📱</span>Poco F3<span class="arrow">◄</span></a>
-    </div>
+<!-- صفحة موديلات REDMI -->
+<div class="page" id="page-redmi">
+  <div class="models-header">
+    <button class="models-back" onclick="showCats()">← رجوع</button>
+    <span class="models-title">Xiaomi — REDMI</span>
   </div>
-
-  <div class="cat-card">
-    <div class="cat-header red">
-      <div class="cat-dot dot-red"></div>
-      <div class="cat-name red">MI</div>
-      <div class="cat-badge badge-red">قريباً</div>
-    </div>
-    <div class="models-grid">
-      <div class="model-coming"><span>⏳</span>قريباً<span class="soon-badge">Soon</span></div>
-      <div class="model-coming"><span>⏳</span>قريباً<span class="soon-badge">Soon</span></div>
-      <div class="model-coming"><span>⏳</span>قريباً<span class="soon-badge">Soon</span></div>
-    </div>
+  <div class="models-list">
+    <a href="viewer-redmi-10-4G.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 10 4G</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-10-5G.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 10 5G</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-10-A.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 10A</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-10-C.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 10C</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-10-X-5G.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 10X 5G</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-11-PRIME-5G.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 11 Prime 5G</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-11-PRIME.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 11 Prime</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-12.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 12</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-12-5G.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 12 5G</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-13-4G.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 13 4G</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-redmi-13C.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 13C</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-r6pro.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Redmi 6 Pro</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
   </div>
+</div>
 
+<!-- صفحة موديلات POCO -->
+<div class="page" id="page-poco">
+  <div class="models-header">
+    <button class="models-back" onclick="showCats()">← رجوع</button>
+    <span class="models-title">Xiaomi — POCO</span>
+  </div>
+  <div class="models-list">
+    <a href="viewer-x3.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Poco X3 Pro</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-m3.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Poco M3</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="#" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Poco F3</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+  </div>
 </div>
 
 <script type="module">
@@ -108,6 +106,18 @@ const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_pub
   if(auth.email !== session.user.email){window.location.href='index.html';return;}
   if(auth.expires && new Date(auth.expires)<new Date()){window.location.href='index.html';return;}
 })();
+</script>
+<script>
+function showModels(cat){
+  document.getElementById('page-cats').classList.remove('active');
+  document.getElementById('page-'+cat).classList.add('active');
+  document.getElementById('top-back').style.display='none';
+}
+function showCats(){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-cats').classList.add('active');
+  document.getElementById('top-back').style.display='';
+}
 </script>
 </body>
 </html>
