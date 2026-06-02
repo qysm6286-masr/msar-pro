@@ -118,19 +118,34 @@ window.zoomOut=()=>{scale=Math.max(1,scale-0.5);if(scale===1){posX=0;posY=0;}upd
 const wrap=document.getElementById('lb-wrap');
 wrap.addEventListener('wheel',(e)=>{
   e.preventDefault();
-  scale = e.deltaY<0 ? Math.min(5,scale+0.3) : Math.max(1,scale-0.3);
+  const delta = e.deltaY > 0 ? -0.3 : 0.3;
+  scale = Math.min(5, Math.max(1, scale + delta));
   if(scale===1){posX=0;posY=0;}
   updateTransform();
 },{passive:false});
 
 // سحب بالماوس
 wrap.addEventListener('mousedown',(e)=>{
-  if(scale>1){isDragging=true;dragStartX=e.clientX-posX;dragStartY=e.clientY-posY;wrap.classList.add('grabbing');}
+  e.preventDefault();
+  isDragging=true;
+  dragStartX=e.clientX-posX;
+  dragStartY=e.clientY-posY;
+  wrap.classList.add('grabbing');
 });
 window.addEventListener('mousemove',(e)=>{
-  if(isDragging){posX=e.clientX-dragStartX;posY=e.clientY-dragStartY;updateTransform();}
+  if(!isDragging) return;
+  posX=e.clientX-dragStartX;
+  posY=e.clientY-dragStartY;
+  updateTransform();
 });
-window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('grabbing');});
+window.addEventListener('mouseup',()=>{
+  isDragging=false;
+  wrap.classList.remove('grabbing');
+});
+window.addEventListener('mouseleave',()=>{
+  isDragging=false;
+  wrap.classList.remove('grabbing');
+});
 
 // زوم بالأصابع
 wrap.addEventListener('touchstart',e=>{
