@@ -42,18 +42,24 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
   <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Nokia</div><div class="brand-count">قريباً</div></a>
   <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">iPhone</div><div class="brand-count">قريباً</div></a>
 </div>
-<script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
-window.signOut = async () => { await supabase.auth.signOut(); localStorage.removeItem('msar_auth'); window.location.href='index.html'; };
-(async()=>{
-  const {data:{session}} = await supabase.auth.getSession();
-  if(!session){window.location.href='index.html';return;}
-  const saved = localStorage.getItem('msar_auth');
-  if(!saved){window.location.href='index.html';return;}
-  const auth = JSON.parse(saved);
-  if(auth.email !== session.user.email){window.location.href='index.html';return;}
-  if(auth.expires && new Date(auth.expires)<new Date()){window.location.href='index.html';return;}
+<script>
+window.signOut = () => {
+  localStorage.removeItem('msar_auth');
+  window.location.href='index.html';
+};
+(function(){
+  const raw = localStorage.getItem('msar_auth');
+  if(!raw){ window.location.href='index.html'; return; }
+  try{
+    const auth = JSON.parse(raw);
+    if(!auth.email || !auth.code){ window.location.href='index.html'; return; }
+    if(auth.expires && new Date(auth.expires) < new Date()){
+      localStorage.removeItem('msar_auth');
+      window.location.href='index.html'; return;
+    }
+  } catch(e){ window.location.href='index.html'; }
+})();
+</script>
 })();
 </script>
 </body>
