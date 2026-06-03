@@ -6,132 +6,44 @@
 <title>مسار PRO — تسجيل الدخول</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #060d1f;
-  --card: #0d1630;
-  --border: #1a3360;
-  --blue: #2563eb;
-  --blue-light: #3b82f6;
-  --text: #e2e8f0;
-  --muted: #64748b;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  font-family: 'Tajawal', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.bg-grid {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-}
-.bg-glow {
-  position: fixed;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 40px 36px;
-  width: 100%;
-  max-width: 400px;
-  position: relative;
-  box-shadow: 0 0 60px rgba(37,99,235,0.1);
-}
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
-  border-radius: 20px 20px 0 0;
-}
-.logo { text-align: center; margin-bottom: 32px; }
-.logo-icon {
-  width: 64px; height: 64px;
-  background: linear-gradient(135deg, #1e3a8a, #2563eb);
-  border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 14px;
-  font-size: 28px;
-  box-shadow: 0 0 30px rgba(37,99,235,0.3);
-}
-.logo h1 { font-size: 26px; font-weight: 900; color: #fff; }
-.logo h1 span { color: var(--blue-light); }
-.logo p { font-size: 13px; color: var(--muted); margin-top: 4px; }
-.step { display: none; }
-.step.active { display: block; }
-.step-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.step-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
-.input-group { margin-bottom: 16px; }
-.input-group label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
-.input-group input {
-  width: 100%;
-  background: #0a1628;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 14px;
-  font-family: 'Tajawal', sans-serif;
-  font-size: 15px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s;
-  direction: ltr;
-}
-.input-group input:focus { border-color: var(--blue-light); }
-.input-group input::placeholder { color: var(--muted); direction: rtl; }
-.code-input {
-  text-align: center !important;
-  letter-spacing: 3px !important;
-  font-weight: 700 !important;
-  font-size: 18px !important;
-}
-.main-btn {
-  width: 100%;
-  background: linear-gradient(135deg, var(--blue), var(--blue-light));
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 14px;
-  font-family: 'Tajawal', sans-serif;
-  font-size: 16px;
-  font-weight: 900;
-  cursor: pointer;
-  transition: all 0.15s;
-  box-shadow: 0 4px 20px rgba(37,99,235,0.3);
-}
-.main-btn:hover { transform: translateY(-1px); }
-.main-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.msg { padding: 12px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; line-height: 1.6; }
-.msg.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; display: block; }
-.msg.success { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7; display: block; }
-.back-link { text-align: center; margin-top: 14px; font-size: 12px; color: var(--muted); cursor: pointer; }
-.back-link:hover { color: var(--blue-light); }
-.email-icon { font-size: 40px; text-align: center; margin-bottom: 12px; }
-.loader {
-  display: inline-block; width: 16px; height: 16px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  vertical-align: middle; margin-left: 8px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
+:root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--text:#e2e8f0;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(37,99,235,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 36px;width:100%;max-width:400px;position:relative;box-shadow:0 0 60px rgba(37,99,235,0.1)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light),var(--blue));border-radius:20px 20px 0 0}
+.logo{text-align:center;margin-bottom:32px}
+.logo-icon{width:64px;height:64px;background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px;box-shadow:0 0 30px rgba(37,99,235,0.3)}
+.logo h1{font-size:26px;font-weight:900;color:#fff}.logo h1 span{color:var(--blue-light)}
+.logo p{font-size:13px;color:var(--muted);margin-top:4px}
+.step-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.step-sub{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.7}
+.input-group{margin-bottom:16px}
+.input-group label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:700}
+.input-group input{width:100%;background:#0a1628;border:1px solid var(--border);border-radius:10px;padding:13px 14px;font-family:'Tajawal',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color 0.2s;direction:ltr}
+.input-group input:focus{border-color:var(--blue-light)}
+.input-group input::placeholder{color:var(--muted);direction:rtl}
+.code-input{text-align:center !important;letter-spacing:3px !important;font-weight:700 !important;font-size:18px !important}
+.remember-box{background:#0a1628;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:20px;display:none}
+.remember-box .r-title{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:700}
+.remember-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.remember-row:last-child{margin-bottom:0}
+.remember-label{font-size:12px;color:var(--muted)}
+.remember-val{font-size:13px;font-weight:700;color:var(--blue-light);letter-spacing:1px}
+.use-saved-btn{width:100%;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.4);color:var(--blue-light);border-radius:10px;padding:11px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:12px;transition:background 0.15s}
+.use-saved-btn:hover{background:rgba(37,99,235,0.25)}
+.divider{text-align:center;font-size:12px;color:var(--muted);margin-bottom:14px;position:relative}
+.divider::before{content:'';position:absolute;top:50%;right:0;left:0;height:1px;background:var(--border)}
+.divider span{background:var(--card);padding:0 10px;position:relative}
+.main-btn{width:100%;background:linear-gradient(135deg,var(--blue),var(--blue-light));color:#fff;border:none;border-radius:10px;padding:14px;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:900;cursor:pointer;transition:all 0.15s;box-shadow:0 4px 20px rgba(37,99,235,0.3)}
+.main-btn:hover{transform:translateY(-1px)}
+.main-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.msg{padding:12px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;display:none;line-height:1.6}
+.msg.error{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;display:block}
+.msg.success{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7;display:block}
+.loader{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-left:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -143,123 +55,103 @@ body {
     <h1>مسار <span>PRO</span></h1>
     <p>مخططات الدوائر الإلكترونية للهواتف</p>
   </div>
-  <div class="step active" id="step1">
-    <div class="step-title">تسجيل الدخول</div>
-    <div class="step-sub">أدخل بريدك الإلكتروني وسنرسل لك رابط دخول مباشر</div>
-    <div id="msg1" class="msg"></div>
-    <div class="input-group">
-      <label>البريد الإلكتروني</label>
-      <input type="email" id="email-input" placeholder="example@gmail.com">
-    </div>
-    <button class="main-btn" onclick="sendMagicLink()" id="send-btn">إرسال رابط الدخول ←</button>
+  <div class="step-title">تسجيل الدخول</div>
+  <div class="step-sub">أدخل بريدك الإلكتروني وكود الاشتراك للدخول مباشرة</div>
+  <div class="remember-box" id="remember-box">
+    <div class="r-title">🔖 بيانات محفوظة — دخول سريع</div>
+    <div class="remember-row"><span class="remember-label">الإيميل</span><span class="remember-val" id="saved-email-display">—</span></div>
+    <div class="remember-row"><span class="remember-label">كود الاشتراك</span><span class="remember-val" id="saved-code-display">—</span></div>
+    <button class="use-saved-btn" onclick="useSaved()">⚡ دخول سريع بالبيانات المحفوظة</button>
+    <div class="divider"><span>أو أدخل بيانات جديدة</span></div>
   </div>
-  <div class="step" id="step2">
-    <div class="email-icon">📬</div>
-    <div class="step-title" style="text-align:center">تحقق من بريدك</div>
-    <div class="step-sub" style="text-align:center">أرسلنا رابط دخول إلى<br><strong id="sent-email" style="color:var(--blue-light)"></strong><br><br>افتح الإيميل واضغط على الرابط للدخول</div>
-    <div id="msg2" class="msg"></div>
-    <div class="back-link" onclick="goBack()">← تغيير البريد الإلكتروني</div>
+  <div id="main-msg" class="msg"></div>
+  <div class="input-group">
+    <label>البريد الإلكتروني</label>
+    <input type="email" id="email-input" placeholder="example@gmail.com" autocomplete="email">
   </div>
-  <div class="step" id="step3">
-    <div class="step-title">كود الاشتراك</div>
-    <div class="step-sub">أدخل كود الاشتراك الذي أرسلناه لك بعد الدفع</div>
-    <div id="msg3" class="msg"></div>
-    <div class="input-group">
-      <label>كود الاشتراك</label>
-      <input type="text" id="code-input" class="code-input" placeholder="XXXX-XXXX-XXXX" maxlength="14" oninput="formatCode(this)">
-    </div>
-    <button class="main-btn" onclick="verifyCode()" id="verify-btn">دخول المكتبة ←</button>
-    <div class="back-link" onclick="signOut()">تسجيل الخروج</div>
+  <div class="input-group">
+    <label>كود الاشتراك</label>
+    <input type="text" id="code-input" class="code-input" placeholder="XXXX-XXXX-XXXX" maxlength="14" oninput="formatCode(this)" autocomplete="off">
   </div>
+  <button class="main-btn" onclick="doLogin()" id="login-btn">دخول المكتبة ←</button>
 </div>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const SUPABASE_URL = 'https://dqjtmxdclpipiisfrkjr.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob';
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-window.formatCode = (input) => {
-  let val = input.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
-  if (val.length > 4) val = val.slice(0,4) + '-' + val.slice(4);
-  if (val.length > 9) val = val.slice(0,9) + '-' + val.slice(9);
-  input.value = val.slice(0, 14);
-};
-window.sendMagicLink = async () => {
-  const email = document.getElementById('email-input').value.trim();
-  const btn = document.getElementById('send-btn');
-  if (!email || !email.includes('@')) {
-    showMsg('msg1', 'أدخل بريداً إلكترونياً صحيحاً', 'error'); return;
-  }
-  btn.disabled = true;
-  btn.innerHTML = 'جاري الإرسال... <span class="loader"></span>';
-  const { error } = await supabase.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: 'https://qysm6286-masr.github.io/msar-pro/index.html' }
-  });
-  if (error) {
-    showMsg('msg1', 'حدث خطأ: ' + error.message, 'error');
-    btn.disabled = false; btn.textContent = 'إرسال رابط الدخول ←';
-  } else {
-    document.getElementById('sent-email').textContent = email;
-    showStep('step2');
-  }
-};
-window.goBack = () => {
-  showStep('step1');
-  document.getElementById('send-btn').disabled = false;
-  document.getElementById('send-btn').textContent = 'إرسال رابط الدخول ←';
-};
-window.verifyCode = async () => {
-  const code = document.getElementById('code-input').value.trim();
-  const btn = document.getElementById('verify-btn');
-  if (code.length < 14) { showMsg('msg3', 'أدخل الكود كاملاً', 'error'); return; }
-  btn.disabled = true;
-  btn.innerHTML = 'جاري التحقق... <span class="loader"></span>';
-  const { data: { user } } = await supabase.auth.getUser();
-  const { data, error } = await supabase.from('codes').select('*').eq('code', code).single();
-  if (error || !data) {
-    showMsg('msg3', '❌ الكود غير صحيح', 'error');
-    btn.disabled = false; btn.textContent = 'دخول المكتبة ←'; return;
-  }
-  if (data.used && data.email !== user.email) {
-    showMsg('msg3', '❌ هذا الكود مستخدم من حساب آخر', 'error');
-    btn.disabled = false; btn.textContent = 'دخول المكتبة ←'; return;
-  }
-  if (data.expires_at && new Date(data.expires_at) < new Date()) {
-    showMsg('msg3', '❌ انتهت صلاحية هذا الكود', 'error');
-    btn.disabled = false; btn.textContent = 'دخول المكتبة ←'; return;
-  }
-  await supabase.from('codes').update({ used: true, email: user.email }).eq('code', code);
-  localStorage.setItem('msar_auth', JSON.stringify({ email: user.email, code, expires: data.expires_at }));
-  window.location.href = 'home.html';
-};
-window.signOut = async () => {
-  await supabase.auth.signOut();
-  localStorage.removeItem('msar_auth');
-  showStep('step1');
-};
-function showStep(id) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
+
+const saved = localStorage.getItem('msar_saved');
+if(saved){
+  try{
+    const s = JSON.parse(saved);
+    if(s.email && s.code){
+      document.getElementById('saved-email-display').textContent = s.email;
+      document.getElementById('saved-code-display').textContent = s.code;
+      document.getElementById('remember-box').style.display = 'block';
+      document.getElementById('email-input').value = s.email;
+      document.getElementById('code-input').value = s.code;
+    }
+  }catch(e){}
 }
-function showMsg(id, text, type) {
-  const el = document.getElementById(id);
-  el.textContent = text; el.className = 'msg ' + type;
-}
-(async () => {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (session) {
-    const saved = localStorage.getItem('msar_auth');
-    if (saved) {
-      const auth = JSON.parse(saved);
-      if (auth.email === session.user.email) {
-        if (!auth.expires || new Date(auth.expires) > new Date()) {
-          window.location.href = 'home.html'; return;
-        }
+
+const auth = localStorage.getItem('msar_auth');
+if(auth){
+  try{
+    const a = JSON.parse(auth);
+    if(a.email && a.code){
+      if(!a.expires || new Date(a.expires) > new Date()){
+        window.location.href='home.html';
       }
     }
-    showStep('step3');
+  }catch(e){}
+}
+
+window.formatCode = (input) => {
+  let val = input.value.replace(/[^A-Za-z0-9]/g,'').toUpperCase();
+  if(val.length > 4) val = val.slice(0,4)+'-'+val.slice(4);
+  if(val.length > 9) val = val.slice(0,9)+'-'+val.slice(9);
+  input.value = val.slice(0,14);
+};
+
+window.useSaved = async () => {
+  const s = JSON.parse(localStorage.getItem('msar_saved'));
+  document.getElementById('email-input').value = s.email;
+  document.getElementById('code-input').value = s.code;
+  await doLogin();
+};
+
+window.doLogin = async () => {
+  const email = document.getElementById('email-input').value.trim().toLowerCase();
+  const code  = document.getElementById('code-input').value.trim().toUpperCase();
+  const btn   = document.getElementById('login-btn');
+  if(!email || !email.includes('@')){ showMsg('أدخل بريداً إلكترونياً صحيحاً','error'); return; }
+  if(code.length < 14){ showMsg('أدخل كود الاشتراك كاملاً (XXXX-XXXX-XXXX)','error'); return; }
+  btn.disabled = true;
+  btn.innerHTML = 'جاري التحقق... <span class="loader"></span>';
+  const { data, error } = await supabase.from('codes').select('*').eq('code', code).single();
+  if(error || !data){
+    showMsg('❌ كود الاشتراك غير صحيح','error');
+    btn.disabled=false; btn.textContent='دخول المكتبة ←'; return;
   }
-})();
+  if(data.expires_at && new Date(data.expires_at) < new Date()){
+    showMsg('❌ انتهت صلاحية هذا الكود','error');
+    btn.disabled=false; btn.textContent='دخول المكتبة ←'; return;
+  }
+  if(data.used && data.email && data.email.toLowerCase() !== email){
+    showMsg('❌ هذا الكود مرتبط ببريد إلكتروني آخر','error');
+    btn.disabled=false; btn.textContent='دخول المكتبة ←'; return;
+  }
+  await supabase.from('codes').update({ used: true, email: email }).eq('code', code);
+  localStorage.setItem('msar_auth', JSON.stringify({ email, code, expires: data.expires_at }));
+  localStorage.setItem('msar_saved', JSON.stringify({ email, code }));
+  showMsg('✅ تم التحقق، جاري الدخول...','success');
+  setTimeout(() => window.location.href='home.html', 800);
+};
+
+function showMsg(text, type){
+  const el = document.getElementById('main-msg');
+  el.textContent = text;
+  el.className = 'msg ' + type;
+}
 </script>
 </body>
 </html>
