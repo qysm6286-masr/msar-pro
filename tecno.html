@@ -97,17 +97,20 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
   </div>
 </div>
 
-<script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
-(async()=>{
-  const {data:{session}} = await supabase.auth.getSession();
-  if(!session){window.location.href='index.html';return;}
-  const saved = localStorage.getItem('msar_auth');
-  if(!saved){window.location.href='index.html';return;}
-  const auth = JSON.parse(saved);
-  if(auth.email !== session.user.email){window.location.href='index.html';return;}
-  if(auth.expires && new Date(auth.expires)<new Date()){window.location.href='index.html';return;}
+<script>
+(function(){
+  const raw = localStorage.getItem('msar_auth');
+  if(!raw){ window.location.href='index.html'; return; }
+  try{
+    const auth = JSON.parse(raw);
+    if(!auth.email || !auth.code){ window.location.href='index.html'; return; }
+    if(auth.expires && new Date(auth.expires) < new Date()){
+      localStorage.removeItem('msar_auth');
+      window.location.href='index.html'; return;
+    }
+  } catch(e){ window.location.href='index.html'; }
+})();
+</script>
 })();
 </script>
 <script>
