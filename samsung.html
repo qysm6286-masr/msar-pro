@@ -137,6 +137,12 @@ function showCats(){
   document.getElementById('page-cats').classList.add('active');
   document.getElementById('top-back').style.display='';
 }
+
+// فتح صفحة الموديلات مباشرة إذا جاء من مديل
+if(window.location.hash === '#models'){
+  showModels();
+  history.replaceState(null, '', window.location.pathname);
+}
 </script>
 </body>
 </html>
