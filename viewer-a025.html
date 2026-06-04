@@ -44,8 +44,7 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 <div class="model-title">Samsung A02s <span>(A025) — مخططات الدوائر</span></div>
 <div class="gallery">
   <div class="img-card" onclick="openLb(0)"><div class="img-label"><span>دائرة 1</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/v1780525550/A02s-A025-01_co0yv5.jpg" loading="lazy"></div>
-  <div class="img-card" onclick="openLb(1)"><div class="img-label"><span>دائرة
-      2</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/v1780525790/A02s-A025-02_pg6klp.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(1)"><div class="img-label"><span>دائرة 2</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/v1780525790/A02s-A025-02_pg6klp.jpg" loading="lazy"></div>
   <div class="img-card" onclick="openLb(2)"><div class="img-label"><span>دائرة 3</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/v1780525787/A02s-A025-03_hrevgr.jpg" loading="lazy"></div>
   <div class="img-card" onclick="openLb(3)"><div class="img-label"><span>دائرة 4</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/v1780525754/A02s-A025-04_mjt1o1.jpg" loading="lazy"></div>
   <div class="img-card" onclick="openLb(4)"><div class="img-label"><span>دائرة 5</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/v1780525653/A02s-A025-05_bb56e8.jpg" loading="lazy"></div>
@@ -87,10 +86,19 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 })();
 </script>
 
-
 <script>
-const
-    imgs=['https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/vhttps:','https://res.cloudinary.com/donyquhz9/image/upload/v1780525550/A02s-A025-01_co0yv5.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525790/A02s-A025-02_pg6klp.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525787/A02s-A025-03_hrevgr.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525754/A02s-A025-04_mjt1o1.jpg','https://res.cloudinary.com/donyquhz9/image/upload/vv1780525653/A02s-A025-05_bb56e8.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525808/A02s-A025-06_cfcpqm.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525700/A02s-A025-07_jojaeq.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525900/A02s-A025-08_tdlszi.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525881/A02s-A025-09_jq5wev.jpg','https://res.cloudinary.com/donyquhz9/image/upload/v1780525915/A02s-A025-10_kcfwwh.jpg'];
+const imgs=[
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525550/A02s-A025-01_co0yv5.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525790/A02s-A025-02_pg6klp.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525787/A02s-A025-03_hrevgr.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525754/A02s-A025-04_mjt1o1.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525653/A02s-A025-05_bb56e8.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525808/A02s-A025-06_cfcpqm.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525700/A02s-A025-07_jojaeq.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525900/A02s-A025-08_tdlszi.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525881/A02s-A025-09_jq5wev.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/v1780525915/A02s-A025-10_kcfwwh.jpg'
+];
 let cur=0, scale=1, posX=0, posY=0, isDragging=false, dragStartX=0, dragStartY=0, startDist=0, lastScale=1;
 
 function updateTransform(){
@@ -118,7 +126,6 @@ window.lbNav=(dir)=>{
 window.zoomIn=()=>{scale=Math.min(5,scale+0.5);posX=0;posY=0;updateTransform();};
 window.zoomOut=()=>{scale=Math.max(1,scale-0.5);if(scale===1){posX=0;posY=0;}updateTransform();};
 
-// زوم بعجلة الماوس
 const wrap=document.getElementById('lb-wrap');
 wrap.addEventListener('wheel',(e)=>{
   e.preventDefault();
@@ -128,7 +135,6 @@ wrap.addEventListener('wheel',(e)=>{
   updateTransform();
 },{passive:false});
 
-// سحب بالماوس
 wrap.addEventListener('mousedown',(e)=>{
   e.preventDefault();
   isDragging=true;
@@ -142,18 +148,14 @@ window.addEventListener('mousemove',(e)=>{
   posY=e.clientY-dragStartY;
   updateTransform();
 });
-window.addEventListener('mouseup',()=>{
-  isDragging=false;
-  wrap.classList.remove('grabbing');
-});
-window.addEventListener('mouseleave',()=>{
-  isDragging=false;
-  wrap.classList.remove('grabbing');
-});
+window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('grabbing');});
+window.addEventListener('mouseleave',()=>{isDragging=false;wrap.classList.remove('grabbing');});
 
-// زوم بالأصابع
 wrap.addEventListener('touchstart',e=>{
-  if(e.touches.length===2){startDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);lastScale=scale;}
+  if(e.touches.length===2){
+    startDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+    lastScale=scale;
+  }
 });
 wrap.addEventListener('touchmove',e=>{
   if(e.touches.length===2){
@@ -164,7 +166,6 @@ wrap.addEventListener('touchmove',e=>{
   }
 },{passive:false});
 
-// نقرتان للتكبير
 let lastTap=0;
 wrap.addEventListener('touchend',e=>{
   const now=Date.now();
@@ -172,7 +173,6 @@ wrap.addEventListener('touchend',e=>{
   lastTap=now;
 });
 
-// كيبورد
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape')closeLb();
   if(e.key==='ArrowLeft')lbNav(-1);
