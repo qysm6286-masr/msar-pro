@@ -22,6 +22,7 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 .brand-icon{width:48px;height:48px;border-radius:12px;background:#152040;display:flex;align-items:center;justify-content:center;font-size:22px}
 .brand-name{font-size:15px;font-weight:700;color:var(--text)}
 .brand-count{font-size:11px;color:var(--blue-light);background:rgba(37,99,235,0.1);padding:2px 8px;border-radius:10px}
+.brand-count.soon{color:var(--muted);background:transparent}
 </style>
 </head>
 <body>
@@ -31,17 +32,58 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 </div>
 <div class="section-title">اختر الماركة</div>
 <div class="brands-grid">
-  <a href="samsung.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Samsung</div><div class="brand-count">38 موديل</div></a>
-  <a href="redmi.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Redmi</div><div class="brand-count">قريباً</div></a>
-  <a href="infinix.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Infinix</div><div class="brand-count">قريباً</div></a>
-  <a href="tecno.html" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Tecno</div><div class="brand-count">قريباً</div></a>
-  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Huawei</div><div class="brand-count">قريباً</div></a>
-  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Realme</div><div class="brand-count">قريباً</div></a>
-  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Vivo</div><div class="brand-count">قريباً</div></a>
-  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Oppo</div><div class="brand-count">قريباً</div></a>
-  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">Nokia</div><div class="brand-count">قريباً</div></a>
-  <a href="#" class="brand-card"><div class="brand-icon">📱</div><div class="brand-name">iPhone</div><div class="brand-count">قريباً</div></a>
+  <a href="samsung.html" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Samsung</div>
+    <div class="brand-count" id="count-samsung">...</div>
+  </a>
+  <a href="redmi.html" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Redmi</div>
+    <div class="brand-count" id="count-redmi">...</div>
+  </a>
+  <a href="infinix.html" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Infinix</div>
+    <div class="brand-count soon" id="count-infinix">قريباً</div>
+  </a>
+  <a href="tecno.html" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Tecno</div>
+    <div class="brand-count soon" id="count-tecno">قريباً</div>
+  </a>
+  <a href="#" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Huawei</div>
+    <div class="brand-count soon">قريباً</div>
+  </a>
+  <a href="#" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Realme</div>
+    <div class="brand-count soon">قريباً</div>
+  </a>
+  <a href="#" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Vivo</div>
+    <div class="brand-count soon">قريباً</div>
+  </a>
+  <a href="#" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Oppo</div>
+    <div class="brand-count soon">قريباً</div>
+  </a>
+  <a href="#" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">Nokia</div>
+    <div class="brand-count soon">قريباً</div>
+  </a>
+  <a href="#" class="brand-card">
+    <div class="brand-icon">📱</div>
+    <div class="brand-name">iPhone</div>
+    <div class="brand-count soon">قريباً</div>
+  </a>
 </div>
+
 <script>
 window.signOut = () => {
   localStorage.removeItem('msar_auth');
@@ -58,8 +100,40 @@ window.signOut = () => {
       window.location.href='index.html'; return;
     }
   } catch(e){ window.location.href='index.html'; }
-
 })();
+
+// دالة تحسب عدد الموديلات من ملف HTML
+async function countModels(file, selector) {
+  try {
+    const res = await fetch(file + '?v=' + Date.now());
+    const text = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    const items = doc.querySelectorAll(selector);
+    return items.length;
+  } catch(e) {
+    return null;
+  }
+}
+
+// تحديث العدادات تلقائياً
+async function updateCounts() {
+  // Samsung — يحسب model-item في صفحة الموديلات
+  const samsungCount = await countModels('samsung.html', '#page-models .model-item');
+  if(samsungCount !== null) {
+    document.getElementById('count-samsung').textContent = samsungCount + ' موديل';
+    document.getElementById('count-samsung').classList.remove('soon');
+  }
+
+  // Redmi — يحسب model-item في صفحة REDMI
+  const redmiCount = await countModels('redmi.html', '#page-redmi .model-item');
+  if(redmiCount !== null) {
+    document.getElementById('count-redmi').textContent = redmiCount + ' موديل';
+    document.getElementById('count-redmi').classList.remove('soon');
+  }
+}
+
+updateCounts();
 </script>
 </body>
 </html>
