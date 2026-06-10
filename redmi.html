@@ -110,7 +110,7 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 </script>
 
 <script>
-function showModels(cat){
+;function showModels(cat){
   document.getElementById('page-cats').classList.remove('active');
   document.getElementById('page-'+cat).classList.add('active');
   document.getElementById('top-back').style.display='none';
@@ -119,6 +119,9 @@ function showCats(){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-cats').classList.add('active');
   document.getElementById('top-back').style.display='';
+}
+if(location.hash === '#redmi') showModels('redmi');
+else if(location.hash === '#poco') showModels('poco');
 }
 </script>
 </body>
