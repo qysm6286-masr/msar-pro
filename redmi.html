@@ -123,9 +123,10 @@ function showCats(){
   document.getElementById('top-back').style.display='';
 }
 // فتح صفحة الموديلات مباشرة إذا جاء من مديل
-if(window.location.hash === '#models'){
-  showModels();
-  history.replaceState(null, '', window.location.pathname);
+const hash = window.location.hash;
+if(hash === '#redmi') showModels('redmi');
+else if(hash === '#poco') showModels('poco');
+if(hash) history.replaceState(null, '', window.location.pathname);
 }
 
 </script>
