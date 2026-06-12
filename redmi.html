@@ -122,6 +122,12 @@ function showCats(){
   document.getElementById('page-cats').classList.add('active');
   document.getElementById('top-back').style.display='';
 }
+// حساب عدد الموديلات تلقائياً
+document.querySelectorAll('#page-redmi .model-item').forEach(()=>{});
+const redmiCount = document.querySelectorAll('#page-redmi .model-item').length;
+const pocoCount = document.querySelectorAll('#page-poco .model-item').length;
+document.querySelector('[onclick="showModels(\'redmi\')"] .cat-count').textContent = redmiCount + ' موديل';
+document.querySelector('[onclick="showModels(\'poco\')"] .cat-count').textContent = pocoCount + ' موديل';
 // فتح صفحة الموديلات مباشرة إذا جاء من مديل
 const hash = window.location.hash;
 if(hash === '#redmi') showModels('redmi');
