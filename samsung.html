@@ -137,6 +137,9 @@ function showCats(){
   document.getElementById('top-back').style.display='';
 }
 
+// حساب عدد الموديلات تلقائياً
+const aCount = document.querySelectorAll('#page-models .model-item').length;
+document.querySelector('[onclick="showModels()"] .cat-count').textContent = aCount + ' موديل';
 // فتح صفحة الموديلات مباشرة إذا جاء من مديل
 if(window.location.hash === '#models'){
   showModels();
