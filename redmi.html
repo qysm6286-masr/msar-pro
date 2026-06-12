@@ -120,9 +120,10 @@ function showCats(){
   document.getElementById('page-cats').classList.add('active');
   document.getElementById('top-back').style.display='';
 }
-window.onload = function(){
-  if(location.hash === '#redmi') showModels('redmi');
-  else if(location.hash === '#poco') showModels('poco');
+// فتح صفحة الموديلات مباشرة إذا جاء من مديل
+if(window.location.hash === '#models'){
+  showModels();
+  history.replaceState(null, '', window.location.pathname);
 }
 
 </script>
