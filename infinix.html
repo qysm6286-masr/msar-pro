@@ -103,21 +103,6 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 </div>
 
 <script>
-(function(){
-  const raw = localStorage.getItem('msar_auth');
-  if(!raw){ window.location.href='index.html'; return; }
-  try{
-    const auth = JSON.parse(raw);
-    if(!auth.email || !auth.code){ window.location.href='index.html'; return; }
-    if(auth.expires && new Date(auth.expires) < new Date()){
-      localStorage.removeItem('msar_auth');
-      window.location.href='index.html'; return;
-    }
-  } catch(e){ window.location.href='index.html'; }
-})();
-</script>
-
-<script>
 function showModels(cat){
   document.getElementById('page-cats').classList.remove('active');
   document.getElementById('page-'+cat).classList.add('active');
@@ -128,6 +113,29 @@ function showCats(){
   document.getElementById('page-cats').classList.add('active');
   document.getElementById('top-back').style.display='';
 }
+
+// حساب عدد الموديلات الفعلية فقط (يتجاهل الروابط # الفارغة)
+function countRealModels(pageId){
+  const items = document.querySelectorAll('#'+pageId+' .model-item');
+  let count = 0;
+  items.forEach(a => { if(a.getAttribute('href') !== '#') count++; });
+  return count;
+}
+
+const hotCount = countRealModels('page-hot');
+const noteCount = countRealModels('page-note');
+const smartCount = countRealModels('page-smart');
+
+document.querySelector('[onclick="showModels(\'hot\')"] .cat-count').textContent = hotCount + ' موديل';
+document.querySelector('[onclick="showModels(\'note\')"] .cat-count').textContent = noteCount + ' موديل';
+document.querySelector('[onclick="showModels(\'smart\')"] .cat-count').textContent = smartCount + ' موديل';
+
+// فتح صفحة الموديلات مباشرة إذا جاء من رابط رجوع
+const hash = window.location.hash;
+if(hash === '#hot') showModels('hot');
+else if(hash === '#note') showModels('note');
+else if(hash === '#smart') showModels('smart');
+if(hash) history.replaceState(null, '', window.location.pathname);
 </script>
 </body>
 </html>
