@@ -102,38 +102,45 @@ window.signOut = () => {
   } catch(e){ window.location.href='index.html'; }
 })();
 
-// دالة تحسب عدد الموديلات من ملف HTML
-async function countModels(file, selector) {
+// دالة عامة: تحسب مجموع كل الموديلات الحقيقية في أي صفحة ماركة
+// (تتجاهل أي رابط href="#" لأنه موديل لم يُضَف بعد)
+async function countModels(file) {
   try {
     const res = await fetch(file + '?v=' + Date.now());
     const text = await res.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
-    const items = doc.querySelectorAll(selector);
-    return items.length;
+    const items = doc.querySelectorAll('.model-item');
+    let count = 0;
+    items.forEach(a => {
+      const href = a.getAttribute('href');
+      if (href && href !== '#') count++;
+    });
+    return count;
   } catch(e) {
     return null;
   }
 }
 
-// تحديث العدادات تلقائياً
 async function updateCounts() {
-  // Samsung — يحسب model-item في صفحة الموديلات
-  const samsungCount = await countModels('samsung.html', '#page-models .model-item');
+  const samsungCount = await countModels('samsung.html');
   if(samsungCount !== null) {
     document.getElementById('count-samsung').textContent = samsungCount + ' موديل';
     document.getElementById('count-samsung').classList.remove('soon');
   }
 
-  // Redmi — يحسب model-item في صفحة REDMI
-  const redmiCount = await countModels('redmi.html', '#page-redmi .model-item');
+  const redmiCount = await countModels('redmi.html');
   if(redmiCount !== null) {
     document.getElementById('count-redmi').textContent = redmiCount + ' موديل';
     document.getElementById('count-redmi').classList.remove('soon');
+  }
+
+  const infinixCount = await countModels('infinix.html');
+  if(infinixCount !== null) {
+    document.getElementById('count-infinix').textContent = infinixCount + ' موديل';
+    document.getElementById('count-infinix').classList.remove('soon');
   }
 }
 
 updateCounts();
 </script>
-</body>
-</html>
