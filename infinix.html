@@ -66,11 +66,11 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
     <span class="models-title">Infinix — Series HOT</span>
   </div>
   <div class="models-list">
-    <a href="viewer-infinix-hot-10-x682b.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot-10-X682B</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-    <a href="viewer-infinix-hot-10-play-x688.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot-10-play-x688</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-    <a href="viewer-infinix-hot-10s-x689.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot-10s-x689</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-    <a href="viewer-infinix-hot-11-2022-x675.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot-11-2022-x675</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
-    <a href="viewer-infinix-hot-11-x662.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot-11-x662</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-infinix-hot-10-x682b.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot 10 (X682B)</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-infinix-hot-10-play-x688.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot 10 Play (X688)</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-infinix-hot-10s-x689.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot 10s (X689)</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-infinix-hot-11-2022-x675.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot 11 (2022 X675)</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
+    <a href="viewer-infinix-hot-11-x662.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Hot 11 (X662)</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
   </div>
 </div>
 
@@ -103,6 +103,21 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 </div>
 
 <script>
+(function(){
+  const raw = localStorage.getItem('msar_auth');
+  if(!raw){ window.location.href='index.html'; return; }
+  try{
+    const auth = JSON.parse(raw);
+    if(!auth.email || !auth.code){ window.location.href='index.html'; return; }
+    if(auth.expires && new Date(auth.expires) < new Date()){
+      localStorage.removeItem('msar_auth');
+      window.location.href='index.html'; return;
+    }
+  } catch(e){ window.location.href='index.html'; }
+})();
+</script>
+
+<script>
 function showModels(cat){
   document.getElementById('page-cats').classList.remove('active');
   document.getElementById('page-'+cat).classList.add('active');
@@ -114,7 +129,6 @@ function showCats(){
   document.getElementById('top-back').style.display='';
 }
 
-// حساب عدد الموديلات الفعلية فقط (يتجاهل الروابط # الفارغة)
 function countRealModels(pageId){
   const items = document.querySelectorAll('#'+pageId+' .model-item');
   let count = 0;
@@ -130,7 +144,6 @@ document.querySelector('[onclick="showModels(\'hot\')"] .cat-count').textContent
 document.querySelector('[onclick="showModels(\'note\')"] .cat-count').textContent = noteCount + ' موديل';
 document.querySelector('[onclick="showModels(\'smart\')"] .cat-count').textContent = smartCount + ' موديل';
 
-// فتح صفحة الموديلات مباشرة إذا جاء من رابط رجوع
 const hash = window.location.hash;
 if(hash === '#hot') showModels('hot');
 else if(hash === '#note') showModels('note');
