@@ -114,7 +114,7 @@ async function countModels(file) {
     let count = 0;
     items.forEach(a => {
       const href = a.getAttribute('href');
-      if (href && href !== '#') count++;
+      if (href && href !== '#' && href !== '') count++;
     });
     return count;
   } catch(e) {
@@ -123,24 +123,40 @@ async function countModels(file) {
 }
 
 async function updateCounts() {
+  // 1. حساب موديلات سامسونج
   const samsungCount = await countModels('samsung.html');
   if(samsungCount !== null) {
-    document.getElementById('count-samsung').textContent = samsungCount + ' موديل';
-    document.getElementById('count-samsung').classList.remove('soon');
+    const el = document.getElementById('count-samsung');
+    el.textContent = samsungCount + ' موديل';
+    el.classList.remove('soon');
   }
 
+  // 2. حساب موديلات ريدمي
   const redmiCount = await countModels('redmi.html');
   if(redmiCount !== null) {
-    document.getElementById('count-redmi').textContent = redmiCount + ' موديل';
-    document.getElementById('count-redmi').classList.remove('soon');
+    const el = document.getElementById('count-redmi');
+    el.textContent = redmiCount + ' موديل';
+    el.classList.remove('soon');
   }
 
+  // 3. حساب موديلات انفينكس
   const infinixCount = await countModels('infinix.html');
-  if(infinixCount !== null) {
-    document.getElementById('count-infinix').textContent = infinixCount + ' موديل';
-    document.getElementById('count-infinix').classList.remove('soon');
+  if(infinixCount !== null && infinixCount > 0) {
+    const el = document.getElementById('count-infinix');
+    el.textContent = infinixCount + ' موديل';
+    el.classList.remove('soon');
+  }
+
+  // 4. حساب موديلات تكنو
+  const tecnoCount = await countModels('tecno.html');
+  if(tecnoCount !== null && tecnoCount > 0) {
+    const el = document.getElementById('count-tecno');
+    el.textContent = tecnoCount + ' موديل';
+    el.classList.remove('soon');
   }
 }
 
 updateCounts();
 </script>
+</body>
+</html>
