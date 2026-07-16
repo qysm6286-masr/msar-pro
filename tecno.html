@@ -47,15 +47,15 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
   <div class="cats-grid">
     <div class="cat-card" onclick="showModels('pova')">
       <div class="cat-name">POVA</div>
-      <div class="cat-count">قريباً</div>
+      <div class="cat-count">0 موديل</div>
     </div>
     <div class="cat-card" onclick="showModels('camon')">
       <div class="cat-name">CAMON</div>
-      <div class="cat-count">قريباً</div>
+      <div class="cat-count">0 موديل</div>
     </div>
     <div class="cat-card" onclick="showModels('spark')">
       <div class="cat-name">SPARK</div>
-      <div class="cat-count">قريباً</div>
+      <div class="cat-count">0 موديل</div>
     </div>
     <div class="cat-card disabled">
       <div class="cat-name">POP</div>
@@ -93,7 +93,7 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
     <span class="models-title">Tecno — Series SPARK</span>
   </div>
   <div class="models-list">
-    <div class="coming-item">⏳ قريباً — جاري إضافة الموديلات</div>
+    <a href="viewer-tecno-spark-4-air-kc6.html" class="model-item"><div class="model-left"><div class="model-icon">◈</div><div><div class="model-name">Spark 4 Air (KC6)</div><div class="model-sub">مخططات الدوائر</div></div></div><span class="open-btn">فتح ←</span></a>
   </div>
 </div>
 
@@ -123,6 +123,27 @@ function showCats(){
   document.getElementById('page-cats').classList.add('active');
   document.getElementById('top-back').style.display='';
 }
+
+function countRealModels(pageId){
+  const items = document.querySelectorAll('#'+pageId+' .model-item');
+  let count = 0;
+  items.forEach(a => { if(a.getAttribute('href') !== '#') count++; });
+  return count;
+}
+
+const povaCount = countRealModels('page-pova');
+const camonCount = countRealModels('page-camon');
+const sparkCount = countRealModels('page-spark');
+
+document.querySelector('[onclick="showModels(\'pova\')"] .cat-count').textContent = povaCount + ' موديل';
+document.querySelector('[onclick="showModels(\'camon\')"] .cat-count').textContent = camonCount + ' موديل';
+document.querySelector('[onclick="showModels(\'spark\')"] .cat-count').textContent = sparkCount + ' موديل';
+
+const hash = window.location.hash;
+if(hash === '#pova') showModels('pova');
+else if(hash === '#camon') showModels('camon');
+else if(hash === '#spark') showModels('spark');
+if(hash) history.replaceState(null, '', window.location.pathname);
 </script>
 </body>
 </html>
