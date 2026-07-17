@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسار PRO — TECNO Camon 17 Pro (CG8)</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--text:#e2e8f0;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min-height:100vh;user-select:none;-webkit-user-select:none}
+.topbar{background:#0a1020;border-bottom:2px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-size:16px;font-weight:900;color:#fff}.logo span{color:var(--blue-light)}
+.back-btn{background:var(--card);border:1px solid var(--border);color:var(--blue-light);padding:7px 14px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;text-decoration:none;font-weight:700}
+.model-title{padding:14px 20px;font-size:16px;font-weight:900;color:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.model-title span{color:var(--blue-light);font-size:13px;font-weight:400}
+.gallery{padding:12px 14px;display:flex;flex-direction:column;gap:12px}
+.img-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:zoom-in}
+.img-card:hover{border-color:var(--blue-light)}
+.img-label{padding:8px 14px;font-size:12px;color:var(--blue-light);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.zoom-hint{font-size:10px;color:var(--muted)}
+.img-card img{width:100%;display:block;pointer-events:none}
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;justify-content:center;align-items:center;flex-direction:column}
+.lb-overlay.active{display:flex}
+.lb-img-wrap{position:relative;max-width:95vw;max-height:85vh;overflow:hidden;touch-action:none;cursor:grab}
+.lb-img-wrap.grabbing{cursor:grabbing}
+.lb-img{max-width:95vw;max-height:85vh;object-fit:contain;transform-origin:center center;transition:transform 0.05s}
+.lb-close{position:absolute;top:12px;right:16px;color:#fff;font-size:28px;cursor:pointer;z-index:10;background:rgba(0,0,0,0.5);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(37,99,235,0.3);border:1px solid var(--blue);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:10}
+.lb-prev{left:10px}.lb-next{right:10px}
+.lb-counter{color:var(--muted);font-size:13px;margin-top:10px;font-family:'Tajawal',sans-serif}
+.lb-hint{color:var(--muted);font-size:11px;margin-top:4px;font-family:'Tajawal',sans-serif}
+.zoom-bar{display:flex;align-items:center;gap:10px;margin-top:10px}
+.zoom-btn{background:rgba(37,99,235,0.2);border:1px solid var(--blue);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-family:'Tajawal',sans-serif}
+.zoom-btn:hover{background:rgba(37,99,235,0.4)}
+.zoom-level{color:var(--muted);font-size:12px;min-width:40px;text-align:center;font-family:'Tajawal',sans-serif}
+</style>
+</head>
+<body oncontextmenu="return false;">
+<div class="topbar">
+  <div class="logo">مسار <span>PRO</span></div>
+  <a href="techno.html#camon" class="back-btn">← رجوع</a>
+</div>
+<div class="model-title">TECNO Camon 17 Pro (CG8) <span>مخططات الدوائر</span></div>
+<div class="gallery">
+  <div class="img-card" onclick="openLb(0)"><div class="img-label"><span>دائرة 1</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303038/TECNO-CAMON_17_PRO_CG8_-01_jmjxdr.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(1)"><div class="img-label"><span>دائرة 2</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303050/TECNO-CAMON_17_PRO_CG8_-02_fih2uv.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(2)"><div class="img-label"><span>دائرة 3</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303050/TECNO-CAMON_17_PRO_CG8_-03_cjufyp.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(3)"><div class="img-label"><span>دائرة 4</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303051/TECNO-CAMON_17_PRO_CG8_-04_gfzttt.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(4)"><div class="img-label"><span>دائرة 5</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303053/TECNO-CAMON_17_PRO_CG8_-05_g0ogee.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(5)"><div class="img-label"><span>دائرة 6</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303053/TECNO-CAMON_17_PRO_CG8_-06_pe4pre.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(6)"><div class="img-label"><span>دائرة 7</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303055/TECNO-CAMON_17_PRO_CG8_-07_xck9np.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(7)"><div class="img-label"><span>دائرة 8</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303057/TECNO-CAMON_17_PRO_CG8_-08_sztjs8.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(8)"><div class="img-label"><span>دائرة 9</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303060/TECNO-CAMON_17_PRO_CG8_-09_fg2cfa.jpg" loading="lazy"></div>
+  <div class="img-card" onclick="openLb(9)"><div class="img-label"><span>دائرة 10</span><span class="zoom-hint">🔍 اضغط للتكبير</span></div><img src="https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303060/TECNO-CAMON_17_PRO_CG8_-10_yz5cwc.jpg" loading="lazy"></div>
+</div>
+
+<div class="lb-overlay" id="lb" onclick="closeLbOutside(event)">
+  <div class="lb-close" onclick="closeLb()">✕</div>
+  <div class="lb-nav lb-prev" onclick="lbNav(-1)">‹</div>
+  <div class="lb-nav lb-next" onclick="lbNav(1)">›</div>
+  <div class="lb-img-wrap" id="lb-wrap">
+    <img class="lb-img" id="lb-img" src="">
+  </div>
+  <div class="lb-counter" id="lb-counter"></div>
+  <div class="zoom-bar">
+    <div class="zoom-btn" onclick="zoomOut()">−</div>
+    <div class="zoom-level" id="zoom-level">100%</div>
+    <div class="zoom-btn" onclick="zoomIn()">+</div>
+  </div>
+  <div class="lb-hint">عجلة الماوس للزوم • اسحب للتحريك • إصبعين على الهاتف</div>
+</div>
+
+<script>
+(function(){
+  const raw = localStorage.getItem('msar_auth');
+  if(!raw){ window.location.href='index.html'; return; }
+  try{
+    const auth = JSON.parse(raw);
+    if(!auth.email || !auth.code){ window.location.href='index.html'; return; }
+    if(auth.expires && new Date(auth.expires) < new Date()){
+      localStorage.removeItem('msar_auth');
+      window.location.href='index.html'; return;
+    }
+  } catch(e){ window.location.href='index.html'; }
+})();
+</script>
+
+<script>
+const imgs=[
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303038/TECNO-CAMON_17_PRO_CG8_-01_jmjxdr.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303050/TECNO-CAMON_17_PRO_CG8_-02_fih2uv.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303050/TECNO-CAMON_17_PRO_CG8_-03_cjufyp.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303051/TECNO-CAMON_17_PRO_CG8_-04_gfzttt.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303053/TECNO-CAMON_17_PRO_CG8_-05_g0ogee.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303053/TECNO-CAMON_17_PRO_CG8_-06_pe4pre.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303055/TECNO-CAMON_17_PRO_CG8_-07_xck9np.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303057/TECNO-CAMON_17_PRO_CG8_-08_sztjs8.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303060/TECNO-CAMON_17_PRO_CG8_-09_fg2cfa.jpg',
+  'https://res.cloudinary.com/donyquhz9/image/upload/q_100,dpr_2.0/v1784303060/TECNO-CAMON_17_PRO_CG8_-10_yz5cwc.jpg'
+];
+let cur=0, scale=1, posX=0, posY=0, isDragging=false, dragStartX=0, dragStartY=0, startDist=0, lastScale=1;
+
+function updateTransform(){
+  const img=document.getElementById('lb-img');
+  img.style.transform=`scale(${scale}) translate(${posX/scale}px,${posY/scale}px)`;
+  document.getElementById('zoom-level').textContent=Math.round(scale*100)+'%';
+}
+window.openLb=(i)=>{
+  cur=i; scale=1; posX=0; posY=0;
+  const img=document.getElementById('lb-img');
+  img.src=imgs[i]; updateTransform();
+  document.getElementById('lb').classList.add('active');
+  document.getElementById('lb-counter').textContent=(i+1)+' / '+imgs.length;
+};
+window.closeLb=()=>{document.getElementById('lb').classList.remove('active');scale=1;posX=0;posY=0;};
+window.closeLbOutside=(e)=>{if(e.target.id==='lb')closeLb();};
+window.lbNav=(dir)=>{
+  cur=(cur+dir+imgs.length)%imgs.length;
+  scale=1; posX=0; posY=0;
+  const img=document.getElementById('lb-img');
+  img.src=imgs[cur]; updateTransform();
+  document.getElementById('lb-counter').textContent=(cur+1)+' / '+imgs.length;
+};
+window.zoomIn=()=>{scale=Math.min(5,scale+0.5);posX=0;posY=0;updateTransform();};
+window.zoomOut=()=>{scale=Math.max(1,scale-0.5);if(scale===1){posX=0;posY=0;}updateTransform();};
+
+const wrap=document.getElementById('lb-wrap');
+wrap.addEventListener('wheel',(e)=>{
+  e.preventDefault();
+  const delta=e.deltaY>0?-0.3:0.3;
+  scale=Math.min(5,Math.max(1,scale+delta));
+  if(scale===1){posX=0;posY=0;}
+  updateTransform();
+},{passive:false});
+wrap.addEventListener('mousedown',(e)=>{
+  e.preventDefault();isDragging=true;
+  dragStartX=e.clientX-posX;dragStartY=e.clientY-posY;
+  wrap.classList.add('grabbing');
+});
+window.addEventListener('mousemove',(e)=>{
+  if(!isDragging)return;
+  posX=e.clientX-dragStartX;posY=e.clientY-dragStartY;
+  updateTransform();
+});
+window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('grabbing');});
+window.addEventListener('mouseleave',()=>{isDragging=false;wrap.classList.remove('grabbing');});
+wrap.addEventListener('touchstart',e=>{
+  if(e.touches.length===2){
+    startDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+    lastScale=scale;
+  }
+});
+wrap.addEventListener('touchmove',e=>{
+  if(e.touches.length===2){
+    e.preventDefault();
+    const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+    scale=Math.min(5,Math.max(1,lastScale*d/startDist));
+    updateTransform();
+  }
+},{passive:false});
+let lastTap=0;
+wrap.addEventListener('touchend',e=>{
+  const now=Date.now();
+  if(now-lastTap<300){scale=scale>1?1:2.5;posX=0;posY=0;updateTransform();}
+  lastTap=now;
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='+'||e.key==='=')zoomIn();
+  if(e.key==='-')zoomOut();
+  if(['s','p','u','S','P','U'].includes(e.key)&&e.ctrlKey)e.preventDefault();
+});
+</script>
+</body>
+</html>
