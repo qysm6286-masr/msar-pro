@@ -4,36 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مسار PRO — تسجيل الدخول</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--text:#e2e8f0;--muted:#64748b}
+:root{--bg:#050b1a;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#60a5fa;--copper:#f0a868;--text:#e2e8f0;--muted:#64748b}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow-x:hidden}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow-x:hidden}
 
-/* خلفية بشكل مسارات لوحة إلكترونية */
 .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(37,99,235,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
 .bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.bg-traces{position:fixed;inset:0;pointer-events:none;opacity:0.35}
+.bg-traces{position:fixed;inset:0;pointer-events:none;opacity:0.3}
 .bg-traces svg{width:100%;height:100%}
 
 .wrap{position:relative;width:100%;max-width:400px;z-index:1}
 
-.tagline-pill{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(37,99,235,0.12);border:1px solid rgba(59,130,246,0.35);border-radius:999px;padding:8px 18px;margin:0 auto 18px;width:fit-content;max-width:100%}
-.tagline-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--blue-light);box-shadow:0 0 8px var(--blue-light);flex-shrink:0;animation:pulse 1.8s ease-in-out infinite}
-.tagline-pill span{font-size:12.5px;color:var(--blue-light);font-weight:700;white-space:nowrap}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
-
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 36px;width:100%;position:relative;box-shadow:0 0 60px rgba(37,99,235,0.1)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:38px 36px 34px;width:100%;position:relative;box-shadow:0 0 60px rgba(37,99,235,0.1)}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light),var(--blue));border-radius:20px 20px 0 0}
 
-.logo{text-align:center;margin-bottom:22px}
-.logo-icon{width:64px;height:64px;background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px;box-shadow:0 0 30px rgba(37,99,235,0.3)}
-.logo h1{font-size:26px;font-weight:900;color:#fff}.logo h1 span{color:var(--blue-light)}
-.logo p{font-size:13px;color:var(--muted);margin-top:4px}
+/* ===== شريحة الشعار (IC chip) ===== */
+.chip-lockup{display:flex;flex-direction:column;align-items:center;margin-bottom:6px}
+.pins-row{display:flex;justify-content:center;gap:9px}
+.pins-row .pin{width:2px;height:7px;background:linear-gradient(var(--copper),rgba(240,168,104,.15));border-radius:1px}
+.pins-row.bottom .pin{background:linear-gradient(rgba(240,168,104,.15),var(--copper))}
+.chip-body{width:64px;height:64px;border-radius:14px;overflow:hidden;margin:2px 0;box-shadow:0 0 30px rgba(37,99,235,0.35);border:1px solid rgba(96,165,250,.35)}
+.chip-body img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* شريط مزايا مختصر */
+/* الخط النحاسي الرابط بين الشريحة والجملة */
+.trace-down{width:1.5px;height:12px;background:linear-gradient(var(--copper),rgba(240,168,104,.1));margin:0 auto}
+.via{width:5px;height:5px;border-radius:50%;background:var(--copper);margin:0 auto;box-shadow:0 0 8px rgba(240,168,104,.7)}
+
+/* الجملة المميزة — مطبوعة كوسم على اللوحة */
+.silk-tagline{display:flex;align-items:center;justify-content:center;gap:7px;margin:6px 0 20px;padding:0 4px}
+.silk-trace{flex:0 1 22px;height:1px;background:linear-gradient(90deg,transparent,var(--copper))}
+.silk-trace.r{background:linear-gradient(90deg,var(--copper),transparent)}
+.silk-text{font-size:11.5px;font-weight:700;color:var(--copper);letter-spacing:.3px;text-align:center;line-height:1.5}
+
+.wordmark{text-align:center;margin-bottom:24px}
+.wordmark h1{font-size:clamp(23px,6vw,27px);font-weight:900;color:#fff}
+.wordmark h1 span{color:var(--blue-light)}
+.wordmark p{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.6}
+
 .feature-row{display:flex;gap:8px;margin-bottom:26px}
-.feature-chip{flex:1;background:#0a1628;border:1px solid var(--border);border-radius:10px;padding:10px 6px;text-align:center}
+.feature-chip{flex:1;background:#0a1628;border:1px solid var(--border);border-radius:10px;padding:10px 4px;text-align:center}
 .feature-chip .f-icon{font-size:16px;margin-bottom:4px}
 .feature-chip .f-text{font-size:10.5px;color:var(--muted);font-weight:700;line-height:1.4}
 
@@ -68,8 +80,10 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
 .footer-note{text-align:center;font-size:11px;color:var(--muted);margin-top:20px;line-height:1.8}
 
 @media (max-width:380px){
+  .card{padding:32px 24px 28px}
   .feature-chip .f-text{font-size:9.5px}
-  .tagline-pill span{font-size:11px}
+  .silk-trace{flex-basis:12px}
+  .silk-text{font-size:10.5px}
 }
 </style>
 </head>
@@ -97,14 +111,23 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
 </div>
 
 <div class="wrap">
-  <div class="tagline-pill">
-    <span class="dot"></span>
-    <span>لأننا نعرف أن وقت الفني ثمين — وصول فوري للمخطط</span>
-  </div>
-
   <div class="card">
-    <div class="logo">
-      <div class="logo-icon" style="background:none;padding:0;overflow:hidden"><img src="https://raw.githubusercontent.com/qysm6286-masr/msar-pro/main/photo_6014914867430624460_x.jpg" style="width:64px;height:64px;object-fit:cover;border-radius:16px"></div>
+
+    <div class="chip-lockup">
+      <div class="pins-row top"><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div></div>
+      <div class="chip-body"><img src="https://raw.githubusercontent.com/qysm6286-masr/msar-pro/main/photo_6014914867430624460_x.jpg"></div>
+      <div class="pins-row bottom"><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div></div>
+      <div class="trace-down"></div>
+      <div class="via"></div>
+    </div>
+
+    <div class="silk-tagline">
+      <span class="silk-trace"></span>
+      <span class="silk-text">لأننا نعرف أن وقت الفني ثمين</span>
+      <span class="silk-trace r"></span>
+    </div>
+
+    <div class="wordmark">
       <h1>مسار <span>PRO</span></h1>
       <p>مرجعك الاحترافي لصيانة الهواتف — مخططات ومسارات الدوائر الإلكترونية</p>
     </div>
