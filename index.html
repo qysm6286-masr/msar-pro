@@ -8,15 +8,35 @@
 <style>
 :root{--bg:#060d1f;--card:#0d1630;--border:#1a3360;--blue:#2563eb;--blue-light:#3b82f6;--text:#e2e8f0;--muted:#64748b}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow-x:hidden}
+
+/* خلفية بشكل مسارات لوحة إلكترونية */
 .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(37,99,235,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
 .bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 36px;width:100%;max-width:400px;position:relative;box-shadow:0 0 60px rgba(37,99,235,0.1)}
+.bg-traces{position:fixed;inset:0;pointer-events:none;opacity:0.35}
+.bg-traces svg{width:100%;height:100%}
+
+.wrap{position:relative;width:100%;max-width:400px;z-index:1}
+
+.tagline-pill{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(37,99,235,0.12);border:1px solid rgba(59,130,246,0.35);border-radius:999px;padding:8px 18px;margin:0 auto 18px;width:fit-content;max-width:100%}
+.tagline-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--blue-light);box-shadow:0 0 8px var(--blue-light);flex-shrink:0;animation:pulse 1.8s ease-in-out infinite}
+.tagline-pill span{font-size:12.5px;color:var(--blue-light);font-weight:700;white-space:nowrap}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 36px;width:100%;position:relative;box-shadow:0 0 60px rgba(37,99,235,0.1)}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light),var(--blue));border-radius:20px 20px 0 0}
-.logo{text-align:center;margin-bottom:32px}
+
+.logo{text-align:center;margin-bottom:22px}
 .logo-icon{width:64px;height:64px;background:linear-gradient(135deg,#1e3a8a,#2563eb);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px;box-shadow:0 0 30px rgba(37,99,235,0.3)}
 .logo h1{font-size:26px;font-weight:900;color:#fff}.logo h1 span{color:var(--blue-light)}
 .logo p{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* شريط مزايا مختصر */
+.feature-row{display:flex;gap:8px;margin-bottom:26px}
+.feature-chip{flex:1;background:#0a1628;border:1px solid var(--border);border-radius:10px;padding:10px 6px;text-align:center}
+.feature-chip .f-icon{font-size:16px;margin-bottom:4px}
+.feature-chip .f-text{font-size:10.5px;color:var(--muted);font-weight:700;line-height:1.4}
+
 .step-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
 .step-sub{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.7}
 .input-group{margin-bottom:16px}
@@ -44,37 +64,81 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
 .msg.success{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7;display:block}
 .loader{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-left:8px}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+.footer-note{text-align:center;font-size:11px;color:var(--muted);margin-top:20px;line-height:1.8}
+
+@media (max-width:380px){
+  .feature-chip .f-text{font-size:9.5px}
+  .tagline-pill span{font-size:11px}
+}
 </style>
 </head>
 <body>
 <div class="bg-grid"></div>
 <div class="bg-glow"></div>
-<div class="card">
-  <div class="logo">
-    <div class="logo-icon" style="background:none;padding:0;overflow:hidden"><img src="https://raw.githubusercontent.com/qysm6286-masr/msar-pro/main/photo_6014914867430624460_x.jpg" style="width:64px;height:64px;object-fit:cover;border-radius:16px"></div>
-    <h1>مسار <span>PRO</span></h1>
-    <p>مرحبا بكم في موقع مخططات ومسارات الدوائر الإلكترونية للهواتف</p>
-  </div>
-  <div class="step-title">تسجيل الدخول</div>
-  <div class="step-sub">أدخل بريدك الإلكتروني وكود الاشتراك للدخول مباشرة</div>
-  <div class="remember-box" id="remember-box">
-    <div class="r-title">🔖 بيانات محفوظة — دخول سريع</div>
-    <div class="remember-row"><span class="remember-label">الإيميل</span><span class="remember-val" id="saved-email-display">—</span></div>
-    <div class="remember-row"><span class="remember-label">كود الاشتراك</span><span class="remember-val" id="saved-code-display">—</span></div>
-    <button class="use-saved-btn" onclick="useSaved()">⚡ دخول سريع بالبيانات المحفوظة</button>
-    <div class="divider"><span>أو أدخل بيانات جديدة</span></div>
-  </div>
-  <div id="main-msg" class="msg"></div>
-  <div class="input-group">
-    <label>البريد الإلكتروني</label>
-    <input type="email" id="email-input" placeholder="example@gmail.com" autocomplete="email">
-  </div>
-  <div class="input-group">
-    <label>كود الاشتراك</label>
-    <input type="text" id="code-input" class="code-input" placeholder="XXXX-XXXX-XXXX" maxlength="14" oninput="formatCode(this)" autocomplete="off">
-  </div>
-  <button class="main-btn" onclick="doLogin()" id="login-btn">دخول المكتبة ←</button>
+<div class="bg-traces">
+<svg viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+  <g fill="none" stroke="#2563eb" stroke-width="1.5">
+    <path d="M0,120 L180,120 L180,220 L340,220 L340,80 L520,80"/>
+    <path d="M800,300 L600,300 L600,400 L440,400 L440,560 L260,560"/>
+    <path d="M0,650 L140,650 L140,540 L300,540"/>
+    <path d="M800,680 L680,680 L680,760 L520,760"/>
+    <path d="M60,0 L60,90 L200,90"/>
+    <path d="M740,0 L740,140 L620,140 L620,60"/>
+  </g>
+  <g fill="#3b82f6">
+    <circle cx="180" cy="120" r="4"/><circle cx="340" cy="220" r="4"/><circle cx="520" cy="80" r="4"/>
+    <circle cx="600" cy="300" r="4"/><circle cx="440" cy="400" r="4"/><circle cx="260" cy="560" r="4"/>
+    <circle cx="140" cy="650" r="4"/><circle cx="300" cy="540" r="4"/>
+    <circle cx="680" cy="680" r="4"/><circle cx="520" cy="760" r="4"/>
+    <circle cx="60" cy="90" r="4"/><circle cx="620" cy="140" r="4"/>
+  </g>
+</svg>
 </div>
+
+<div class="wrap">
+  <div class="tagline-pill">
+    <span class="dot"></span>
+    <span>لأننا نعرف أن وقت الفني ثمين — وصول فوري للمخطط</span>
+  </div>
+
+  <div class="card">
+    <div class="logo">
+      <div class="logo-icon" style="background:none;padding:0;overflow:hidden"><img src="https://raw.githubusercontent.com/qysm6286-masr/msar-pro/main/photo_6014914867430624460_x.jpg" style="width:64px;height:64px;object-fit:cover;border-radius:16px"></div>
+      <h1>مسار <span>PRO</span></h1>
+      <p>مرجعك الاحترافي لصيانة الهواتف — مخططات ومسارات الدوائر الإلكترونية</p>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-chip"><div class="f-icon">⚡</div><div class="f-text">وصول سريع</div></div>
+      <div class="feature-chip"><div class="f-icon">🔧</div><div class="f-text">مسارات دقيقة</div></div>
+      <div class="feature-chip"><div class="f-icon">📱</div><div class="f-text">كل الموديلات</div></div>
+    </div>
+
+    <div class="step-title">تسجيل الدخول</div>
+    <div class="step-sub">أدخل بريدك الإلكتروني وكود الاشتراك للدخول مباشرة</div>
+    <div class="remember-box" id="remember-box">
+      <div class="r-title">🔖 بيانات محفوظة — دخول سريع</div>
+      <div class="remember-row"><span class="remember-label">الإيميل</span><span class="remember-val" id="saved-email-display">—</span></div>
+      <div class="remember-row"><span class="remember-label">كود الاشتراك</span><span class="remember-val" id="saved-code-display">—</span></div>
+      <button class="use-saved-btn" onclick="useSaved()">⚡ دخول سريع بالبيانات المحفوظة</button>
+      <div class="divider"><span>أو أدخل بيانات جديدة</span></div>
+    </div>
+    <div id="main-msg" class="msg"></div>
+    <div class="input-group">
+      <label>البريد الإلكتروني</label>
+      <input type="email" id="email-input" placeholder="example@gmail.com" autocomplete="email">
+    </div>
+    <div class="input-group">
+      <label>كود الاشتراك</label>
+      <input type="text" id="code-input" class="code-input" placeholder="XXXX-XXXX-XXXX" maxlength="14" oninput="formatCode(this)" autocomplete="off">
+    </div>
+    <button class="main-btn" onclick="doLogin()" id="login-btn">دخول المكتبة ←</button>
+  </div>
+
+  <div class="footer-note">جميع المخططات مصنّفة حسب الشركة والموديل لأسرع وصول ممكن</div>
+</div>
+
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
