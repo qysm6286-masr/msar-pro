@@ -21,7 +21,6 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
 .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:38px 36px 34px;width:100%;position:relative;box-shadow:0 0 60px rgba(37,99,235,0.1)}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light),var(--blue));border-radius:20px 20px 0 0}
 
-/* ===== شريحة الشعار (IC chip) ===== */
 .chip-lockup{display:flex;flex-direction:column;align-items:center;margin-bottom:6px}
 .pins-row{display:flex;justify-content:center;gap:9px}
 .pins-row .pin{width:2px;height:7px;background:linear-gradient(var(--copper),rgba(240,168,104,.15));border-radius:1px}
@@ -29,11 +28,9 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
 .chip-body{width:64px;height:64px;border-radius:14px;overflow:hidden;margin:2px 0;box-shadow:0 0 30px rgba(37,99,235,0.35);border:1px solid rgba(96,165,250,.35)}
 .chip-body img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* الخط النحاسي الرابط بين الشريحة والجملة */
 .trace-down{width:1.5px;height:12px;background:linear-gradient(var(--copper),rgba(240,168,104,.1));margin:0 auto}
 .via{width:5px;height:5px;border-radius:50%;background:var(--copper);margin:0 auto;box-shadow:0 0 8px rgba(240,168,104,.7)}
 
-/* الجملة المميزة — مطبوعة كوسم على اللوحة */
 .silk-tagline{display:flex;align-items:center;justify-content:center;gap:7px;margin:6px 0 20px;padding:0 4px}
 .silk-trace{flex:0 1 22px;height:1px;background:linear-gradient(90deg,transparent,var(--copper))}
 .silk-trace.r{background:linear-gradient(90deg,var(--copper),transparent)}
@@ -214,20 +211,17 @@ window.doLogin = async () => {
   if(code.length < 14){ showMsg('أدخل كود الاشتراك كاملاً (XXXX-XXXX-XXXX)','error'); return; }
   btn.disabled = true;
   btn.innerHTML = 'جاري التحقق... <span class="loader"></span>';
-  const { data, error } = await supabase.from('codes').select('*').eq('code', code).single();
-  if(error || !data){
-    showMsg('❌ كود الاشتراك غير صحيح','error');
+
+  const { data, error } = await supabase.rpc('verify_code', { p_email: email, p_code: code });
+
+  if(error || !data || !data.ok){
+    let msg = '❌ كود الاشتراك غير صحيح';
+    if(data && data.reason === 'expired') msg = '❌ انتهت صلاحية هذا الكود';
+    if(data && data.reason === 'taken') msg = '❌ هذا الكود مرتبط ببريد إلكتروني آخر';
+    showMsg(msg,'error');
     btn.disabled=false; btn.textContent='دخول المكتبة ←'; return;
   }
-  if(data.expires_at && new Date(data.expires_at) < new Date()){
-    showMsg('❌ انتهت صلاحية هذا الكود','error');
-    btn.disabled=false; btn.textContent='دخول المكتبة ←'; return;
-  }
-  if(data.used && data.email && data.email.toLowerCase() !== email){
-    showMsg('❌ هذا الكود مرتبط ببريد إلكتروني آخر','error');
-    btn.disabled=false; btn.textContent='دخول المكتبة ←'; return;
-  }
-  await supabase.from('codes').update({ used: true, email: email }).eq('code', code);
+
   localStorage.setItem('msar_auth', JSON.stringify({ email, code, expires: data.expires_at }));
   localStorage.setItem('msar_saved', JSON.stringify({ email, code }));
   showMsg('✅ تم التحقق، جاري الدخول...','success');
