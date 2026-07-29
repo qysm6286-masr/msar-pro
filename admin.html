@@ -10,7 +10,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min-height:100vh;padding:20px}
 
-/* شاشة حماية كلمة السر */
 #auth-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999}
 .login-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px;width:100%;max-width:380px;text-align:center}
 .login-card h2{font-size:20px;margin-bottom:8px}
@@ -51,7 +50,6 @@ td{padding:10px 12px;border-bottom:1px solid rgba(26,51,96,0.5)}
 </head>
 <body>
 
-<!-- شاشة حماية الأدمن -->
 <div id="auth-overlay">
   <div class="login-card">
     <h2>🔒 لوحة أدمين مسار PRO</h2>
@@ -113,8 +111,7 @@ const SUPABASE_URL = 'https://dqjtmxdclpipiisfrkjr.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// 🔑 كلمة السر الخاصة بك
-const ADMIN_SECRET = 'Ali_Masar_2026@Pass'; 
+const ADMIN_SECRET = 'Ali_Masar_2026@Pass';
 
 window.verifyPassword = () => {
   const pass = document.getElementById('admin-pass').value;
@@ -129,31 +126,24 @@ window.verifyPassword = () => {
   }
 };
 
-// فحص الجلسة عند الفتح
 if (localStorage.getItem('admin_session') === ADMIN_SECRET) {
   document.getElementById('auth-overlay').style.display = 'none';
   loadCodes();
 }
 
-function randomCode() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let code = '';
-  for (let i = 0; i < 12; i++) {
-    if (i > 0 && i % 4 === 0) code += '-';
-    code += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return code;
-}
-
 window.generateCode = async () => {
   if (localStorage.getItem('admin_session') !== ADMIN_SECRET) return;
   const days = parseInt(document.getElementById('duration').value);
-  const code = randomCode();
-  const expires = days === 36500 ? null : new Date(Date.now() + days * 86400000).toISOString();
-  const { error } = await supabase.from('codes').insert({ code, used: false, email: null, expires_at: expires, created_at: new Date().toISOString() });
-  if (error) { document.getElementById('gen-msg').textContent = 'خطأ: ' + error.message; document.getElementById('gen-msg').className = 'msg error'; return; }
-  document.getElementById('result-code').textContent = code;
-  document.getElementById('result-expires').textContent = expires ? 'صالح حتى: ' + new Date(expires).toLocaleDateString('ar') : 'مدى الحياة';
+  const { data, error } = await supabase.rpc('admin_generate_code', { p_admin_key: ADMIN_SECRET, p_days: days });
+  const msgEl = document.getElementById('gen-msg');
+  if (error || !data || !data.ok) {
+    msgEl.textContent = 'تعذر توليد الكود، تأكد من إعداد الدالة في Supabase';
+    msgEl.className = 'msg error';
+    return;
+  }
+  msgEl.className = 'msg';
+  document.getElementById('result-code').textContent = data.code;
+  document.getElementById('result-expires').textContent = data.expires_at ? 'صالح حتى: ' + new Date(data.expires_at).toLocaleDateString('ar') : 'مدى الحياة';
   document.getElementById('result-box').style.display = 'block';
   loadCodes();
 };
@@ -166,8 +156,8 @@ window.copyCode = () => {
 
 async function loadCodes() {
   if (localStorage.getItem('admin_session') !== ADMIN_SECRET) return;
-  const { data } = await supabase.from('codes').select('*').order('created_at', { ascending: false });
-  if (!data) return;
+  const { data, error } = await supabase.rpc('admin_list_codes', { p_admin_key: ADMIN_SECRET });
+  if (error || !data) return;
   const now = new Date(); let active = 0;
   const rows = data.map(row => {
     const expired = row.expires_at && new Date(row.expires_at) < now;
