@@ -23,6 +23,18 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 .brand-name{font-size:15px;font-weight:700;color:var(--text)}
 .brand-count{font-size:11px;color:var(--blue-light);background:rgba(37,99,235,0.1);padding:2px 8px;border-radius:10px}
 .brand-count.soon{color:var(--muted);background:transparent}
+.search-wrap{position:relative;padding:16px 20px 0}
+.search-box{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--text);font-family:'Tajawal',sans-serif;font-size:14px;outline:none}
+.search-box::placeholder{color:var(--muted)}
+.search-box:focus{border-color:var(--blue-light)}
+.search-results{position:absolute;top:100%;left:20px;right:20px;margin-top:6px;background:var(--card);border:1px solid var(--border);border-radius:10px;max-height:360px;overflow-y:auto;z-index:50;display:none;box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+.search-results.show{display:block}
+.search-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);cursor:pointer}
+.search-item:last-child{border-bottom:none}
+.search-item:hover{background:#152040}
+.search-item-name{font-size:14px;font-weight:700}
+.search-item-brand{font-size:11px;color:var(--blue-light);background:rgba(37,99,235,0.12);padding:3px 10px;border-radius:10px;white-space:nowrap}
+.search-empty{padding:16px;text-align:center;color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
@@ -31,6 +43,11 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
   <div class="logo">مسار <span>PRO</span></div>
   <button class="logout" onclick="signOut()">خروج ←</button>
 </div>
+<div class="search-wrap">
+  <input type="text" id="modelSearch" class="search-box" placeholder="🔍 ابحث عن اسم الموديل...">
+  <div class="search-results" id="searchResults"></div>
+</div>
+
 <div class="section-title">اختر الماركة</div>
 <div class="brands-grid">
   <a href="samsung.html" class="brand-card">
@@ -156,6 +173,49 @@ async function updateCounts() {
     el.classList.remove('soon');
   }
 }
+
+
+// ============ البحث عن الموديلات ============
+let searchIndex = [];
+fetch('search-index.json?v=' + Date.now())
+  .then(r => r.json())
+  .then(data => { searchIndex = data; })
+  .catch(() => {});
+
+const searchInput = document.getElementById('modelSearch');
+const searchResults = document.getElementById('searchResults');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
+    searchResults.classList.remove('show');
+    searchResults.innerHTML = '';
+    return;
+  }
+  const matches = searchIndex.filter(item => item.n.toLowerCase().includes(q)).slice(0, 30);
+  if (matches.length === 0) {
+    searchResults.innerHTML = '<div class="search-empty">لا توجد نتائج</div>';
+  } else {
+    searchResults.innerHTML = matches.map(item =>
+      `<a href="${item.u}" class="search-item"><span class="search-item-name">${item.n}</span><span class="search-item-brand">${item.b}</span></a>`
+    ).join('');
+  }
+  searchResults.classList.add('show');
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.search-wrap')) {
+    searchResults.classList.remove('show');
+  }
+});
+
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    searchInput.value = '';
+    searchResults.classList.remove('show');
+    searchInput.blur();
+  }
+});
 
 updateCounts();
 </script>
