@@ -183,7 +183,7 @@ if(auth){
     const a = JSON.parse(auth);
     if(a.email && a.code){
       if(!a.expires || new Date(a.expires) > new Date()){
-        window.location.href='home.html';
+        window.location.href='updates.html';
       }
     }
   }catch(e){}
@@ -225,7 +225,7 @@ window.doLogin = async () => {
   localStorage.setItem('msar_auth', JSON.stringify({ email, code, expires: data.expires_at }));
   localStorage.setItem('msar_saved', JSON.stringify({ email, code }));
   showMsg('✅ تم التحقق، جاري الدخول...','success');
-  setTimeout(() => window.location.href='home.html', 800);
+  setTimeout(() => window.location.href='updates.html', 800);
 };
 
 function showMsg(text, type){
