@@ -41,7 +41,7 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 <script type="module" src="auth-guard.js"></script>
 <div class="topbar">
   <div class="logo">مسار <span>PRO</span></div>
-  <button class="logout" onclick="signOut()">خروج ←</button>
+  <button class="logout" onclick="goToUpdates()">← التحديثات</button>
 </div>
 <div class="search-wrap">
   <input type="text" id="modelSearch" class="search-box" placeholder="🔍 ابحث عن اسم الموديل...">
@@ -103,7 +103,7 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 </div>
 
 <script>
-window.signOut = () => {
+window.goToUpdates = () => {
   window.location.href='updates.html';
 };
 
