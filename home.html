@@ -70,10 +70,10 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
     <div class="brand-name">Tecno</div>
     <div class="brand-count soon" id="count-tecno">قريباً</div>
   </a>
-  <a href="#" class="brand-card">
+  <a href="huawei.html" class="brand-card">
     <div class="brand-icon">📱</div>
     <div class="brand-name">Huawei</div>
-    <div class="brand-count soon">قريباً</div>
+    <div class="brand-count soon" id="count-huawei">قريباً</div>
   </a>
   <a href="#" class="brand-card">
     <div class="brand-icon">📱</div>
@@ -172,6 +172,14 @@ async function updateCounts() {
     el.textContent = tecnoCount + ' موديل';
     el.classList.remove('soon');
   }
+
+  // 5. حساب موديلات هواوي
+  const huaweiCount = await countModels('huawei.html');
+  if(huaweiCount !== null && huaweiCount > 0) {
+    const el = document.getElementById('count-huawei');
+    el.textContent = huaweiCount + ' موديل';
+    el.classList.remove('soon');
+  }
 }
 
 
@@ -221,3 +229,4 @@ updateCounts();
 </script>
 </body>
 </html>
+
