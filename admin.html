@@ -19,6 +19,9 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);min
 .header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:20px}
 .logo{font-size:20px;font-weight:900}.logo span{color:var(--blue-light)}
 .badge{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700}
+.logout-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:7px;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer}
+.logout-btn:hover{border-color:var(--blue-light);color:var(--blue-light)}
+.header-right{display:flex;align-items:center;gap:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px}
 .stat-label{font-size:12px;color:var(--muted);margin-bottom:6px}
@@ -53,16 +56,20 @@ td{padding:10px 12px;border-bottom:1px solid rgba(26,51,96,0.5)}
 <div id="auth-overlay">
   <div class="login-card">
     <h2>🔒 لوحة أدمين مسار PRO</h2>
-    <p>أدخل كلمة السر للمتابعة</p>
-    <input type="password" id="admin-pass" placeholder="كلمة السر">
-    <button class="btn btn-primary" onclick="verifyPassword()">دخول</button>
+    <p>سجّل الدخول بحساب الأدمين للمتابعة</p>
+    <input type="email" id="admin-email" placeholder="البريد الإلكتروني" autocomplete="username">
+    <input type="password" id="admin-pass" placeholder="كلمة السر" autocomplete="current-password">
+    <button class="btn btn-primary" onclick="doAdminLogin()" id="login-btn">دخول</button>
     <div id="auth-err" class="msg"></div>
   </div>
 </div>
 
 <div class="header">
   <div class="logo">مسار <span>PRO</span> — لوحة التحكم</div>
-  <div class="badge">🔒 للمسؤول فقط</div>
+  <div class="header-right">
+    <div class="badge">🔒 للمسؤول فقط</div>
+    <button class="logout-btn" onclick="doAdminLogout()">خروج ←</button>
+  </div>
 </div>
 <div class="grid">
   <div class="stat-card"><div class="stat-label">إجمالي الأكواد</div><div class="stat-value" id="stat-total">—</div></div>
@@ -111,33 +118,54 @@ const SUPABASE_URL = 'https://dqjtmxdclpipiisfrkjr.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const ADMIN_SECRET = 'Ali_Masar_2026@Pass';
+function showOverlay(show){
+  document.getElementById('auth-overlay').style.display = show ? 'flex' : 'none';
+}
 
-window.verifyPassword = () => {
-  const pass = document.getElementById('admin-pass').value;
-  if (pass === ADMIN_SECRET) {
-    localStorage.setItem('admin_session', pass);
-    document.getElementById('auth-overlay').style.display = 'none';
-    loadCodes();
-  } else {
-    const err = document.getElementById('auth-err');
-    err.textContent = 'كلمة السر غير صحيحة!';
-    err.className = 'msg error';
-  }
-};
-
-if (localStorage.getItem('admin_session') === ADMIN_SECRET) {
-  document.getElementById('auth-overlay').style.display = 'none';
+async function bootAfterLogin(){
+  showOverlay(false);
   loadCodes();
 }
 
+window.doAdminLogin = async () => {
+  const email = document.getElementById('admin-email').value.trim();
+  const password = document.getElementById('admin-pass').value;
+  const err = document.getElementById('auth-err');
+  err.style.display = 'none';
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true; btn.textContent = 'جاري التحقق...';
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+  btn.disabled = false; btn.textContent = 'دخول';
+
+  if (error || !data.session) {
+    err.textContent = 'بيانات الدخول غير صحيحة!';
+    err.className = 'msg error';
+    return;
+  }
+  bootAfterLogin();
+};
+
+window.doAdminLogout = async () => {
+  await supabase.auth.signOut();
+  window.location.reload();
+};
+
+// عند فتح الصفحة، تحقق إذا فيه جلسة مسجلة دخول مسبقاً
+(async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) {
+    bootAfterLogin();
+  }
+})();
+
 window.generateCode = async () => {
-  if (localStorage.getItem('admin_session') !== ADMIN_SECRET) return;
   const days = parseInt(document.getElementById('duration').value);
-  const { data, error } = await supabase.rpc('admin_generate_code', { p_admin_key: ADMIN_SECRET, p_days: days });
+  const { data, error } = await supabase.rpc('admin_generate_code', { p_days: days });
   const msgEl = document.getElementById('gen-msg');
   if (error || !data || !data.ok) {
-    msgEl.textContent = 'تعذر توليد الكود، تأكد من إعداد الدالة في Supabase';
+    msgEl.textContent = 'تعذر توليد الكود، تأكد من تسجيل الدخول بالحساب الصحيح';
     msgEl.className = 'msg error';
     return;
   }
@@ -155,8 +183,7 @@ window.copyCode = () => {
 };
 
 async function loadCodes() {
-  if (localStorage.getItem('admin_session') !== ADMIN_SECRET) return;
-  const { data, error } = await supabase.rpc('admin_list_codes', { p_admin_key: ADMIN_SECRET });
+  const { data, error } = await supabase.rpc('admin_list_codes');
   if (error || !data) return;
   const now = new Date(); let active = 0;
   const rows = data.map(row => {
