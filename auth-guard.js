@@ -6,6 +6,10 @@ window.signOut = () => {
   window.location.href = 'index.html';
 };
 
+function reveal() {
+  document.documentElement.style.visibility = 'visible';
+}
+
 (async function () {
   const raw = localStorage.getItem('msar_auth');
   if (!raw) { window.location.href = 'index.html'; return; }
@@ -20,8 +24,11 @@ window.signOut = () => {
     if (error || !data || !data.ok) {
       localStorage.removeItem('msar_auth');
       window.location.href = 'index.html';
+      return;
     }
+    reveal();
   } catch (e) {
     // شبكة معطلة أو خطأ مؤقت: ما نطردش المستخدم، بس نسيب الفحص المحلي القديم يتكفل بالحد الأدنى
+    reveal();
   }
 })();
