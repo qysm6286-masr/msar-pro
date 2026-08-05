@@ -54,6 +54,12 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
 .input-group input:focus{border-color:var(--blue-light)}
 .input-group input::placeholder{color:var(--muted);direction:rtl}
 .code-input{text-align:center !important;letter-spacing:3px !important;font-weight:700 !important;font-size:18px !important}
+.input-wrap{position:relative}
+.input-wrap input{padding-left:42px}
+.toggle-eye{position:absolute;top:50%;left:10px;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;padding:4px;line-height:1;opacity:.7;color:var(--muted)}
+.toggle-eye:hover{opacity:1}
+.toggle-eye-inline{background:none;border:none;cursor:pointer;font-size:12px;padding:0;opacity:.8;color:var(--blue-light);font-family:'Tajawal',sans-serif;font-weight:700}
+.toggle-eye-inline:hover{opacity:1}
 .remember-box{background:#0a1628;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:20px;display:none}
 .remember-box .r-title{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:700}
 .remember-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
@@ -138,7 +144,7 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
     <div class="step-title">تسجيل الدخول</div>
     <div class="step-sub">أدخل بريدك الإلكتروني وكود الاشتراك للدخول مباشرة</div>
     <div class="remember-box" id="remember-box">
-      <div class="r-title">🔖 بيانات محفوظة — دخول سريع</div>
+      <div class="r-title" style="display:flex;justify-content:space-between;align-items:center">🔖 بيانات محفوظة — دخول سريع <button type="button" class="toggle-eye-inline" id="saved-toggle" onclick="toggleSaved()">👁️ إظهار</button></div>
       <div class="remember-row"><span class="remember-label">الإيميل</span><span class="remember-val" id="saved-email-display">—</span></div>
       <div class="remember-row"><span class="remember-label">كود الاشتراك</span><span class="remember-val" id="saved-code-display">—</span></div>
       <button class="use-saved-btn" onclick="useSaved()">⚡ دخول سريع بالبيانات المحفوظة</button>
@@ -147,11 +153,17 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
     <div id="main-msg" class="msg"></div>
     <div class="input-group">
       <label>البريد الإلكتروني</label>
-      <input type="email" id="email-input" placeholder="example@gmail.com" autocomplete="email">
+      <div class="input-wrap">
+        <input type="password" id="email-input" placeholder="example@gmail.com" autocomplete="email">
+        <button type="button" class="toggle-eye" id="email-toggle" onclick="toggleField('email-input','email-toggle')">👁️</button>
+      </div>
     </div>
     <div class="input-group">
       <label>كود الاشتراك</label>
-      <input type="text" id="code-input" class="code-input" placeholder="XXXX-XXXX-XXXX" maxlength="14" oninput="formatCode(this)" autocomplete="off">
+      <div class="input-wrap">
+        <input type="password" id="code-input" class="code-input" placeholder="XXXX-XXXX-XXXX" maxlength="14" oninput="formatCode(this)" autocomplete="off">
+        <button type="button" class="toggle-eye" id="code-toggle" onclick="toggleField('code-input','code-toggle')">👁️</button>
+      </div>
     </div>
     <button class="main-btn" onclick="doLogin()" id="login-btn">دخول المكتبة ←</button>
   </div>
@@ -163,13 +175,39 @@ body{background:var(--bg);font-family:'Tajawal',sans-serif;min-height:100vh;disp
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const supabase = createClient('https://dqjtmxdclpipiisfrkjr.supabase.co','sb_publishable_c2mjopyiLYe9vRi1hUIBsA_NLadWVob');
 
+function maskEmail(email){
+  const parts = (email||'').split('@');
+  if(parts.length < 2) return '••••';
+  const name = parts[0];
+  const visible = name.slice(0,2);
+  return visible + '•'.repeat(Math.max(3,name.length-2)) + '@' + parts[1];
+}
+
+let savedRevealed = false;
+window.toggleSaved = () => {
+  savedRevealed = !savedRevealed;
+  const s = JSON.parse(localStorage.getItem('msar_saved') || 'null');
+  if(!s) return;
+  document.getElementById('saved-email-display').textContent = savedRevealed ? s.email : maskEmail(s.email);
+  document.getElementById('saved-code-display').textContent = savedRevealed ? s.code : '••••-••••-••••';
+  document.getElementById('saved-toggle').textContent = savedRevealed ? '🙈 إخفاء' : '👁️ إظهار';
+};
+
+window.toggleField = (inputId, btnId) => {
+  const el = document.getElementById(inputId);
+  const btn = document.getElementById(btnId);
+  const showing = el.type === 'text';
+  el.type = showing ? 'password' : 'text';
+  btn.textContent = showing ? '👁️' : '🙈';
+};
+
 const saved = localStorage.getItem('msar_saved');
 if(saved){
   try{
     const s = JSON.parse(saved);
     if(s.email && s.code){
-      document.getElementById('saved-email-display').textContent = s.email;
-      document.getElementById('saved-code-display').textContent = s.code;
+      document.getElementById('saved-email-display').textContent = maskEmail(s.email);
+      document.getElementById('saved-code-display').textContent = '••••-••••-••••';
       document.getElementById('remember-box').style.display = 'block';
       document.getElementById('email-input').value = s.email;
       document.getElementById('code-input').value = s.code;
