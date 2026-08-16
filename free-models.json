@@ -1,11 +1,11 @@
 [
   {"n": "Samsung A03 (A032)", "u": "viewer-a032.html"},
+  {"n": "Samsung A12 (A125)", "u": "viewer-a125.html"},
   {"n": "Samsung Galaxy A20 (A205)", "u": "viewer-a205.html"},
   {"n": "Huawei Y6 (2018)", "u": "viewer-huawei-y6-2018.html"},
   {"n": "Huawei Nova 3", "u": "viewer-huawei-nova-3.html"},
   {"n": "Infinix Hot 10 (X682B)", "u": "viewer-infinix-hot-10-x682b.html"},
   {"n": "Redmi 10 4G", "u": "viewer-redmi-10-4G.html"},
   {"n": "POCO X3", "u": "viewer-POCO-X3.html"},
-  {"n": "Tecno Spark 10 Pro", "u": "viewer-tecno-spark-10-pro.html"},
-  {"n": "Samsung A12 (A125)", "u": "viewer-a125.html"}
+  {"n": "Tecno Spark 10 Pro", "u": "viewer-tecno-spark-10-pro.html"}
 ]
