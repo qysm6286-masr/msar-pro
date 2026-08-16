@@ -10,6 +10,15 @@ function reveal() {
   document.documentElement.style.visibility = 'visible';
 }
 
+// عداد زوار GoatCounter — يعمل على كل صفحة تحمّل auth-guard.js (المحمية والمجانية)
+(function(){
+  const s = document.createElement('script');
+  s.async = true;
+  s.setAttribute('data-goatcounter', 'https://masr-pro.goatcounter.com/count');
+  s.src = '//gc.zgo.at/count.js';
+  document.head.appendChild(s);
+})();
+
 // صفحات المعاينة المجانية: يُسمح بمشاهدتها بدون تسجيل دخول، بدون أي تأثير على نظام دخول المشتركين
 const FREE_PAGES = [
   'viewer-a032.html',
