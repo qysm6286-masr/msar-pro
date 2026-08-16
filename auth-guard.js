@@ -10,7 +10,23 @@ function reveal() {
   document.documentElement.style.visibility = 'visible';
 }
 
+// صفحات المعاينة المجانية: يُسمح بمشاهدتها بدون تسجيل دخول، بدون أي تأثير على نظام دخول المشتركين
+const FREE_PAGES = [
+  'viewer-a032.html',
+  'viewer-a205.html',
+  'viewer-huawei-y6-2018.html',
+  'viewer-huawei-nova-3.html',
+  'viewer-infinix-hot-10-x682b.html',
+  'viewer-redmi-10-4G.html',
+  'viewer-POCO-X3.html',
+  'viewer-tecno-spark-10-pro.html',
+  'viewer-a125.html'
+];
+
 (async function () {
+  const currentPage = window.location.pathname.split('/').pop();
+  if (FREE_PAGES.includes(currentPage)) { reveal(); return; }
+
   const raw = localStorage.getItem('msar_auth');
   if (!raw) { window.location.href = 'index.html'; return; }
 
