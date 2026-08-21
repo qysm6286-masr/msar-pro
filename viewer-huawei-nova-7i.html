@@ -142,7 +142,7 @@ wrap.addEventListener('mousedown',(e)=>{
 });
 window.addEventListener('mousemove',(e)=>{
   if(!isDragging)return;
-  posX=e.clientX-dragStartX;posY=e.clientY-posY;
+  posX=e.clientX-dragStartX;posY=e.clientY-dragStartY;
   updateTransform();
 });
 window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('grabbing');});
