@@ -103,6 +103,20 @@ td{padding:10px 12px;border-bottom:1px solid rgba(26,51,96,0.5)}
   </div>
 </div>
 <div class="section">
+  <div class="section-title">إعادة تفعيل كود موجود</div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:14px">استخدم هذا عند دفع نفس الشخص مرتين بالخطأ — يرجّع الكود القديم قابل للاستخدام من جديد بدل توليد كود إضافي.</p>
+  <div class="form-row">
+    <div class="input-group">
+      <label>الكود المراد إعادة تفعيله</label>
+      <input type="text" id="reset-code-input" placeholder="مثال: ABCD1234" style="width:100%;background:#0a1628;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Tajawal',sans-serif;font-size:14px;color:var(--text);outline:none">
+    </div>
+    <div class="input-group" style="flex:0;min-width:auto;display:flex;align-items:flex-end">
+      <button class="btn btn-primary" style="width:auto" onclick="resetCode()">إعادة تفعيل ←</button>
+    </div>
+  </div>
+  <div id="reset-msg" class="msg"></div>
+</div>
+<div class="section">
   <div class="section-title">جميع الأكواد</div>
   <div class="table-wrap">
     <table>
@@ -173,6 +187,29 @@ window.generateCode = async () => {
   document.getElementById('result-code').textContent = data.code;
   document.getElementById('result-expires').textContent = data.expires_at ? 'صالح حتى: ' + new Date(data.expires_at).toLocaleDateString('ar') : 'مدى الحياة';
   document.getElementById('result-box').style.display = 'block';
+  loadCodes();
+};
+
+window.resetCode = async () => {
+  const codeInput = document.getElementById('reset-code-input');
+  const code = codeInput.value.trim().toUpperCase();
+  const msgEl = document.getElementById('reset-msg');
+  msgEl.style.display = 'none';
+  if (!code) {
+    msgEl.textContent = 'اكتب الكود أولاً';
+    msgEl.className = 'msg error';
+    return;
+  }
+  const { data, error } = await supabase.rpc('admin_reset_code', { p_code: code });
+  if (error || !data || !data.ok) {
+    msgEl.textContent = (data && data.error === 'not_found') ? 'لم يتم العثور على هذا الكود' : 'تعذر تنفيذ العملية، تأكد من تسجيل الدخول بالحساب الصحيح';
+    msgEl.className = 'msg error';
+    return;
+  }
+  msgEl.textContent = '✅ تم إرجاع الكود ' + data.code + ' قابل للاستخدام من جديد';
+  msgEl.className = 'msg';
+  msgEl.style.cssText = 'padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;display:block;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7';
+  codeInput.value = '';
   loadCodes();
 };
 
